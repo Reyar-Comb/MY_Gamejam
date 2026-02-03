@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bwl30567rwynr"]
+
+[ext_resource type="Texture2D" uid="uid://cdvlf7lqc3i8" path="res://Weezer.png" id="1_hgxro"]
+
+[node name="Node2D" type="Node2D" unique_id=256202368]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=299938857]
+texture = ExtResource("1_hgxro")
