@@ -1,10 +1,15 @@
 [gd_scene format=3 uid="uid://sibf8e0lv1wc"]
 
 [ext_resource type="Texture2D" uid="uid://cdvlf7lqc3i8" path="res://Weezer.png" id="1_hgxro"]
+[ext_resource type="SpriteFrames" uid="uid://d4j7yidnf10my" path="res://Animation/red_Idle.tres" id="2_57gky"]
+[ext_resource type="SpriteFrames" uid="uid://6sq2sn3xgmfs" path="res://Animation/white_Idle.tres" id="3_hctm1"]
+[ext_resource type="SpriteFrames" uid="uid://kb0m1xx3wl8j" path="res://Animation/purple_Idle.tres" id="4_gix13"]
+[ext_resource type="SpriteFrames" uid="uid://bitndyfm41dev" path="res://Animation/blue_Idle.tres" id="5_836yn"]
 
 [node name="Node2D" type="Node2D" unique_id=256202368]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=299938857]
+position = Vector2(100, 119)
 texture = ExtResource("1_hgxro")
 
 [node name="Label" type="Label" parent="." unique_id=830934680]
@@ -15,3 +20,27 @@ offset_bottom = -184.0
 scale = Vector2(10, 10)
 text = "fucku
 "
+
+[node name="RedIdle" type="AnimatedSprite2D" parent="." unique_id=1367994434]
+position = Vector2(10.000015, 371.99988)
+scale = Vector2(0.4611111, 0.45740741)
+sprite_frames = ExtResource("2_57gky")
+frame_progress = 0.9492541
+
+[node name="WhiteIdle" type="AnimatedSprite2D" parent="." unique_id=2062355604]
+position = Vector2(-161, 366)
+scale = Vector2(1.0541667, 1.0375)
+sprite_frames = ExtResource("3_hctm1")
+frame_progress = 0.84047997
+
+[node name="PurpleIdle" type="AnimatedSprite2D" parent="." unique_id=802203849]
+position = Vector2(178, 368.99994)
+scale = Vector2(0.4611111, 0.45740741)
+sprite_frames = ExtResource("4_gix13")
+frame_progress = 0.06226332
+
+[node name="BlueIdle" type="AnimatedSprite2D" parent="." unique_id=2050539863]
+position = Vector2(344, 371.9999)
+scale = Vector2(0.4611111, 0.45740741)
+sprite_frames = ExtResource("5_836yn")
+frame_progress = 0.60833216
