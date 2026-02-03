@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bwl30567rwynr"]
+[gd_scene format=3 uid="uid://sibf8e0lv1wc"]
 
 [ext_resource type="Texture2D" uid="uid://cdvlf7lqc3i8" path="res://Weezer.png" id="1_hgxro"]
 
@@ -6,3 +6,12 @@
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=299938857]
 texture = ExtResource("1_hgxro")
+
+[node name="Label" type="Label" parent="." unique_id=830934680]
+offset_left = 36.0
+offset_top = -233.0
+offset_right = 80.0
+offset_bottom = -184.0
+scale = Vector2(10, 10)
+text = "fucku
+"
