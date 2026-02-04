@@ -1,15 +1,23 @@
 [gd_scene format=3 uid="uid://cydjs7kmnnae4"]
 
-[ext_resource type="SpriteFrames" uid="uid://d4j7yidnf10my" path="res://Animation/Red_Idle.tres" id="1_wfnr8"]
-[ext_resource type="SpriteFrames" uid="uid://bitndyfm41dev" path="res://Animation/Blue_Idle.tres" id="2_px5sl"]
-[ext_resource type="SpriteFrames" uid="uid://6sq2sn3xgmfs" path="res://Animation/White_Idle.tres" id="3_0qfo5"]
+[ext_resource type="Script" uid="uid://wgu88gqi5jof" path="res://Player/Player.cs" id="1_j23h2"]
+[ext_resource type="SpriteFrames" uid="uid://d4j7yidnf10my" path="res://Animation/red_Idle.tres" id="1_wfnr8"]
+[ext_resource type="SpriteFrames" uid="uid://bitndyfm41dev" path="res://Animation/blue_Idle.tres" id="2_px5sl"]
+[ext_resource type="SpriteFrames" uid="uid://6sq2sn3xgmfs" path="res://Animation/white_Idle.tres" id="3_0qfo5"]
 [ext_resource type="SpriteFrames" uid="uid://c45teo82dwggf" path="res://Animation/Blue_Jump.tres" id="3_yxww1"]
 [ext_resource type="SpriteFrames" uid="uid://cx1n6i08cig6c" path="res://Animation/White_Jump.tres" id="4_px5sl"]
-[ext_resource type="SpriteFrames" uid="uid://kb0m1xx3wl8j" path="res://Animation/Purple_Idle.tres" id="4_yxww1"]
+[ext_resource type="SpriteFrames" uid="uid://kb0m1xx3wl8j" path="res://Animation/purple_Idle.tres" id="4_yxww1"]
 [ext_resource type="SpriteFrames" uid="uid://ceax4u64jmasv" path="res://Animation/Purple_Jump.tres" id="5_wdpcj"]
 [ext_resource type="SpriteFrames" uid="uid://jmlefq3vevh4" path="res://Animation/Red_Jump.tres" id="6_wdpcj"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0hol4"]
+[ext_resource type="Script" uid="uid://curn4ma0hxrvx" path="res://StateTree/StateTree.cs" id="10_7v5gs"]
+[ext_resource type="Script" uid="uid://dgwsmmkrq3lt5" path="res://Player/PlayerStates/Player_UniveralState.cs" id="11_8sa4y"]
+[ext_resource type="Script" uid="uid://bhi7dweai6tip" path="res://Player/PlayerStates/Player_GravityAffectedState.cs" id="12_3nb2p"]
+[ext_resource type="Script" uid="uid://d20qq2gq1avsb" path="res://Player/PlayerStates/Player_IdleState.cs" id="13_d7xyo"]
+[ext_resource type="Script" uid="uid://bvuwqb05kvl2j" path="res://Player/PlayerStates/Player_JumpIntroState.cs" id="14_evw08"]
+[ext_resource type="Script" uid="uid://do48j1jgw61nk" path="res://Player/PlayerStates/Player_CanMoveState.cs" id="15_3nb2p"]
+[ext_resource type="Script" uid="uid://c1w867cbe3lil" path="res://Player/PlayerStates/Player_JumpLoopState.cs" id="15_roy6y"]
+[ext_resource type="Script" uid="uid://dq6pltbwiwgv2" path="res://Player/PlayerStates/Player_JumpEndState.cs" id="16_u5tep"]
+[ext_resource type="Script" uid="uid://r7j8fun8fd73" path="res://Player/PlayerStates/Player_CanJumpState.cs" id="18_d7xyo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_q6r6c"]
 radius = 84.095184
@@ -723,26 +731,61 @@ _data = {
 &"WhiteJumpLoop": SubResource("Animation_c1b4b")
 }
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=990283555]
+[node name="Player" type="CharacterBody2D" unique_id=990283555]
 disable_mode = 2
+script = ExtResource("1_j23h2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2009948130]
+unique_name_in_owner = true
 position = Vector2(1.9999917, 1.0000017)
 scale = Vector2(1, 0.963)
 sprite_frames = ExtResource("3_0qfo5")
 
-[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=2132378386]
-visible = false
-physics_material_override = SubResource("PhysicsMaterial_0hol4")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=1278809267]
-position = Vector2(-7, 7)
-shape = SubResource("CircleShape2D_q6r6c")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1955807136]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1955807136]
 position = Vector2(-7, 7)
 shape = SubResource("CircleShape2D_q6r6c")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2137276626]
+unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_rj586")
 autoplay = &"WhiteIdle"
+
+[node name="StateTree" type="Node" parent="." unique_id=37796226]
+script = ExtResource("10_7v5gs")
+InitialStateName = "Idle"
+metadata/_custom_type_script = "uid://curn4ma0hxrvx"
+
+[node name="Universal" type="Node" parent="StateTree" unique_id=111203838]
+script = ExtResource("11_8sa4y")
+metadata/_custom_type_script = "uid://o0khett2tmlm"
+
+[node name="GravityAffected" type="Node" parent="StateTree/Universal" unique_id=884191169]
+script = ExtResource("12_3nb2p")
+metadata/_custom_type_script = "uid://o0khett2tmlm"
+
+[node name="CanMove" type="Node" parent="StateTree/Universal/GravityAffected" unique_id=1203220987]
+script = ExtResource("15_3nb2p")
+Speed = 500.0
+metadata/_custom_type_script = "uid://o0khett2tmlm"
+
+[node name="JumpLoop" type="Node" parent="StateTree/Universal/GravityAffected/CanMove" unique_id=1695290157]
+script = ExtResource("15_roy6y")
+metadata/_custom_type_script = "uid://o0khett2tmlm"
+
+[node name="CanJump" type="Node" parent="StateTree/Universal/GravityAffected/CanMove" unique_id=371730645]
+script = ExtResource("18_d7xyo")
+metadata/_custom_type_script = "uid://o0khett2tmlm"
+
+[node name="Idle" type="Node" parent="StateTree/Universal/GravityAffected/CanMove/CanJump" unique_id=2119701389]
+script = ExtResource("13_d7xyo")
+metadata/_custom_type_script = "uid://o0khett2tmlm"
+
+[node name="JumpEnd" type="Node" parent="StateTree/Universal/GravityAffected/CanMove/CanJump" unique_id=1586334622]
+script = ExtResource("16_u5tep")
+metadata/_custom_type_script = "uid://o0khett2tmlm"
+
+[node name="JumpIntro" type="Node" parent="StateTree/Universal/GravityAffected/CanMove" unique_id=3175368]
+script = ExtResource("14_evw08")
+metadata/_custom_type_script = "uid://o0khett2tmlm"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=27589410]

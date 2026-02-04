@@ -22,6 +22,7 @@ public partial class State : Node
 	public override sealed void _PhysicsProcess(double delta)
 	{
 		if (!_isActive) return;
+		GD.Print(Name);
 		PhysicsUpdate(delta);
 	}
 	public override sealed void _Process(double delta)
