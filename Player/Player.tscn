@@ -750,6 +750,8 @@ unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_rj586")
 autoplay = &"WhiteIdle"
 
+[node name="Camera2D" type="Camera2D" parent="." unique_id=27589410]
+
 [node name="StateTree" type="Node" parent="." unique_id=37796226]
 script = ExtResource("10_7v5gs")
 InitialStateName = "Idle"
@@ -768,6 +770,10 @@ script = ExtResource("15_3nb2p")
 Speed = 500.0
 metadata/_custom_type_script = "uid://o0khett2tmlm"
 
+[node name="JumpIntro" type="Node" parent="StateTree/Universal/GravityAffected/CanMove" unique_id=3175368]
+script = ExtResource("14_evw08")
+metadata/_custom_type_script = "uid://o0khett2tmlm"
+
 [node name="JumpLoop" type="Node" parent="StateTree/Universal/GravityAffected/CanMove" unique_id=1695290157]
 script = ExtResource("15_roy6y")
 metadata/_custom_type_script = "uid://o0khett2tmlm"
@@ -783,9 +789,3 @@ metadata/_custom_type_script = "uid://o0khett2tmlm"
 [node name="JumpEnd" type="Node" parent="StateTree/Universal/GravityAffected/CanMove/CanJump" unique_id=1586334622]
 script = ExtResource("16_u5tep")
 metadata/_custom_type_script = "uid://o0khett2tmlm"
-
-[node name="JumpIntro" type="Node" parent="StateTree/Universal/GravityAffected/CanMove" unique_id=3175368]
-script = ExtResource("14_evw08")
-metadata/_custom_type_script = "uid://o0khett2tmlm"
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=27589410]
