@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bji6avwqetclp"]
+
+[ext_resource type="PackedScene" uid="uid://cydjs7kmnnae4" path="res://Player/Player.tscn" id="2_16oai"]
+[ext_resource type="Texture2D" uid="uid://oya8wpn6jmc8" path="res://icon.svg" id="2_q3v8s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_16oai"]
+size = Vector2(1198, 506)
+
+[node name="TestDotlineScene" type="Node2D" unique_id=1340547102]
+
+[node name="Player" parent="." unique_id=990283555 instance=ExtResource("2_16oai")]
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=255925954]
+position = Vector2(300, 362)
+scale = Vector2(9.359375, 3.953125)
+texture = ExtResource("2_q3v8s")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Icon" unique_id=956695976]
+position = Vector2(-43.272118, -32.632404)
+scale = Vector2(0.10684474, 0.2529644)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Icon/StaticBody2D" unique_id=712134452]
+position = Vector2(405, 129)
+shape = SubResource("RectangleShape2D_16oai")

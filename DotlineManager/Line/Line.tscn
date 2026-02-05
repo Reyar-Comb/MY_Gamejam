@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://sjvd3qsssenk"]
+
+[ext_resource type="Script" uid="uid://cqb7vohlqttfa" path="res://DotlineManager/Line/Line.cs" id="1_x8qfy"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_x8qfy"]
+
+[node name="Line" type="Line2D" unique_id=680204987 node_paths=PackedStringArray("LineArea")]
+points = PackedVector2Array(0, 0, 100, 0)
+script = ExtResource("1_x8qfy")
+LineArea = NodePath("Area2D/CollisionShape2D")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1230655289]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=761903518]
+shape = SubResource("SegmentShape2D_x8qfy")

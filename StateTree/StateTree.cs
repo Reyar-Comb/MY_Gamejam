@@ -9,7 +9,7 @@ public partial class StateTree : State
 	// 填写初始状态名称,将沿路径进入该状态
 	[Export] public string InitialStateName = "";
 	protected Dictionary<string, State> _stateTree = new();
-	private State _currentState = null;
+	public State _currentState = null;
 
 	protected override void ReadyBehavior()
 	{
