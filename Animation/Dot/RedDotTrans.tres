@@ -1,0 +1,74 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://ctg1spv566s6i"]
+
+[ext_resource type="Texture2D" uid="uid://dpq85aulca1dr" path="res://Animation/Texture/Dot/RedDotTrans.png" id="1_bd6eh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pce5w"]
+atlas = ExtResource("1_bd6eh")
+region = Rect2(0, 0, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jy5gi"]
+atlas = ExtResource("1_bd6eh")
+region = Rect2(240, 0, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3fbiv"]
+atlas = ExtResource("1_bd6eh")
+region = Rect2(480, 0, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8ctg"]
+atlas = ExtResource("1_bd6eh")
+region = Rect2(720, 0, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5avrx"]
+atlas = ExtResource("1_bd6eh")
+region = Rect2(960, 0, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c8i13"]
+atlas = ExtResource("1_bd6eh")
+region = Rect2(1200, 0, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6j7e4"]
+atlas = ExtResource("1_bd6eh")
+region = Rect2(1440, 0, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxwn6"]
+atlas = ExtResource("1_bd6eh")
+region = Rect2(1680, 0, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ib3o4"]
+atlas = ExtResource("1_bd6eh")
+region = Rect2(1920, 0, 240, 240)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pce5w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jy5gi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3fbiv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v8ctg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5avrx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c8i13")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6j7e4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bxwn6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ib3o4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
