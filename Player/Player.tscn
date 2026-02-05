@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://cydjs7kmnnae4"]
 
 [ext_resource type="Script" uid="uid://wgu88gqi5jof" path="res://Player/Player.cs" id="1_j23h2"]
-[ext_resource type="SpriteFrames" uid="uid://d4j7yidnf10my" path="res://Animation/Red_Idle.tres" id="1_wfnr8"]
-[ext_resource type="SpriteFrames" uid="uid://bitndyfm41dev" path="res://Animation/Blue_Idle.tres" id="2_px5sl"]
-[ext_resource type="SpriteFrames" uid="uid://6sq2sn3xgmfs" path="res://Animation/White_Idle.tres" id="3_0qfo5"]
+[ext_resource type="SpriteFrames" uid="uid://d4j7yidnf10my" path="res://Animation/red_Idle.tres" id="1_wfnr8"]
+[ext_resource type="SpriteFrames" uid="uid://bitndyfm41dev" path="res://Animation/blue_Idle.tres" id="2_px5sl"]
+[ext_resource type="SpriteFrames" uid="uid://6sq2sn3xgmfs" path="res://Animation/white_Idle.tres" id="3_0qfo5"]
 [ext_resource type="SpriteFrames" uid="uid://c45teo82dwggf" path="res://Animation/Blue_Jump.tres" id="3_yxww1"]
 [ext_resource type="SpriteFrames" uid="uid://cx1n6i08cig6c" path="res://Animation/White_Jump.tres" id="4_px5sl"]
-[ext_resource type="SpriteFrames" uid="uid://kb0m1xx3wl8j" path="res://Animation/Purple_Idle.tres" id="4_yxww1"]
+[ext_resource type="SpriteFrames" uid="uid://kb0m1xx3wl8j" path="res://Animation/purple_Idle.tres" id="4_yxww1"]
 [ext_resource type="SpriteFrames" uid="uid://ceax4u64jmasv" path="res://Animation/Purple_Jump.tres" id="5_wdpcj"]
 [ext_resource type="SpriteFrames" uid="uid://jmlefq3vevh4" path="res://Animation/Red_Jump.tres" id="6_wdpcj"]
 [ext_resource type="Script" uid="uid://curn4ma0hxrvx" path="res://StateTree/StateTree.cs" id="10_7v5gs"]
@@ -21,6 +21,9 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_q6r6c"]
 radius = 84.095184
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3nb2p"]
+radius = 84.1
 
 [sub_resource type="Animation" id="Animation_wdpcj"]
 resource_name = "BlueIdle"
@@ -744,6 +747,13 @@ sprite_frames = ExtResource("3_0qfo5")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1955807136]
 position = Vector2(-7, 7)
 shape = SubResource("CircleShape2D_q6r6c")
+
+[node name="LineDetectArea" type="Area2D" parent="." unique_id=809732912]
+unique_name_in_owner = true
+position = Vector2(-7, 7)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LineDetectArea" unique_id=2104993874]
+shape = SubResource("CircleShape2D_3nb2p")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2137276626]
 unique_name_in_owner = true
