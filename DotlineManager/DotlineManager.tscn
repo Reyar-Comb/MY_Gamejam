@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" uid="uid://dax2wjq1iaa2n" path="res://DotlineManager/DotlineManager.cs" id="1_gtm0m"]
 [ext_resource type="PackedScene" uid="uid://bkkqlb5ypb048" path="res://DotlineManager/Dot/Dot.tscn" id="2_2ftmn"]
+[ext_resource type="PackedScene" uid="uid://sjvd3qsssenk" path="res://DotlineManager/Line/Line.tscn" id="3_dp5o5"]
 
 [node name="DotlineManager" type="Node2D" unique_id=911274388]
 script = ExtResource("1_gtm0m")
 DotScene = ExtResource("2_2ftmn")
+LineScene = ExtResource("3_dp5o5")
 DotVelocity = 500.0

@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Reflection;
 using System.Threading.Tasks;
 
 public partial class DotlineManager : Node2D
@@ -9,6 +10,7 @@ public partial class DotlineManager : Node2D
 	public static DotlineManager Instance;
 
 	[Export] public PackedScene DotScene;
+	[Export] public PackedScene LineScene;
 
 	public DotlineColor CurrentColor {
 		 get => field; 
@@ -18,7 +20,7 @@ public partial class DotlineManager : Node2D
 		} }
 		
 	public Player Player;
-	[Export] public float DotVelocity = 200f;
+	[Export] public float DotVelocity = 300f;
 
 
 	public Queue<Dot> BlueDotQueue { get; private set; } = new Queue<Dot>();
@@ -49,6 +51,281 @@ public partial class DotlineManager : Node2D
 		return (GetGlobalMousePosition() - Player.GlobalPosition).Normalized();
 	}
 	
+	public Queue<Dot> GetDotQueue(DotlineColor color)
+	{
+		return color switch
+		{
+			DotlineColor.Blue => BlueDotQueue,
+			DotlineColor.Red => RedDotQueue,
+			DotlineColor.Purple => PurpleDotQueue,
+			_ => null
+		};
+	}
+	public void LineUpDot(Dot dot)
+	{
+		if (dot == null)
+			return;
+		//GD.Print(RedDotQueue.Peek().Name);
+		if (dot.State != DotState.Static)
+			return;
+		if (!dot.VelUnderGate)
+			return;
+		DotlineColor color = dot.Color;
+		Queue<Dot> DotQueue = GetDotQueue(color);
+
+		if (dot.hasEmittedLineUp)  
+			return;
+
+		dot.hasEmittedLineUp = true;
+		dot.hasEmittedUnline = false;
+		// ...existing code...
+		if (dot == DotQueue.Peek())
+		{
+			// 只连已经停下的点
+			var readyDots = new List<Dot>();
+			foreach (Dot d in DotQueue.ToArray())
+			{
+				if (d == dot) continue;
+				if (!d.VelUnderGate)
+				{
+					d.hasEmittedLineUp = false; // 还在动，允许之后再连
+					continue;
+				}
+				readyDots.Add(d);
+			}
+
+			if (readyDots.Count == 0)
+			{
+				dot.hasEmittedLineUp = false; // 没人可连，中心允许下次再触发
+				return;
+			}
+
+			string colorName = dot.Color switch
+			{
+				DotlineColor.Blue => "Blue",
+				DotlineColor.Red => "Red",
+				DotlineColor.Purple => "Purple",
+				_ => "Blue"
+			};
+			dot.DotAnimPlayer.Play(colorName + "DotTrans");
+			dot.State = DotState.Lined;
+
+			foreach (Dot d in readyDots)
+			{
+				d.State = DotState.Lined;
+				d.hasEmittedLineUp = true;
+				d.hasEmittedUnline = false;
+
+				Line newLine = MakeLine(dot, d);
+				Animate(dot, d, newLine, "2l");
+			}
+			return;
+		}
+		// ...existing code...
+
+		else
+		{
+			if (!DotQueue.Peek().VelUnderGate)
+			{
+				dot.hasEmittedLineUp = false; 
+				return;
+			}
+		
+			dot.State = DotState.Lined;
+			if (DotQueue.Peek().State == DotState.Static && DotQueue.Count == 2)
+			{
+				DotQueue.Peek().State = DotState.Lined;
+				GD.Print("Lining last dot in queue");
+				DotQueue.Peek().hasEmittedLineUp = true;
+				DotQueue.Peek().hasEmittedUnline = false;
+				Line newLine = MakeLine(DotQueue.Peek(), dot);
+				Animate(DotQueue.Peek(), dot, newLine, "3l");
+				DotQueue.Peek().State = DotState.Lined; 
+			}
+			else
+			{
+				DotQueue.Peek().State = DotState.Lined;
+				if (DotQueue.Peek().State != DotState.Lined)
+					GD.Print("wtf");
+				
+				Line newLine = MakeLine(DotQueue.Peek(), dot);
+				Animate(DotQueue.Peek(), dot, newLine, "2l");
+			}
+		}
+	}
+
+
+
+	public void UnlineDot(Dot dot)
+	{
+		if (dot.hasEmittedUnline)  
+			return;
+		if (dot.State != DotState.Lined)
+			return;
+
+		DotlineColor color = dot.Color;
+		Queue<Dot> DotQueue = GetDotQueue(color);
+
+		dot.hasEmittedUnline = true;
+		dot.hasEmittedLineUp = false;
+
+		if (dot == DotQueue.Peek())
+		{
+			
+			string colorName = dot.Color switch
+			{
+				DotlineColor.Blue => "Blue",
+				DotlineColor.Red => "Red",
+				DotlineColor.Purple => "Purple",
+				_ => "Blue"
+			};
+			dot.DotAnimPlayer.Play(colorName + "DotTrans_Inverse");
+			dot.State = DotState.Static;
+
+			foreach (Dot d in DotQueue.ToArray())
+			{
+				if (d == dot) continue;
+
+				d.State = DotState.Static;
+				d.hasEmittedLineUp = false;
+
+				Line lineToClear = d.CurrentLine;
+				if (lineToClear != null)
+				{
+					dot.CurrentLines.Remove(lineToClear);
+					Animate(dot, d, lineToClear, "2u"); // 只播 endDot 动画 + 清线
+				}
+			}
+			return;
+			/*
+			foreach(Dot d in DotQueue.ToArray())
+			{
+				if (d == dot) continue;
+				UnlineDot(d);
+			}
+			dot.State = DotState.Static;
+			*/
+		}
+		else
+		{
+			if (DotQueue.Count == 2 || DotQueue.Peek().CurrentLines.Count == 1)
+			{
+				GD.Print("Unlining last dot in queue");
+				dot.State = DotState.Static;
+				dot.hasEmittedLineUp = false; 
+				DotQueue.Peek().State = DotState.Static;
+				DotQueue.Peek().hasEmittedLineUp = false;
+				DotQueue.Peek().hasEmittedUnline = true;
+				Line lineToClear = dot.CurrentLine;
+				DotQueue.Peek().CurrentLines.Remove(lineToClear);
+				Animate(DotQueue.Peek(), dot, lineToClear, "3u");
+			}
+			else
+			{
+				dot.State = DotState.Static;
+				dot.hasEmittedLineUp = false; 
+				Line lineToClear = dot.CurrentLine;
+				dot.CurrentLines.Remove(lineToClear);
+				Animate(DotQueue.Peek(), dot, lineToClear, "2u");
+			}
+		}
+	}
+
+	public Line MakeLine(Dot startDot, Dot endDot)
+	{
+		Line line = LineScene.Instantiate<Line>();
+		GetTree().CurrentScene.AddChild(line);
+		line.StartDot = startDot;
+		line.EndDot = endDot;
+		line.SetColor(startDot.Color);
+		endDot.CurrentLine = line;
+		startDot.CurrentLines.Add(line);
+		return line;
+	}
+
+	public async void Animate(Dot startDot, Dot endDot, Line line, string mode)
+	{
+		if (startDot == null || endDot == null || line == null)
+		return;
+		if (!IsInstanceValid(startDot) || !IsInstanceValid(endDot) || !IsInstanceValid(line))
+			return;
+		if (startDot.DotAnimPlayer == null || endDot.DotAnimPlayer == null)
+			return;
+
+		string colorName = "";
+		switch (startDot.Color)
+		{
+			case DotlineColor.Blue:
+				colorName = "Blue";
+				break;
+			case DotlineColor.Red:
+				colorName = "Red";
+				break;
+			case DotlineColor.Purple:
+				colorName = "Purple";
+				break;
+		}
+		switch (mode)
+		{
+			case "3l":
+				startDot.DotAnimPlayer.Play(colorName + "DotTrans");
+				await ToSignal(startDot.DotAnimPlayer, "animation_finished");
+				line.Spawn();
+				endDot.DotAnimPlayer.Play(colorName + "DotTrans");
+				await ToSignal(endDot.DotAnimPlayer, "animation_finished");
+				break;
+			case "2l":
+				line.Spawn();
+				endDot.DotAnimPlayer.Play(colorName + "DotTrans");
+				await ToSignal(endDot.DotAnimPlayer, "animation_finished");
+				break;
+			case "3u":
+				GD.Print("Animating 3u");   
+				endDot.DotAnimPlayer.Play(colorName + "DotTrans_Inverse");
+				await ToSignal(endDot.DotAnimPlayer, "animation_finished");
+				await line.Clear();
+				startDot.DotAnimPlayer.Play(colorName + "DotTrans_Inverse");
+				await ToSignal(startDot.DotAnimPlayer, "animation_finished");
+				break;
+			case "2u":
+				GD.Print("Animating 2u");
+				endDot.DotAnimPlayer.Play(colorName + "DotTrans_Inverse");
+				await line.Clear();
+				break;
+		}
+	}
+
+	public async Task AnimateAsync(Dot startDot, Dot endDot, Line line, string mode)
+	{
+		if (startDot == null || endDot == null || line == null)
+			return;
+		if (!IsInstanceValid(startDot) || !IsInstanceValid(endDot) || !IsInstanceValid(line))
+			return;
+		if (startDot.DotAnimPlayer == null || endDot.DotAnimPlayer == null)
+			return;
+
+		string colorName = startDot.Color switch
+		{
+			DotlineColor.Blue => "Blue",
+			DotlineColor.Red => "Red",
+			DotlineColor.Purple => "Purple",
+			_ => "Blue"
+		};
+		switch (mode)
+		{
+			case "2u":
+				endDot.DotAnimPlayer.Play(colorName + "DotTrans_Inverse");
+				await line.Clear();
+				break;
+			case "3u":
+				endDot.DotAnimPlayer.Play(colorName + "DotTrans_Inverse");
+				await ToSignal(endDot.DotAnimPlayer, "animation_finished");
+				await line.Clear();
+				startDot.DotAnimPlayer.Play(colorName + "DotTrans_Inverse");
+				await ToSignal(startDot.DotAnimPlayer, "animation_finished");
+				break;
+		}
+	}
 	
 	public async Task ClearColorDot(DotlineColor color, bool DeleteDot = false)
 	{
@@ -62,48 +339,33 @@ public partial class DotlineManager : Node2D
 		if (DotQueue == null || DotQueue.Count == 0)
 			return;
 		Dot dotToClear = DotQueue.Dequeue();
+		GD.Print("Clearing dot: " + dotToClear.Name);
 		var tasks = new List<Task>();
-		foreach (Line line in dotToClear.CurrentLines)
+		foreach (var d in DotQueue.ToArray())
 		{
-			tasks.Add(line.Clear());
-			switch (color)
-			{
-				case DotlineColor.Blue:
-					BlueLines.Remove(line);
-					break;
-				case DotlineColor.Red:
-					RedLines.Remove(line);
-					break;
-				case DotlineColor.Purple:
-					PurpleLines.Remove(line);
-					break;
-			}
+			if (d == dotToClear) continue;
+			var line = d.CurrentLine;
+			if (line == null || !IsInstanceValid(line)) continue;
+
+			dotToClear.CurrentLines.Remove(line);
+			tasks.Add(AnimateAsync(dotToClear, d, line, "3u"));
 		}
 		await Task.WhenAll(tasks);
+
 		if (DeleteDot == false) await dotToClear.Clear();
 
+		foreach (var d in DotQueue.ToArray())
+		{
+			d.State = DotState.Static;
+			d.hasEmittedLineUp = false;
+			d.hasEmittedUnline = true;
+			d.CurrentLine = null;
+		}
 		Dot FirstDot = DotQueue.Count > 0 ? DotQueue.Peek() : null;
 		FirstDot?.CurrentLines.Clear();
-		foreach (Dot dot in DotQueue)
-		{
-			if (dot != FirstDot)
-			{
-				Line newLine = FirstDot.LineUp(dot);
-				switch (color)
-				{
-					case DotlineColor.Blue:
-						BlueLines.Add(newLine);
-						break;
-					case DotlineColor.Red:
-						RedLines.Add(newLine);
-						break;
-					case DotlineColor.Purple:
-						PurpleLines.Add(newLine);
-						break;
-				}
-			}
-		}
+		LineUpDot(FirstDot);
 	}
+	/*
 	public async Task ClearDots()
 	{
 		var tasks = new System.Collections.Generic.List<Task>();
@@ -133,7 +395,8 @@ public partial class DotlineManager : Node2D
 		RedLines.Clear();
 		PurpleLines.Clear();
 	}
-	public void SpawnDot()
+	*/
+	public async void SpawnDot()
 	{
 		if (CurrentColor == DotlineColor.White)
 			return;
@@ -142,6 +405,7 @@ public partial class DotlineManager : Node2D
 		dot.GlobalPosition = Player.GlobalPosition;
 		dot.SetColor(CurrentColor);
 		dot.SetVelocity(GetDirection() * DotVelocity);
+		dot.State = DotState.Static;
 		dot.Spawn();
 		Queue<Dot> DotQueue = CurrentColor switch
 		{
@@ -151,8 +415,14 @@ public partial class DotlineManager : Node2D
 			_ => null
 		};
 		DotQueue.Enqueue(dot);
-
-		if (DotQueue.Count >= 2)
+		// dot.OnIdle += () => OnDotIdjjhhcle(dot, DotQueue);
+		// TODO: Enable dot collision handling
+		// dot.DotCollide += OnDotCollide;
+	}
+	/*
+	public void OnDotIdle(Dot dot, Queue<Dot> dotQueue)
+	{
+		if (dotQueue.Count >= 2)
 		{
 			Dot FirstDot = CurrentColor switch
 			{
@@ -174,8 +444,6 @@ public partial class DotlineManager : Node2D
 					break;
 			}
 		}
-		// TODO: Enable dot collision handling
-		// dot.DotCollide += OnDotCollide;
 	}
 
 	public void OnDotCollide(Dot collidedDot, Dot selfDot)
@@ -249,7 +517,7 @@ public partial class DotlineManager : Node2D
 		}
 		GD.Print("Dot collided: " + selfDot.Color.ToString());
 	}
-
+	*/
 	public void ChangeColor(DotlineColor newColor)
 	{
 		CurrentColor = newColor;
@@ -280,7 +548,7 @@ public partial class DotlineManager : Node2D
 			}
 			if (keyEvent.Keycode == Key.C)
 			{
-				await ClearDots();
+				//await ClearDots();
 			}
 			if (keyEvent.Keycode == Key.L)
 			{

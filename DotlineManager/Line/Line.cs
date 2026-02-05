@@ -32,6 +32,7 @@ public partial class Line : Line2D
 
 	public async void Spawn()
 	{
+		GD.Print("hhello spawning line");
 		State = LineState.Lining;
 		Vector2 initStartPos = StartDot.GlobalPosition;
 		SetPointPosition(0, initStartPos);

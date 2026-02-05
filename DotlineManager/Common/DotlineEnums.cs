@@ -10,8 +10,9 @@ public enum DotlineColor
 
 public enum DotState
 {
-    Moving,
-    Idle
+    Static,
+    Lined,
+    LineUp
 }
 
 public enum LineState
