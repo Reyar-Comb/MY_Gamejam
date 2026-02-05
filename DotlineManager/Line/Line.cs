@@ -85,6 +85,24 @@ public partial class Line : Line2D
 		State = LineState.Idle;
 		QueueFree();
 	}
+
+	public Vector2 GetDirection()
+	{
+		if (!IsInstanceValid(StartDot) || !IsInstanceValid(EndDot)) return Vector2.Right;
+		return (EndDot.GlobalPosition - StartDot.GlobalPosition).Normalized();
+	}
+
+	public Vector2 GetNormal()
+	{
+		Vector2 dir = GetDirection();
+		Vector2 normal = dir.Orthogonal();
+		if (normal.Y > 0)
+		{
+			normal = -normal;
+		}
+		return normal;
+	}
+
 	public void SetLinePosition()
 	{
 		SetPointPosition(0, StartDot.GlobalPosition);

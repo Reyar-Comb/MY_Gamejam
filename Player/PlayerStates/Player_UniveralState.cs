@@ -17,16 +17,35 @@ public partial class Player_UniveralState : State
     protected override void PhysicsUpdate(double delta)
     {
         Player.MoveAndSlide();
-        if (Player.Velocity.X != 0)
+
+        int direction = GetDirection();
+        if (direction != 0)
         {
-            Sprite.FlipH = Player.Velocity.X < 0;
+            Sprite.FlipH = direction < 0;
         }
     }
     private void OnLineDetected(Area2D area)
     {
-        if (area is LineArea lineArea)
+        if (area is not LineArea lineArea) return;
+
+        DotlineColor color = lineArea.LineColor;
+        Player.LastTouchedLine = lineArea.Line;
+        GD.Print($"{color} Line Detected");
+        if (color == DotlineColor.Red) return;
+
+        AskTransit($"{color}Affected");
+    }
+    private int GetDirection()
+    {
+        int direction = 0;
+        if (Input.IsActionPressed("Right"))
         {
-            GD.Print("Line Detected: " + lineArea.Name);
+            direction++;
         }
+        if (Input.IsActionPressed("Left"))
+        {
+            direction--;
+        }
+        return direction;
     }
 }

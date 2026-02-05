@@ -3,5 +3,6 @@ using System;
 
 public partial class LineArea : Area2D
 {
-	public DotlineColor LineColor => (Owner as Line).Color;
+	public DotlineColor LineColor => Line.Color;
+	public Line Line => field ??= Owner as Line;
 }
