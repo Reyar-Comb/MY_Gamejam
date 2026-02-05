@@ -1,0 +1,74 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://cwg8235lhh1o5"]
+
+[ext_resource type="Texture2D" uid="uid://bplpk72i8mh2v" path="res://Animation/Texture/Dot/BlueDotTrans.png" id="1_yc1uq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jjhjo"]
+atlas = ExtResource("1_yc1uq")
+region = Rect2(480, 0, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijsx1"]
+atlas = ExtResource("1_yc1uq")
+region = Rect2(720, 0, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65syr"]
+atlas = ExtResource("1_yc1uq")
+region = Rect2(960, 0, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rtwqp"]
+atlas = ExtResource("1_yc1uq")
+region = Rect2(1200, 0, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7pisg"]
+atlas = ExtResource("1_yc1uq")
+region = Rect2(1440, 0, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ilcho"]
+atlas = ExtResource("1_yc1uq")
+region = Rect2(1680, 0, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vwvd7"]
+atlas = ExtResource("1_yc1uq")
+region = Rect2(1920, 0, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x5rsi"]
+atlas = ExtResource("1_yc1uq")
+region = Rect2(2160, 0, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_amxpk"]
+atlas = ExtResource("1_yc1uq")
+region = Rect2(2400, 0, 240, 240)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jjhjo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ijsx1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_65syr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rtwqp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7pisg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ilcho")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vwvd7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x5rsi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_amxpk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

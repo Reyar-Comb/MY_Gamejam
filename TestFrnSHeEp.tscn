@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://sibf8e0lv1wc"]
 
 [ext_resource type="Texture2D" uid="uid://cdvlf7lqc3i8" path="res://Weezer.png" id="1_hgxro"]
-[ext_resource type="SpriteFrames" uid="uid://d4j7yidnf10my" path="res://Animation/Red_Idle.tres" id="2_57gky"]
-[ext_resource type="SpriteFrames" uid="uid://6sq2sn3xgmfs" path="res://Animation/White_Idle.tres" id="3_hctm1"]
-[ext_resource type="SpriteFrames" uid="uid://kb0m1xx3wl8j" path="res://Animation/Purple_Idle.tres" id="4_gix13"]
-[ext_resource type="SpriteFrames" uid="uid://bitndyfm41dev" path="res://Animation/Blue_Idle.tres" id="5_836yn"]
+[ext_resource type="SpriteFrames" uid="uid://d4j7yidnf10my" path="res://Animation/Player/Red_Idle.tres" id="2_57gky"]
+[ext_resource type="SpriteFrames" uid="uid://6sq2sn3xgmfs" path="res://Animation/Player/White_Idle.tres" id="3_hctm1"]
+[ext_resource type="SpriteFrames" uid="uid://kb0m1xx3wl8j" path="res://Animation/Player/Purple_Idle.tres" id="4_gix13"]
+[ext_resource type="SpriteFrames" uid="uid://bitndyfm41dev" path="res://Animation/Player/Blue_Idle.tres" id="5_836yn"]
 
 [node name="Node2D" type="Node2D" unique_id=256202368]
 

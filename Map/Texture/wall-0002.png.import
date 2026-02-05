@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3jjap47xs47h"
-path="res://.godot/imported/White_Idle.png-828530f30aa4098c9ead8be2612eb0b7.ctex"
+uid="uid://bpurjwowufplf"
+path="res://.godot/imported/wall-0002.png-583f545d9b975c350ddbbe96d624028e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Animation/Texture/White_Idle.png"
-dest_files=["res://.godot/imported/White_Idle.png-828530f30aa4098c9ead8be2612eb0b7.ctex"]
+source_file="res://Map/Texture/wall-0002.png"
+dest_files=["res://.godot/imported/wall-0002.png-583f545d9b975c350ddbbe96d624028e.ctex"]
 
 [params]
 
