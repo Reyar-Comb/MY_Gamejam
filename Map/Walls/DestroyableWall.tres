@@ -1,10 +1,10 @@
-[gd_resource type="TileSet" format=3 uid="uid://ceyegh7kerjl"]
+[gd_resource type="TileSet" format=3 uid="uid://b05y0scdcf5dv"]
 
-[ext_resource type="Texture2D" uid="uid://bpurjwowufplf" path="res://Map/Texture/wall-0002.png" id="1_735wf"]
-[ext_resource type="Texture2D" uid="uid://coyns5cv4o6a8" path="res://Map/Texture/QQ图片20260205140741.png" id="2_r0h0n"]
+[ext_resource type="Texture2D" uid="uid://bxr6ig5c54m05" path="res://Map/Texture/Walls/QQ图片20260205170421.png" id="1_50rxn"]
+[ext_resource type="Texture2D" uid="uid://co7rfwtst4qqf" path="res://Map/Texture/Walls/QQ图片20260205171212.png" id="2_tgya0"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r0h0n"]
-texture = ExtResource("1_735wf")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_agakq"]
+texture = ExtResource("1_50rxn")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -231,8 +231,8 @@ texture = ExtResource("1_735wf")
 13:14/0 = 0
 14:14/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8jsqx"]
-texture = ExtResource("2_r0h0n")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4s4x1"]
+texture = ExtResource("2_tgya0")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
@@ -686,5 +686,5 @@ texture = ExtResource("2_r0h0n")
 
 [resource]
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_r0h0n")
-sources/1 = SubResource("TileSetAtlasSource_8jsqx")
+sources/0 = SubResource("TileSetAtlasSource_agakq")
+sources/1 = SubResource("TileSetAtlasSource_4s4x1")
