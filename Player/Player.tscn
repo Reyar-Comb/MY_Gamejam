@@ -22,6 +22,9 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_q6r6c"]
 radius = 84.095184
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_3nb2p"]
+radius = 84.1
+
 [sub_resource type="Animation" id="Animation_wdpcj"]
 resource_name = "BlueIdle"
 length = 0.73333335
@@ -852,6 +855,13 @@ sprite_frames = ExtResource("3_0qfo5")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1955807136]
 position = Vector2(-7, 7)
 shape = SubResource("CircleShape2D_q6r6c")
+
+[node name="LineDetectArea" type="Area2D" parent="." unique_id=809732912]
+unique_name_in_owner = true
+position = Vector2(-7, 7)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LineDetectArea" unique_id=2104993874]
+shape = SubResource("CircleShape2D_3nb2p")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2137276626]
 unique_name_in_owner = true

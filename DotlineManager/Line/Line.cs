@@ -4,7 +4,7 @@ using System.Collections;
 using System.Threading.Tasks;
 public partial class Line : Line2D
 {
-	[Export] public CollisionShape2D LineArea;
+	[Export] public CollisionShape2D LineCollisionShape;
 	public DotlineColor Color;
 
 	public Dot StartDot;
@@ -90,17 +90,17 @@ public partial class Line : Line2D
 		SetPointPosition(0, StartDot.GlobalPosition);
 		SetPointPosition(1, EndDot.GlobalPosition);
 
-		LineArea.Shape = new SegmentShape2D()
+		LineCollisionShape.Shape = new SegmentShape2D()
 		{
 			A = ToLocal(StartDot.GlobalPosition),
 			B = ToLocal(EndDot.GlobalPosition)
 		};
+		// SegmentShape2D segment = LineCollisionShape.Shape as SegmentShape2D;
+		// GD.Print(segment.A + " to " + segment.B);
 	}
-	public override void _Process(double delta)
+	public override void _PhysicsProcess(double delta)
 	{
 		if (State == LineState.Idle && IsInstanceValid(StartDot) && IsInstanceValid(EndDot))
 			SetLinePosition();
 	}
-
-
 }
