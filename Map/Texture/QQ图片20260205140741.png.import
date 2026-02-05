@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://deucagqrgu5i1"
-path="res://.godot/imported/Blue_Idle.png-f5e6d547fb9b7462a9cd47a30ad074b2.ctex"
+uid="uid://coyns5cv4o6a8"
+path="res://.godot/imported/QQ图片20260205140741.png-aeb4221faca364023a85cd24ec392176.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Animation/Texture/Blue_Idle.png"
-dest_files=["res://.godot/imported/Blue_Idle.png-f5e6d547fb9b7462a9cd47a30ad074b2.ctex"]
+source_file="res://Map/Texture/QQ图片20260205140741.png"
+dest_files=["res://.godot/imported/QQ图片20260205140741.png-aeb4221faca364023a85cd24ec392176.ctex"]
 
 [params]
 

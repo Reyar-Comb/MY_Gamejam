@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://cd01ldansp8s0"]
+
+[ext_resource type="SpriteFrames" uid="uid://cwg8235lhh1o5" path="res://Animation/Dot/BlueDotTrans.tres" id="1_gxbk4"]
+
+[sub_resource type="Animation" id="Animation_e0hta"]
+resource_name = "BlueDotTrans"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:sprite_frames")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_gxbk4")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.76666665),
+"transitions": PackedFloat32Array(1, 1, 0.2588163),
+"update": 0,
+"values": [0, 2, 8]
+}
+
+[sub_resource type="Animation" id="Animation_lcsce"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:sprite_frames")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_gxbk4")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dov7y"]
+_data = {
+&"BlueDotTrans": SubResource("Animation_e0hta"),
+&"RESET": SubResource("Animation_lcsce")
+}
+
+[node name="Node2D" type="Node2D" unique_id=1411623702]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1921833312]
+sprite_frames = ExtResource("1_gxbk4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D" unique_id=43443113]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_dov7y")

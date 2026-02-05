@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3w0g02b73pgx"
-path="res://.godot/imported/Red_Jump2.png-86d5917f344ff91376f0b7a86ffcaee9.ctex"
+uid="uid://dfusrxokrxsxr"
+path="res://.godot/imported/QQ图片20260205144508.png-500a95d2358f41ed921b442ac6a00157.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Animation/Texture/Red_Jump2.png"
-dest_files=["res://.godot/imported/Red_Jump2.png-86d5917f344ff91376f0b7a86ffcaee9.ctex"]
+source_file="res://Animation/Texture/Dot/QQ图片20260205144508.png"
+dest_files=["res://.godot/imported/QQ图片20260205144508.png-500a95d2358f41ed921b442ac6a00157.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://byojppwmuolqa"
-path="res://.godot/imported/BlueJump1.png-7ef6d2d522d4ab5076fe0849b433f4ee.ctex"
+uid="uid://d3w0g02b73pgx"
+path="res://.godot/imported/Red_Jump2.png-fdf071302e91c26d99289ebc337ea08b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Animation/Texture/BlueJump1.png"
-dest_files=["res://.godot/imported/BlueJump1.png-7ef6d2d522d4ab5076fe0849b433f4ee.ctex"]
+source_file="res://Animation/Texture/Player/Red_Jump2.png"
+dest_files=["res://.godot/imported/Red_Jump2.png-fdf071302e91c26d99289ebc337ea08b.ctex"]
 
 [params]
 
