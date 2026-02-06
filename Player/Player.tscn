@@ -871,6 +871,8 @@ libraries/ = SubResource("AnimationLibrary_rj586")
 autoplay = &"WhiteIdle"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=27589410]
+offset = Vector2(0, -172.075)
+zoom = Vector2(0.925, 0.925)
 
 [node name="StateTree" type="Node" parent="." unique_id=37796226]
 script = ExtResource("10_7v5gs")

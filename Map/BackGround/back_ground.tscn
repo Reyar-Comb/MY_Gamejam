@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://dlcqvitb6fc55"]
+
+[ext_resource type="Texture2D" uid="uid://by0vkpbmeukx8" path="res://Map/Texture/BackGround/QQ图片20260205203239.png" id="1_qr1ly"]
+[ext_resource type="Texture2D" uid="uid://y61b3cf2tu4e" path="res://Map/Texture/BackGround/QQ图片20260205203242.png" id="2_gaj2x"]
+[ext_resource type="Texture2D" uid="uid://blc75n2n7yirt" path="res://Map/Texture/BackGround/QQ图片20260205203249.png" id="3_pilo0"]
+[ext_resource type="Texture2D" uid="uid://c1kp0etu0mjkf" path="res://Map/Texture/BackGround/QQ图片20260205203252.png" id="4_qlv51"]
+
+[node name="BackGround" type="Node2D" unique_id=1319495717]
+scale = Vector2(1.2, 1.2)
+
+[node name="Parallax2D2" type="Parallax2D" parent="." unique_id=1160515616]
+scroll_offset = Vector2(400.01248, 142.5)
+repeat_times = 8
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D2" unique_id=1870393981]
+texture = ExtResource("1_qr1ly")
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=2077131778]
+scale = Vector2(1.2, 1.2)
+scroll_scale = Vector2(0.8, 0.8)
+scroll_offset = Vector2(400.01254, 142.49997)
+repeat_times = 8
+
+[node name="Sprite2D2" type="Sprite2D" parent="Parallax2D" unique_id=450636066]
+texture = ExtResource("2_gaj2x")
+
+[node name="Parallax2D3" type="Parallax2D" parent="." unique_id=580813321]
+scale = Vector2(1.2, 1.2)
+scroll_scale = Vector2(0.9, 0.9)
+scroll_offset = Vector2(400.01254, 142.49997)
+repeat_times = 8
+
+[node name="Sprite2D3" type="Sprite2D" parent="Parallax2D3" unique_id=323852329]
+texture = ExtResource("3_pilo0")
+
+[node name="Parallax2D4" type="Parallax2D" parent="." unique_id=939898667]
+scroll_scale = Vector2(0.95, 0.95)
+scroll_offset = Vector2(61, 356)
+autoscroll = Vector2(5, 0)
+repeat_times = 8
+
+[node name="Sprite2D4" type="Sprite2D" parent="Parallax2D4" unique_id=881767002]
+position = Vector2(650, -420)
+texture = ExtResource("4_qlv51")

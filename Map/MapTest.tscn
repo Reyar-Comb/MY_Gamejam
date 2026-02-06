@@ -1,70 +1,21 @@
-[gd_scene format=4 uid="uid://dj54ov5eb0pih"]
+[gd_scene format=3 uid="uid://dj54ov5eb0pih"]
 
+[ext_resource type="PackedScene" uid="uid://dlcqvitb6fc55" path="res://Map/BackGround/back_ground.tscn" id="1_44ygt"]
 [ext_resource type="PackedScene" uid="uid://cydjs7kmnnae4" path="res://Player/Player.tscn" id="1_j5qus"]
-[ext_resource type="TileSet" uid="uid://ceyegh7kerjl" path="res://Map/Walls/Wall.tres" id="2_6s4nv"]
-[ext_resource type="TileSet" uid="uid://b05y0scdcf5dv" path="res://Map/Walls/DestroyableWall.tres" id="3_6s4nv"]
-[ext_resource type="Texture2D" uid="uid://by0vkpbmeukx8" path="res://Map/Texture/BackGround/QQ图片20260205203239.png" id="4_12ume"]
-[ext_resource type="Texture2D" uid="uid://y61b3cf2tu4e" path="res://Map/Texture/BackGround/QQ图片20260205203242.png" id="5_muovj"]
-[ext_resource type="Texture2D" uid="uid://blc75n2n7yirt" path="res://Map/Texture/BackGround/QQ图片20260205203249.png" id="6_xnwg4"]
-[ext_resource type="Texture2D" uid="uid://c1kp0etu0mjkf" path="res://Map/Texture/BackGround/QQ图片20260205203252.png" id="7_utmi6"]
+[ext_resource type="PackedScene" uid="uid://cgiuqoptjfm1b" path="res://Map/Walls/walls.tscn" id="3_o3q40"]
+[ext_resource type="PackedScene" uid="uid://3bp36r3k3k18" path="res://Map/CheckPoint/check_point.tscn" id="4_44ygt"]
 
 [node name="Node2D" type="Node2D" unique_id=153998880]
 
-[node name="Node2D" type="Node2D" parent="." unique_id=1786018318]
+[node name="BackGround" parent="." unique_id=1319495717 instance=ExtResource("1_44ygt")]
 position = Vector2(371.985, -248)
-scale = Vector2(1.2, 1.2)
-
-[node name="Parallax2D2" type="Parallax2D" parent="Node2D" unique_id=923755256]
-scale = Vector2(4.205, 4.205)
-scroll_offset = Vector2(400.01248, 142.5)
-repeat_times = 8
-
-[node name="Sprite2D" type="Sprite2D" parent="Node2D/Parallax2D2" unique_id=1816437513]
-texture = ExtResource("4_12ume")
-
-[node name="Parallax2D" type="Parallax2D" parent="Node2D" unique_id=1234087064]
-scale = Vector2(1.2, 1.2)
-scroll_scale = Vector2(0.8, 0.8)
-scroll_offset = Vector2(400.01254, 142.49997)
-repeat_times = 8
-
-[node name="Sprite2D2" type="Sprite2D" parent="Node2D/Parallax2D" unique_id=1694354876]
-texture = ExtResource("5_muovj")
-
-[node name="Parallax2D3" type="Parallax2D" parent="Node2D" unique_id=845295895]
-scale = Vector2(1.2, 1.2)
-scroll_scale = Vector2(0.9, 0.9)
-scroll_offset = Vector2(400.01254, 142.49997)
-repeat_times = 8
-
-[node name="Sprite2D3" type="Sprite2D" parent="Node2D/Parallax2D3" unique_id=105942772]
-texture = ExtResource("6_xnwg4")
 
 [node name="Player" parent="." unique_id=990283555 instance=ExtResource("1_j5qus")]
 light_mask = 31
 visibility_layer = 31
 position = Vector2(-389, 30)
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=360256360]
-light_mask = 31
-visibility_layer = 31
-scale = Vector2(0.85, 0.85)
-tile_map_data = PackedByteArray("AAD9/wEACAAAAAAAAAD+/wEACAABAAAAAAD//wEACAACAAEAAAD//wAACgAAAAAAAAD//wIACAACAAEAAAD9/wIACAAAAAEAAAD+/wIACAABAAEAAAD//wMACAACAAEAAAD//wQACAACAAEAAAD+/wQACAABAAEAAAD+/wMACAABAAEAAAD9/wMACAAAAAEAAAD9/wQACAAAAAEAAAD9/wUACAAAAAIAAAD+/wUACAABAAIAAAD//wUACAACAAIAAAADAAEACAAAAAAAAAADAAIACAAAAAEAAAADAAMACAAAAAEAAAADAAQACAAAAAEAAAADAAUACAAAAAIAAAAEAAUACAABAAIAAAAFAAUACAACAAIAAAAFAAQACAACAAEAAAAFAAMACAACAAEAAAAFAAIACAACAAEAAAAFAAEACAACAAAAAAAEAAEACAABAAAAAAAEAAIACAABAAEAAAAEAAMACAABAAEAAAAEAAQACAABAAEAAAAIAAEACAAAAAAAAAAIAAIACAAAAAEAAAAIAAMACAAAAAEAAAAIAAQACAAAAAEAAAAIAAUACAAAAAIAAAAJAAUACAABAAIAAAAJAAQACAABAAEAAAAJAAMACAABAAEAAAAJAAIACAABAAEAAAAJAAEACAABAAEAAAAKAAEACAABAAEAAAAKAAIACAABAAEAAAAKAAMACAABAAEAAAAKAAQACAABAAEAAAAKAAUACAABAAIAAAALAAEACAACAAEAAAALAAIACAACAAEAAAALAAMACAABAAEAAAALAAQACAACAAEAAAALAAUACAACAAIAAAALAAAACAACAAEAAAAKAAAACAABAAEAAAAKAP//CAAAAAAAAAALAP//CAACAAEAAAALAP7/CAAAAAAAAAAJAAAACAAAAAAAAAAQAP//CgAAAAEAAAAQAAAACgAAAAEAAAAQAAEACgAAAAIAAAAMAAMACQABAAAAAAANAAMACQABAAAAAAAOAAMACQABAAAAAAAPAAMACQABAAAAAAAQAAMACQABAAAAAAARAAMACQABAAAAAAASAAMACQACAAAAAAAMAP7/CQABAAAAAAANAP7/CQABAAAAAAAOAP7/CQABAAAAAAAPAP7/CQABAAAAAAAQAP7/CAACAAAAAAA=")
-tile_set = ExtResource("2_6s4nv")
+[node name="Walls" parent="." unique_id=1687960114 instance=ExtResource("3_o3q40")]
 
-[node name="TileMapLayer2" type="TileMapLayer" parent="." unique_id=2010105504]
-light_mask = 31
-visibility_layer = 31
-scale = Vector2(0.85, 0.85)
-tile_set = ExtResource("3_6s4nv")
-
-[node name="Parallax2D4" type="Parallax2D" parent="." unique_id=187502898]
-scale = Vector2(1.2, 1.2)
-scroll_scale = Vector2(0.2, 0.2)
-scroll_offset = Vector2(61, 356)
-autoscroll = Vector2(5, 0)
-repeat_times = 8
-
-[node name="Sprite2D4" type="Sprite2D" parent="Parallax2D4" unique_id=689450827]
-position = Vector2(650, -420)
-texture = ExtResource("7_utmi6")
+[node name="CheckPoint" parent="." unique_id=1065180441 instance=ExtResource("4_44ygt")]
+position = Vector2(921, 12)
