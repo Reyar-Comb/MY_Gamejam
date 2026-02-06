@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://dsgac8ydx0yy0"]
+
+[ext_resource type="Texture2D" uid="uid://b4qreoqt7pu4r" path="res://Map/Texture/Walls/QQ图片20260206230621.png" id="1_faxt7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4cuo3"]
+size = Vector2(238.28575, 238.28574)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xq620"]
+size = Vector2(10, 237.7143)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h4p3f"]
+size = Vector2(237.71426, 9.428572)
+
+[node name="StaticBody2D" type="StaticBody2D" unique_id=1475950274]
+
+[node name="DestroyableWall" type="Sprite2D" parent="." unique_id=1175340927]
+scale = Vector2(0.9999998, 0.9999998)
+texture = ExtResource("1_faxt7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=66047367]
+position = Vector2(-0.285723, -0.8571471)
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("RectangleShape2D_4cuo3")
+
+[node name="LeftSide" type="Area2D" parent="." unique_id=634798900]
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftSide" unique_id=1068136835]
+position = Vector2(-114.85714, -1.1428571)
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("RectangleShape2D_xq620")
+
+[node name="RightSide" type="Area2D" parent="." unique_id=214312914]
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightSide" unique_id=133367204]
+position = Vector2(114.28572, -1.7142856)
+scale = Vector2(0.99999976, 0.99999976)
+shape = SubResource("RectangleShape2D_xq620")
+
+[node name="UpSide" type="Area2D" parent="." unique_id=357914428]
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UpSide" unique_id=1882178388]
+position = Vector2(1.1428571, -115.428566)
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("RectangleShape2D_h4p3f")
+
+[node name="DownSide" type="Area2D" parent="." unique_id=1745579065]
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DownSide" unique_id=1428623878]
+position = Vector2(1.1428571, 114.85714)
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("RectangleShape2D_h4p3f")
