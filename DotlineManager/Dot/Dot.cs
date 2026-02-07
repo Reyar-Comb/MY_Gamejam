@@ -39,7 +39,7 @@ public partial class Dot : RigidBody2D
 		Tween.TweenProperty(this, "scale", new Vector2(1f, 1f), 0.2f);
 	}
 
-	public async Task Clear()
+	public async void Clear()
 	{
 		Tween = CreateTween()
 			.SetTrans(Tween.TransitionType.Sine)

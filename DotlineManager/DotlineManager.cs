@@ -3,11 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 
 public partial class DotlineManager : Node2D
 {
 	public static DotlineManager Instance;
+	
+	private SemaphoreSlim _clearLock = new SemaphoreSlim(1, 1);
 
 	[Export] public PackedScene DotScene;
 	[Export] public PackedScene LineScene;
@@ -75,7 +78,8 @@ public partial class DotlineManager : Node2D
 			return;
 		DotlineColor color = dot.Color;
 		Queue<Dot> DotQueue = GetDotQueue(color);
-
+		if (DotQueue == null || DotQueue.Count == 0)
+			return;
 		if (dot.hasEmittedLineUp)
 			return;
 
@@ -325,48 +329,57 @@ public partial class DotlineManager : Node2D
 				await ToSignal(endDot.DotAnimPlayer, "animation_finished");
 				await line.Clear();
 				startDot.DotAnimPlayer.Play(colorName + "DotTrans_Inverse");
-				await ToSignal(startDot.DotAnimPlayer, "animation_finished");
+				//await ToSignal(startDot.DotAnimPlayer, "animation_finished");
 				break;
 		}
 	}
 
 	public async Task ClearColorDot(DotlineColor color, bool DeleteDot = false)
 	{
-		Queue<Dot> DotQueue = color switch
+		await _clearLock.WaitAsync();
+		try
 		{
-			DotlineColor.Blue => BlueDotQueue,
-			DotlineColor.Red => RedDotQueue,
-			DotlineColor.Purple => PurpleDotQueue,
-			_ => null
-		};
-		if (DotQueue == null || DotQueue.Count == 0)
-			return;
-		Dot dotToClear = DotQueue.Dequeue();
-		GD.Print("Clearing dot: " + dotToClear.Name);
-		var tasks = new List<Task>();
-		foreach (var d in DotQueue.ToArray())
-		{
-			if (d == dotToClear) continue;
-			var line = d.CurrentLine;
-			if (line == null || !IsInstanceValid(line)) continue;
+			Queue<Dot> DotQueue = color switch
+			{
+				DotlineColor.Blue => BlueDotQueue,
+				DotlineColor.Red => RedDotQueue,
+				DotlineColor.Purple => PurpleDotQueue,
+				_ => null
+			};
+			if (DotQueue == null || DotQueue.Count == 0)
+				return;
+			Dot dotToClear = DotQueue.Dequeue();
+			GD.Print("Clearing dot: " + dotToClear.Name);
+			var tasks = new List<Task>();
+			foreach (var d in DotQueue.ToArray())
+			{
+				if (d == dotToClear) continue;
+				var line = d.CurrentLine;
+				if (line == null || !IsInstanceValid(line)) continue;
 
-			dotToClear.CurrentLines.Remove(line);
-			tasks.Add(AnimateAsync(dotToClear, d, line, "3u"));
+				dotToClear.CurrentLines.Remove(line);
+				tasks.Add(AnimateAsync(dotToClear, d, line, "3u"));
+			}
+			await Task.WhenAll(tasks);
+
+			if (DeleteDot == false) dotToClear.Clear();
+
+			foreach (var d in DotQueue.ToArray())
+			{
+				d.State = DotState.Static;
+				d.hasEmittedLineUp = false;
+				d.hasEmittedUnline = true;
+				d.CurrentLine = null;
+			}
+			Dot FirstDot = DotQueue.Count > 0 ? DotQueue.Peek() : null;
+			FirstDot?.CurrentLines.Clear();
+			if (FirstDot != null)
+				LineUpDot(FirstDot);
 		}
-		await Task.WhenAll(tasks);
-
-		if (DeleteDot == false) await dotToClear.Clear();
-
-		foreach (var d in DotQueue.ToArray())
+		finally
 		{
-			d.State = DotState.Static;
-			d.hasEmittedLineUp = false;
-			d.hasEmittedUnline = true;
-			d.CurrentLine = null;
+			_clearLock.Release();
 		}
-		Dot FirstDot = DotQueue.Count > 0 ? DotQueue.Peek() : null;
-		FirstDot?.CurrentLines.Clear();
-		LineUpDot(FirstDot);
 	}
 	/*
 	public async Task ClearDots()
@@ -555,6 +568,7 @@ public partial class DotlineManager : Node2D
 			}
 			if (keyEvent.Keycode == Key.L)
 			{
+				if (_clearLock.CurrentCount == 0) return;
 				await ClearColorDot(CurrentColor);
 			}
 			GD.Print("Key pressed: " + keyEvent.Keycode);

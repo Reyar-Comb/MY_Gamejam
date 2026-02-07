@@ -80,11 +80,16 @@ public partial class Line : Line2D
 				
 			1f,
 			0f,
-			0.2f
+			0.1f
 		);
 		Tween.Parallel().TweenProperty(this, "modulate:a", 0f, 0.2f);
 		await ToSignal(Tween, "finished");
 		State = LineState.Idle;
+		QueueFree();
+	}
+
+	public async void ClearImmediate()
+	{
 		QueueFree();
 	}
 
@@ -120,6 +125,11 @@ public partial class Line : Line2D
 	}
 	public override void _PhysicsProcess(double delta)
 	{
+		if (!IsInstanceValid(StartDot) || !IsInstanceValid(EndDot))
+		{
+			ClearImmediate();
+			return;
+		}
 		if (State == LineState.Idle && IsInstanceValid(StartDot) && IsInstanceValid(EndDot))
 			SetLinePosition();
 	}
