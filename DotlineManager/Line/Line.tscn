@@ -6,6 +6,7 @@
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_x8qfy"]
 
 [node name="Line" type="Line2D" unique_id=680204987 node_paths=PackedStringArray("LineCollisionShape")]
+z_index = 2
 points = PackedVector2Array(0, 0, 100, 0)
 script = ExtResource("1_x8qfy")
 LineCollisionShape = NodePath("Area2D/CollisionShape2D")

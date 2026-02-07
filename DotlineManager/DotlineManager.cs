@@ -28,6 +28,7 @@ public partial class DotlineManager : Node2D
 	public Player Player;
 	[Export] public float DotDamping = 1.0f;
 	[Export] public float DotStaticVelocity = 40f;
+	[Export] public int MaxHistoryDots = 5;
 
 	public Queue<Dot> BlueDotQueue { get; private set; } = new Queue<Dot>();
 	public Queue<Dot> RedDotQueue { get; private set; } = new Queue<Dot>();
@@ -382,39 +383,55 @@ public partial class DotlineManager : Node2D
 			_clearLock.Release();
 		}
 	}
-	/*
+	
 	public async Task ClearDots()
 	{
 		var tasks = new System.Collections.Generic.List<Task>();
-		foreach (Line line in BlueLines)
-			tasks.Add(line.Clear());
-		foreach (Line line in RedLines)
-			tasks.Add(line.Clear());
-		foreach (Line line in PurpleLines)
-			tasks.Add(line.Clear());
+		foreach (var dot in BlueDotQueue)
+		{
+			if (dot != BlueDotQueue.Peek())
+			{
+				tasks.Add(dot.CurrentLine.Clear());
+			}
+		}
+		foreach (var dot in RedDotQueue)
+		{
+			if (dot != RedDotQueue.Peek())
+			{
+				tasks.Add(dot.CurrentLine.Clear());
+			}
+		}
+		foreach (var dot in PurpleDotQueue)		
+		{
+			if (dot != PurpleDotQueue.Peek())
+			{
+				tasks.Add(dot.CurrentLine.Clear());
+			}
+		}
+		
+		await Task.WhenAll(tasks);
+		for (int i = BlueDotQueue.Count - 1; i >= 0; i--)
+		{
+			BlueDotQueue.Dequeue().Clear();
+		}
+		for (int i = RedDotQueue.Count - 1; i >= 0; i--)
+		{
+			RedDotQueue.Dequeue().Clear();
+		}
+		for (int i = PurpleDotQueue.Count - 1; i >= 0; i--)
+		{
+			PurpleDotQueue.Dequeue().Clear();
+		}
 
-		await Task.WhenAll(tasks);
-		tasks.Clear();
-		
-		foreach (Dot dot in BlueDotQueue)
-			tasks.Add(dot.Clear());
-		foreach (Dot dot in RedDotQueue)
-			tasks.Add(dot.Clear());
-		foreach (Dot dot in PurpleDotQueue)
-			tasks.Add(dot.Clear());
-		
-		await Task.WhenAll(tasks);
-		
 		BlueDotQueue.Clear();
 		RedDotQueue.Clear();
 		PurpleDotQueue.Clear();
-		BlueLines.Clear();
-		RedLines.Clear();
-		PurpleLines.Clear();
+		HistoryDots.Clear();
 	}
-	*/
+	
 	public async void SpawnDot(Vector2 velocity)
 	{
+		
 		if (CurrentColor == DotlineColor.White)
 			return;
 		Dot dot = DotScene.Instantiate<Dot>();
@@ -434,109 +451,19 @@ public partial class DotlineManager : Node2D
 		DotQueue.Enqueue(dot);
 		HistoryDots.Enqueue(CurrentColor);
 		GD.Print(HistoryDots.Count);
-		// dot.OnIdle += () => OnDotIdjjhhcle(dot, DotQueue);
-		// TODO: Enable dot collision handling
-		// dot.DotCollide += OnDotCollide;
-	}
-	/*
-	public void OnDotIdle(Dot dot, Queue<Dot> dotQueue)
-	{
-		if (dotQueue.Count >= 2)
+
+		if (HistoryDots.Count > MaxHistoryDots)
 		{
-			Dot FirstDot = CurrentColor switch
+			DotlineColor? ClearColor = HistoryDots.Dequeue();
+			if (ClearColor != null)
 			{
-				DotlineColor.Blue => FirstBlueDot,
-				DotlineColor.Red => FirstRedDot,
-				DotlineColor.Purple => FirstPurpleDot,
-				_ => null
-			};
-			switch (CurrentColor)
-			{
-				case DotlineColor.Blue:
-					BlueLines.Add(FirstDot.LineUp(dot));
-					break;
-				case DotlineColor.Red:
-					RedLines.Add(FirstDot.LineUp(dot));
-					break;
-				case DotlineColor.Purple:
-					PurpleLines.Add(FirstDot.LineUp(dot));
-					break;
+				await ClearColorDot(ClearColor.Value);
 			}
-		}
-	}
-
-	public void OnDotCollide(Dot collidedDot, Dot selfDot)
-	{
-		CallDeferred(MethodName.HandleDotCollide, collidedDot, selfDot);
-	}
-	public async void HandleDotCollide(Dot collidedDot, Dot selfDot)
-	{
-		DotlineColor collidedColor = collidedDot.Color;
-		DotlineColor selfColor = selfDot.Color;
-
-		if (collidedColor == selfColor)
-			return;
-
-		Queue<Dot> collidedQueue = collidedColor switch
-		{
-			DotlineColor.Blue => BlueDotQueue,
-			DotlineColor.Red => RedDotQueue,
-			DotlineColor.Purple => PurpleDotQueue,
-			_ => null
-		};
-		Queue<Dot> selfQueue = selfColor switch
-		{
-			DotlineColor.Blue => BlueDotQueue,
-			DotlineColor.Red => RedDotQueue,
-			DotlineColor.Purple => PurpleDotQueue,
-			_ => null
-		};
-
-		if (selfDot == selfQueue.Peek())
-		{
-			await ClearColorDot(selfColor, true);
-		}
-		else
-		{switch (selfColor)
-			{
-				case DotlineColor.Blue:
-					BlueLines.Remove(collidedDot.CurrentLine);
-					break;
-				case DotlineColor.Red:
-					RedLines.Remove(collidedDot.CurrentLine);
-					break;
-				case DotlineColor.Purple:
-					PurpleLines.Remove(collidedDot.CurrentLine);
-					break;
-			}
-			await collidedDot.CurrentLine?.Clear();
-			
-			var tempList = new List<Dot>(selfQueue);
-			tempList.Remove(selfDot);
-			selfQueue.Clear();
-			foreach (var d in tempList)
-				selfQueue.Enqueue(d);
 		}
 		
 
-		selfDot.SetColor(collidedColor);
-		collidedQueue.Enqueue(selfDot);
-		Line line = collidedQueue.Peek().LineUp(selfDot);
-		switch (collidedColor)
-		{
-			case DotlineColor.Blue:
-				BlueLines.Add(line);
-				break;
-			case DotlineColor.Red:
-				RedLines.Add(line);
-				break;
-			case DotlineColor.Purple:
-				PurpleLines.Add(line);
-				break;
-		}
-		GD.Print("Dot collided: " + selfDot.Color.ToString());
 	}
-	*/
+
 	public void ChangeColor(DotlineColor newColor)
 	{
 		CurrentColor = newColor;
@@ -567,12 +494,25 @@ public partial class DotlineManager : Node2D
 			}
 			if (keyEvent.Keycode == Key.C)
 			{
-				//await ClearDots();
+				if (_clearLock.CurrentCount == 0)
+				{
+					GD.Print("Currently clearing dots, cannot clear another color now.");
+					return;
+				} 
+				await ClearDots();
 			}
 			if (keyEvent.Keycode == Key.R)
 			{
-				if (_clearLock.CurrentCount == 0) return;
-				if (Player.StateTree._currentState.Name == "PurpleAffected") return;
+				if (_clearLock.CurrentCount == 0)
+				{
+					GD.Print("Currently clearing dots, cannot clear another color now.");
+					return;
+				} 
+				if (Player.StateTree._currentState.Name == "PurpleAffected")
+				{
+					GD.Print("Cannot clear dots while in PurpleAffected state.");
+					return;
+				}
 				DotlineColor? ClearColor = HistoryDots.Count > 0 ? HistoryDots.Dequeue() : null;
 				if (ClearColor == null)
 				{

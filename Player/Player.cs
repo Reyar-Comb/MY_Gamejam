@@ -8,6 +8,7 @@ public partial class Player : CharacterBody2D
 	[Export] public AnimatedSprite2D DotPreviewSprite;
 	[Export] public float MaxDotSpeed = 500f;
 	[Export] public float MaxDragDistance = 200f;
+	[Export] public float MinDragDistance = 20f;
 	[Export] public float k = 0.9f;
 
 	public float damping = 1.0f;
@@ -43,6 +44,11 @@ public partial class Player : CharacterBody2D
 			if (dragDistance > MaxDragDistance)
 			{
 				dragVector = dragVector.Normalized() * MaxDragDistance;
+			}
+			if (dragDistance < MinDragDistance)
+			{
+				DotPreviewSprite.Visible = false;
+				return;
 			}
 
 			Vector2 velocity = dragVector * (MaxDotSpeed / MaxDragDistance);
@@ -83,6 +89,11 @@ public partial class Player : CharacterBody2D
 						if (dragDistance > MaxDragDistance)
 						{
 							dragVector = dragVector.Normalized() * MaxDragDistance;
+						}
+						if (dragDistance < MinDragDistance)
+						{
+							_isCancelled = false;
+							return;
 						}
 
 						Vector2 velocity = dragVector * (MaxDotSpeed / MaxDragDistance);
