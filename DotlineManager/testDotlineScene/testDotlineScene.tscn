@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cydjs7kmnnae4" path="res://Player/Player.tscn" id="2_16oai"]
 [ext_resource type="Texture2D" uid="uid://oya8wpn6jmc8" path="res://icon.svg" id="2_q3v8s"]
+[ext_resource type="PackedScene" uid="uid://fjo6ili1h6sd" path="res://Map/Walls/DestroyableWall.tscn" id="3_16oai"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_16oai"]
 size = Vector2(1198, 506)
@@ -23,3 +24,9 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Icon/StaticBody2D" unique_id=712134452]
 position = Vector2(405, 129)
 shape = SubResource("RectangleShape2D_16oai")
+
+[node name="DestroyableWall" parent="." unique_id=1475950274 instance=ExtResource("3_16oai")]
+position = Vector2(767, -82)
+
+[node name="DestroyableWall2" parent="." unique_id=672650060 instance=ExtResource("3_16oai")]
+position = Vector2(1091, -30)

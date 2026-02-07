@@ -1,6 +1,14 @@
-[gd_scene format=3 uid="uid://dsgac8ydx0yy0"]
+[gd_scene format=3 uid="uid://fjo6ili1h6sd"]
 
+[ext_resource type="Shader" uid="uid://bl2af7r0vcd3k" path="res://Map/Walls/PureWhiteShader.gdshader" id="1_2faf2"]
+[ext_resource type="Script" uid="uid://cy3iq0bq05lo6" path="res://Map/Walls/DestroyableWall.cs" id="1_dvg8r"]
 [ext_resource type="Texture2D" uid="uid://b4qreoqt7pu4r" path="res://Map/Texture/Walls/QQ图片20260206230621.png" id="1_faxt7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2faf2"]
+resource_local_to_scene = true
+shader = ExtResource("1_2faf2")
+shader_parameter/white_amount = 0.0
+shader_parameter/alpha_amount = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4cuo3"]
 size = Vector2(238.28575, 238.28574)
@@ -11,9 +19,11 @@ size = Vector2(10, 237.7143)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h4p3f"]
 size = Vector2(237.71426, 9.428572)
 
-[node name="StaticBody2D" type="StaticBody2D" unique_id=1475950274]
+[node name="DestroyableWall" type="StaticBody2D" unique_id=1475950274]
+script = ExtResource("1_dvg8r")
 
-[node name="DestroyableWall" type="Sprite2D" parent="." unique_id=1175340927]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1175340927]
+material = SubResource("ShaderMaterial_2faf2")
 scale = Vector2(0.9999998, 0.9999998)
 texture = ExtResource("1_faxt7")
 
@@ -38,18 +48,18 @@ position = Vector2(114.28572, -1.7142856)
 scale = Vector2(0.99999976, 0.99999976)
 shape = SubResource("RectangleShape2D_xq620")
 
-[node name="UpSide" type="Area2D" parent="." unique_id=357914428]
+[node name="TopSide" type="Area2D" parent="." unique_id=357914428]
 scale = Vector2(0.99999994, 0.99999994)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="UpSide" unique_id=1882178388]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopSide" unique_id=1882178388]
 position = Vector2(1.1428571, -115.428566)
 scale = Vector2(0.9999998, 0.9999998)
 shape = SubResource("RectangleShape2D_h4p3f")
 
-[node name="DownSide" type="Area2D" parent="." unique_id=1745579065]
+[node name="BottomSide" type="Area2D" parent="." unique_id=1745579065]
 scale = Vector2(0.99999994, 0.99999994)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DownSide" unique_id=1428623878]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomSide" unique_id=1428623878]
 position = Vector2(1.1428571, 114.85714)
 scale = Vector2(0.9999998, 0.9999998)
 shape = SubResource("RectangleShape2D_h4p3f")

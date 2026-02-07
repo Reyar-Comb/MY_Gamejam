@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://oya8wpn6jmc8" path="res://icon.svg" id="1_uhqqe"]
 [ext_resource type="PackedScene" uid="uid://cydjs7kmnnae4" path="res://Player/Player.tscn" id="2_ia1lp"]
+[ext_resource type="PackedScene" uid="uid://fjo6ili1h6sd" path="res://Map/Walls/DestroyableWall.tscn" id="3_sasra"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sasra"]
 size = Vector2(1198, 506)
@@ -138,3 +139,6 @@ shape = SubResource("RectangleShape2D_sasra")
 
 [node name="Player" parent="." unique_id=990283555 instance=ExtResource("2_ia1lp")]
 position = Vector2(743, 5)
+
+[node name="DestroyableWall" parent="." unique_id=1475950274 instance=ExtResource("3_sasra")]
+position = Vector2(1353, -90)
