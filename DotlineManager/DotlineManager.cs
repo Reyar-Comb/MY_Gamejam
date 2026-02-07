@@ -26,7 +26,7 @@ public partial class DotlineManager : Node2D
 	}
 
 	public Player Player;
-	[Export] public float DotVelocity = 300f;
+	[Export] public float DotDamping = 1.0f;
 
 
 	public Queue<Dot> BlueDotQueue { get; private set; } = new Queue<Dot>();
@@ -412,7 +412,7 @@ public partial class DotlineManager : Node2D
 		PurpleLines.Clear();
 	}
 	*/
-	public async void SpawnDot()
+	public async void SpawnDot(Vector2 velocity)
 	{
 		if (CurrentColor == DotlineColor.White)
 			return;
@@ -420,7 +420,7 @@ public partial class DotlineManager : Node2D
 		GetTree().CurrentScene.AddChild(dot);
 		dot.GlobalPosition = Player.GlobalPosition;
 		dot.SetColor(CurrentColor);
-		dot.SetVelocity(GetDirection() * DotVelocity);
+		dot.SetVelocity(velocity);
 		dot.State = DotState.Static;
 		dot.Spawn();
 		Queue<Dot> DotQueue = CurrentColor switch
@@ -579,8 +579,8 @@ public partial class DotlineManager : Node2D
 
 		if (@event is InputEventMouseButton mouseEvent && mouseEvent.Pressed && mouseEvent.ButtonIndex == MouseButton.Left)
 		{
-			GD.Print("Mouse clicked at: " + mouseEvent.Position);
-			SpawnDot();
+			//GD.Print("Mouse clicked at: " + mouseEvent.Position);
+			//SpawnDot();
 		}
 
 	}

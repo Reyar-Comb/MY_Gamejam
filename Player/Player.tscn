@@ -20,6 +20,9 @@
 [ext_resource type="Script" uid="uid://r7j8fun8fd73" path="res://Player/PlayerStates/Player_CanJumpState.cs" id="18_d7xyo"]
 [ext_resource type="Script" uid="uid://4tfu245331xu" path="res://Player/PlayerStates/Player_BlueAffectedState.cs" id="19_evw08"]
 [ext_resource type="Script" uid="uid://d3j4hmmwivld4" path="res://Player/PlayerStates/Player_PurpleAffectedState.cs" id="20_purple"]
+[ext_resource type="Texture2D" uid="uid://bplpk72i8mh2v" path="res://Animation/Texture/Dot/BlueDotTrans.png" id="22_7uipr"]
+[ext_resource type="Texture2D" uid="uid://dpq85aulca1dr" path="res://Animation/Texture/Dot/RedDotTrans.png" id="22_yifbt"]
+[ext_resource type="Texture2D" uid="uid://ccsxrmsfcy8se" path="res://Animation/Texture/Dot/PurpleDotTrans.png" id="23_s0mko"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_q6r6c"]
 radius = 84.095184
@@ -844,9 +847,50 @@ _data = {
 &"WhiteJumpLoop": SubResource("Animation_c1b4b")
 }
 
-[node name="Player" type="CharacterBody2D" unique_id=990283555]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqjia"]
+atlas = ExtResource("22_7uipr")
+region = Rect2(0, 0, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x70vp"]
+atlas = ExtResource("23_s0mko")
+region = Rect2(0, 0, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u5tep"]
+atlas = ExtResource("22_yifbt")
+region = Rect2(0, 0, 240, 240)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_roy6y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqjia")
+}],
+"loop": true,
+"name": &"Blue",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x70vp")
+}],
+"loop": true,
+"name": &"Purple",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u5tep")
+}],
+"loop": true,
+"name": &"Red",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D" unique_id=990283555 node_paths=PackedStringArray("StateTree", "DotPreviewSprite")]
 disable_mode = 2
 script = ExtResource("1_j23h2")
+StateTree = NodePath("StateTree")
+DotPreviewSprite = NodePath("DotPreview")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2009948130]
 unique_name_in_owner = true
@@ -922,3 +966,9 @@ metadata/_custom_type_script = "uid://o0khett2tmlm"
 [node name="PurpleAffected" type="Node" parent="StateTree/Universal" unique_id=1332533640]
 script = ExtResource("20_purple")
 metadata/_custom_type_script = "uid://o0khett2tmlm"
+
+[node name="DotPreview" type="AnimatedSprite2D" parent="." unique_id=1546714794]
+z_index = 10
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_roy6y")
+animation = &"Purple"
