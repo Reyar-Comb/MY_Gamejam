@@ -4,6 +4,7 @@ using System.Collections;
 using System.Threading.Tasks;
 public partial class Line : Line2D
 {
+	[Signal] public delegate void LineSpawnedEventHandler();
 	[Export] public CollisionShape2D LineCollisionShape;
 	public DotlineColor Color;
 
@@ -29,7 +30,6 @@ public partial class Line : Line2D
 			_ => Colors.White
 		};
 	}
-
 	public async void Spawn()
 	{
 		GD.Print("hhello spawning line");
@@ -57,6 +57,7 @@ public partial class Line : Line2D
 		Tween.Parallel().TweenProperty(this, "modulate:a", 0.8f, 0.2f);
 		await ToSignal(Tween, "finished");
 		State = LineState.Idle;
+		EmitSignal(SignalName.LineSpawned);
 	}
 
 	public async Task Clear()
