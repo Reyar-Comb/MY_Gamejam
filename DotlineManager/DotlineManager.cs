@@ -572,6 +572,7 @@ public partial class DotlineManager : Node2D
 			if (keyEvent.Keycode == Key.R)
 			{
 				if (_clearLock.CurrentCount == 0) return;
+				if (Player.StateTree._currentState.Name == "PurpleAffected") return;
 				DotlineColor? ClearColor = HistoryDots.Count > 0 ? HistoryDots.Dequeue() : null;
 				if (ClearColor == null)
 				{

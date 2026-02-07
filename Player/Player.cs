@@ -60,7 +60,7 @@ public partial class Player : CharacterBody2D
 
 	public override void _Input(InputEvent @event)
 	{
-		if (PlayerColor == "White")
+		if (PlayerColor == "White" || StateTree._currentState.Name == "PurpleAffected")
 			return;
 		if (@event is InputEventMouseButton mouseEvent)
 		{
