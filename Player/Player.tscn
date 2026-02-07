@@ -18,8 +18,8 @@
 [ext_resource type="Script" uid="uid://c1w867cbe3lil" path="res://Player/PlayerStates/Player_JumpLoopState.cs" id="15_roy6y"]
 [ext_resource type="Script" uid="uid://dq6pltbwiwgv2" path="res://Player/PlayerStates/Player_JumpEndState.cs" id="16_u5tep"]
 [ext_resource type="Script" uid="uid://r7j8fun8fd73" path="res://Player/PlayerStates/Player_CanJumpState.cs" id="18_d7xyo"]
-[ext_resource type="Script" uid="uid://o0khett2tmlm" path="res://StateTree/State.cs" id="19_d7xyo"]
 [ext_resource type="Script" uid="uid://4tfu245331xu" path="res://Player/PlayerStates/Player_BlueAffectedState.cs" id="19_evw08"]
+[ext_resource type="Script" uid="uid://d3j4hmmwivld4" path="res://Player/PlayerStates/Player_PurpleAffectedState.cs" id="20_purple"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_q6r6c"]
 radius = 84.095184
@@ -855,6 +855,7 @@ scale = Vector2(1, 0.963)
 sprite_frames = ExtResource("3_0qfo5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1955807136]
+unique_name_in_owner = true
 position = Vector2(-7, 7)
 shape = SubResource("CircleShape2D_q6r6c")
 
@@ -918,6 +919,6 @@ metadata/_custom_type_script = "uid://o0khett2tmlm"
 script = ExtResource("19_evw08")
 metadata/_custom_type_script = "uid://o0khett2tmlm"
 
-[node name="PurpleAffected" type="Node" parent="StateTree/Universal/GravityAffected/CanMove" unique_id=1332533640]
-script = ExtResource("19_d7xyo")
+[node name="PurpleAffected" type="Node" parent="StateTree/Universal" unique_id=1332533640]
+script = ExtResource("20_purple")
 metadata/_custom_type_script = "uid://o0khett2tmlm"

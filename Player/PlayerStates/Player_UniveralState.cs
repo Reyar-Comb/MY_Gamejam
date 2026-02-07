@@ -31,7 +31,7 @@ public partial class Player_UniveralState : State
         DotlineColor color = lineArea.LineColor;
         Player.LastTouchedLine = lineArea.Line;
         GD.Print($"{color} Line Detected");
-        if (color == DotlineColor.Red || color == DotlineColor.Purple) return;
+        if (color == DotlineColor.Red) return;
 
         AskTransit($"{color}Affected");
     }

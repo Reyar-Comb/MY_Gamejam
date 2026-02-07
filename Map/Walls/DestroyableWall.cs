@@ -9,8 +9,12 @@ public partial class DestroyableWall : StaticBody2D
 	public Area2D BottomSide => field ??= GetNode<Area2D>("BottomSide");
 	private Sprite2D Sprite => field ??= GetNode<Sprite2D>("Sprite2D");
 	private ShaderMaterial Mat => field ??= Sprite.Material as ShaderMaterial;
+	private bool _isDestroyed = false;
 	public void Destroy()
 	{
+		if (_isDestroyed) return;
+		_isDestroyed = true;
+		
 		Tween tween = CreateTween()
 			.SetTrans(Tween.TransitionType.Quart)
 			.SetEase(Tween.EaseType.InOut);
