@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dlcqvitb6fc55" path="res://Map/BackGround/back_ground.tscn" id="1_2623n"]
 [ext_resource type="PackedScene" uid="uid://cydjs7kmnnae4" path="res://Player/Player.tscn" id="2_wgwpm"]
 [ext_resource type="TileSet" uid="uid://ceyegh7kerjl" path="res://Map/Walls/Wall.tres" id="3_qtvud"]
-[ext_resource type="PackedScene" uid="uid://dsgac8ydx0yy0" path="res://Map/Walls/DestroyableWall.tscn" id="4_wgwpm"]
+[ext_resource type="PackedScene" uid="uid://fjo6ili1h6sd" path="res://Map/Walls/DestroyableWall.tscn" id="4_wgwpm"]
 [ext_resource type="PackedScene" uid="uid://3bp36r3k3k18" path="res://Map/CheckPoint/check_point.tscn" id="5_qtvud"]
 
 [node name="Node2D" type="Node2D" unique_id=2075572154]
@@ -48,6 +48,7 @@ position = Vector2(800, 0)
 
 [node name="Player" parent="." unique_id=990283555 instance=ExtResource("2_wgwpm")]
 position = Vector2(-985, 141)
+k = 1.0
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1957778636]
 position = Vector2(-689, 103)

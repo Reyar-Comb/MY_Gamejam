@@ -9,7 +9,7 @@ public partial class Dot : RigidBody2D
 	public DotState State { get ; set; } = DotState.Static;
 	[Export] public AnimationPlayer DotAnimPlayer;
 	[Export] public float VelocityGate = 50f;
-	[Export] public float StaticVelocity = 0f;
+	[Export] public float StaticVelocity = 40f;
  	[Signal] public delegate void DotCollideEventHandler(Dot collidedDot, Dot selfDot);
 
 	public bool hasEmittedLineUp = false;
@@ -51,6 +51,7 @@ public partial class Dot : RigidBody2D
 	public override void _Ready()
 	{
 		LinearDamp = DotlineManager.Instance.DotDamping;
+		StaticVelocity = DotlineManager.Instance.DotStaticVelocity;
 		BodyEntered += (body) =>
 		{
 			if (body is Dot dot && dot != this)

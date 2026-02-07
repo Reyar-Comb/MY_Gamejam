@@ -14,6 +14,7 @@ position = Vector2(371.985, -248)
 light_mask = 31
 visibility_layer = 31
 position = Vector2(-389, 30)
+k = 0.88
 
 [node name="Walls" parent="." unique_id=1687960114 instance=ExtResource("3_o3q40")]
 

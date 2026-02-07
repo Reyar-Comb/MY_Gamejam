@@ -891,6 +891,7 @@ disable_mode = 2
 script = ExtResource("1_j23h2")
 StateTree = NodePath("StateTree")
 DotPreviewSprite = NodePath("DotPreview")
+k = 0.88
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2009948130]
 unique_name_in_owner = true

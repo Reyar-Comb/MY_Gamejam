@@ -8,6 +8,7 @@ public partial class Player : CharacterBody2D
 	[Export] public AnimatedSprite2D DotPreviewSprite;
 	[Export] public float MaxDotSpeed = 500f;
 	[Export] public float MaxDragDistance = 200f;
+	[Export] public float k = 0.9f;
 
 	public float damping = 1.0f;
 	private bool _isDragging = false;
@@ -45,7 +46,8 @@ public partial class Player : CharacterBody2D
 			}
 
 			Vector2 velocity = dragVector * (MaxDotSpeed / MaxDragDistance);
-			Vector2 previewPos = velocity * (damping - 1 / 30f ) / damping;
+			Vector2 previewPos = (velocity - DotlineManager.Instance.DotStaticVelocity * velocity.Normalized()) / damping;
+			previewPos *= k;
 			DotPreviewSprite.Position = -previewPos;
 		}
 		else

@@ -27,7 +27,7 @@ public partial class DotlineManager : Node2D
 
 	public Player Player;
 	[Export] public float DotDamping = 1.0f;
-
+	[Export] public float DotStaticVelocity = 40f;
 
 	public Queue<Dot> BlueDotQueue { get; private set; } = new Queue<Dot>();
 	public Queue<Dot> RedDotQueue { get; private set; } = new Queue<Dot>();
