@@ -107,7 +107,7 @@ sprite_frames = ExtResource("1_bxqpn")
 libraries/ = SubResource("AnimationLibrary_xw1jo")
 autoplay = &"CheckPoint_OFF"
 
-[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=521266748]
+[node name="Area2D" type="Area2D" parent="." unique_id=1907291513]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=228544443]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=228544443]
 shape = SubResource("CapsuleShape2D_ov0v2")

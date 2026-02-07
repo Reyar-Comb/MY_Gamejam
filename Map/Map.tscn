@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cydjs7kmnnae4" path="res://Player/Player.tscn" id="2_wgwpm"]
 [ext_resource type="TileSet" uid="uid://ceyegh7kerjl" path="res://Map/Walls/Wall.tres" id="3_qtvud"]
 [ext_resource type="PackedScene" uid="uid://dsgac8ydx0yy0" path="res://Map/Walls/DestroyableWall.tscn" id="4_wgwpm"]
+[ext_resource type="PackedScene" uid="uid://3bp36r3k3k18" path="res://Map/CheckPoint/check_point.tscn" id="5_qtvud"]
 
 [node name="Node2D" type="Node2D" unique_id=2075572154]
 
@@ -46,7 +47,7 @@ position = Vector2(6254, -292)
 position = Vector2(800, 0)
 
 [node name="Player" parent="." unique_id=990283555 instance=ExtResource("2_wgwpm")]
-position = Vector2(3695, 340)
+position = Vector2(-985, 141)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1957778636]
 position = Vector2(-689, 103)
@@ -63,3 +64,29 @@ scale = Vector2(1.75, 1.75)
 [node name="StaticBody2D2" parent="DestroyableWalls" unique_id=235846128 instance=ExtResource("4_wgwpm")]
 position = Vector2(13594, 411)
 scale = Vector2(1.75, 1)
+
+[node name="CheckPoints" type="Node2D" parent="." unique_id=217176100]
+
+[node name="CheckPoint" parent="CheckPoints" unique_id=1065180441 instance=ExtResource("5_qtvud")]
+position = Vector2(2651, 305)
+
+[node name="CheckPoint2" parent="CheckPoints" unique_id=1216100140 instance=ExtResource("5_qtvud")]
+position = Vector2(5623, 297)
+
+[node name="CheckPoint3" parent="CheckPoints" unique_id=1986361256 instance=ExtResource("5_qtvud")]
+position = Vector2(7625, -513)
+
+[node name="CheckPoint4" parent="CheckPoints" unique_id=984761909 instance=ExtResource("5_qtvud")]
+position = Vector2(9495, 99)
+
+[node name="CheckPoint5" parent="CheckPoints" unique_id=1287921563 instance=ExtResource("5_qtvud")]
+position = Vector2(11794, 104)
+
+[node name="CheckPoint6" parent="CheckPoints" unique_id=192350548 instance=ExtResource("5_qtvud")]
+position = Vector2(14799, 104)
+
+[node name="CheckPoint7" parent="CheckPoints" unique_id=2049203178 instance=ExtResource("5_qtvud")]
+position = Vector2(18307, 84)
+
+[node name="CheckPoint8" parent="CheckPoints" unique_id=916573410 instance=ExtResource("5_qtvud")]
+position = Vector2(21405, -311)
