@@ -55,7 +55,7 @@ public partial class Player : CharacterBody2D
 			DotPreviewSprite.Visible = false;
 		}
 
-		GD.Print("animation playing: " + DotPreviewSprite.Animation);
+		//GD.Print("animation playing: " + DotPreviewSprite.Animation);
 	}
 
 	public override void _Input(InputEvent @event)

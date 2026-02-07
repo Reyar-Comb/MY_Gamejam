@@ -32,6 +32,7 @@ public partial class DotlineManager : Node2D
 	public Queue<Dot> BlueDotQueue { get; private set; } = new Queue<Dot>();
 	public Queue<Dot> RedDotQueue { get; private set; } = new Queue<Dot>();
 	public Queue<Dot> PurpleDotQueue { get; private set; } = new Queue<Dot>();
+	public Queue<DotlineColor> HistoryDots = new Queue<DotlineColor>(); 
 	public List<Line> BlueLines = new List<Line>();
 	public List<Line> RedLines = new List<Line>();
 	public List<Line> PurpleLines = new List<Line>();
@@ -431,6 +432,8 @@ public partial class DotlineManager : Node2D
 			_ => null
 		};
 		DotQueue.Enqueue(dot);
+		HistoryDots.Enqueue(CurrentColor);
+		GD.Print(HistoryDots.Count);
 		// dot.OnIdle += () => OnDotIdjjhhcle(dot, DotQueue);
 		// TODO: Enable dot collision handling
 		// dot.DotCollide += OnDotCollide;
@@ -558,7 +561,7 @@ public partial class DotlineManager : Node2D
 	{
 		if (@event is InputEventKey keyEvent && keyEvent.Pressed)
 		{
-			if (keyEvent.Keycode == Key.R)
+			if (keyEvent.Keycode == Key.E)
 			{
 				testChangeColor();
 			}
@@ -566,10 +569,16 @@ public partial class DotlineManager : Node2D
 			{
 				//await ClearDots();
 			}
-			if (keyEvent.Keycode == Key.L)
+			if (keyEvent.Keycode == Key.R)
 			{
 				if (_clearLock.CurrentCount == 0) return;
-				await ClearColorDot(CurrentColor);
+				DotlineColor? ClearColor = HistoryDots.Count > 0 ? HistoryDots.Dequeue() : null;
+				if (ClearColor == null)
+				{
+					GD.Print("No history dots to clear.");
+					return;
+				}
+				await ClearColorDot(ClearColor.Value);
 			}
 			GD.Print("Key pressed: " + keyEvent.Keycode);
 
