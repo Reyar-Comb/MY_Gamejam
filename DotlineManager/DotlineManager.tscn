@@ -8,3 +8,5 @@
 script = ExtResource("1_gtm0m")
 DotScene = ExtResource("2_2ftmn")
 LineScene = ExtResource("3_dp5o5")
+RedDotRange = 400.0
+PurpleDotRange = 600.0

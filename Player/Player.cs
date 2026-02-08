@@ -6,7 +6,7 @@ public partial class Player : CharacterBody2D
 	[Signal] public delegate void ColorChangedEventHandler(string newColor);
 	[Export] public StateTree StateTree;
 	[Export] public AnimatedSprite2D DotPreviewSprite;
-	[Export] public float MaxDotSpeed = 500f;
+	//[Export] public float MaxDotSpeed = 500f;
 	[Export] public float MaxDragDistance = 200f;
 	[Export] public float MinDragDistance = 20f;
 	[Export] public float k = 0.9f;
@@ -35,6 +35,7 @@ public partial class Player : CharacterBody2D
 	{
 		if (_isDragging)
 		{
+			if (PlayerColor == "White") return;
 			DotPreviewSprite.Play(PlayerColor);
 			DotPreviewSprite.Visible = true;
 			Vector2 mousePos = GetViewport().GetMousePosition();
@@ -51,7 +52,7 @@ public partial class Player : CharacterBody2D
 				return;
 			}
 
-			Vector2 velocity = dragVector * (MaxDotSpeed / MaxDragDistance);
+			Vector2 velocity = dragVector * (DotlineManager.Instance.MaxDotSpeed / MaxDragDistance);
 			Vector2 previewPos = (velocity - DotlineManager.Instance.DotStaticVelocity * velocity.Normalized()) / damping;
 			previewPos *= k;
 			DotPreviewSprite.Position = -previewPos;
@@ -96,7 +97,7 @@ public partial class Player : CharacterBody2D
 							return;
 						}
 
-						Vector2 velocity = dragVector * (MaxDotSpeed / MaxDragDistance);
+						Vector2 velocity = dragVector * (DotlineManager.Instance.MaxDotSpeed / MaxDragDistance);
 						DotlineManager.Instance.SpawnDot(-velocity);
 					}
 					_isCancelled = false;

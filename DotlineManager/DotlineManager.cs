@@ -29,6 +29,28 @@ public partial class DotlineManager : Node2D
 	[Export] public float DotDamping = 1.0f;
 	[Export] public float DotStaticVelocity = 40f;
 	[Export] public int MaxHistoryDots = 5;
+	[Export] public float RedDotRange = 500f;
+	[Export] public float BlueDotRange = 500f;
+	[Export] public float PurpleDotRange = 500f;
+
+	public float MaxDotSpeed 
+	{
+		get
+		{
+			switch (CurrentColor)
+			{
+				case DotlineColor.Blue:
+					return BlueDotRange;
+				case DotlineColor.Red:
+					return RedDotRange;
+				case DotlineColor.Purple:
+					return PurpleDotRange;
+				default:
+					return 500f;
+			}
+		}
+		set { }
+	}
 
 	public Queue<Dot> BlueDotQueue { get; private set; } = new Queue<Dot>();
 	public Queue<Dot> RedDotQueue { get; private set; } = new Queue<Dot>();
