@@ -3,6 +3,7 @@ using System;
 
 public partial class DestroyableWall : StaticBody2D
 {
+	[Export] public int WallID = 0;
 	public Area2D LeftSide => field ??= GetNode<Area2D>("LeftSide");
 	public Area2D RightSide => field ??= GetNode<Area2D>("RightSide");
 	public Area2D TopSide => field ??= GetNode<Area2D>("TopSide");
@@ -14,6 +15,7 @@ public partial class DestroyableWall : StaticBody2D
 	{
 		if (_isDestroyed) return;
 		_isDestroyed = true;
+		SendID();
 		
 		Tween tween = CreateTween()
 			.SetTrans(Tween.TransitionType.Quart)
@@ -29,6 +31,12 @@ public partial class DestroyableWall : StaticBody2D
 			}),
 			1f, 0f, 0.2f
 		);
+		
 		tween.TweenCallback(Callable.From(QueueFree));
+	}
+
+	public void SendID()
+	{
+		GameManager.Instance.DestroyWall(WallID);
 	}
 }
