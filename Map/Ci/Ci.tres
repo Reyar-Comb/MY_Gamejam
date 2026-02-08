@@ -1,0 +1,13 @@
+[gd_resource type="TileSet" format=3 uid="uid://dgyb6ergrqqak"]
+
+[ext_resource type="Texture2D" uid="uid://mb63ifcdius7" path="res://Map/Texture/Ci/QQ图片20260208195021.png" id="1_5rh5u"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h3m1r"]
+texture = ExtResource("1_5rh5u")
+margins = Vector2i(425, 375)
+texture_region_size = Vector2i(1200, 1200)
+0:0/0 = 0
+
+[resource]
+tile_size = Vector2i(1200, 1200)
+sources/1 = SubResource("TileSetAtlasSource_h3m1r")
