@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://btydenqcw2tvd"
+path="res://.godot/imported/Dots' Lullaby.mp3-06c57e1c42f4e01b9e5f1d6a9e47e648.mp3str"
+
+[deps]
+
+source_file="res://Audio/BGM/Dots' Lullaby.mp3"
+dest_files=["res://.godot/imported/Dots' Lullaby.mp3-06c57e1c42f4e01b9e5f1d6a9e47e648.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=100.0
+beat_count=256
+bar_beats=4

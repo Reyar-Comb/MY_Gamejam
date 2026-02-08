@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bh5qg2wsh5hw5"]
+
+[ext_resource type="Script" uid="uid://o4v3doirsp5q" path="res://AudioManager/testAudioScene.cs" id="1_t5b8l"]
+[ext_resource type="Script" uid="uid://dca82nlmsyhat" path="res://AudioManager/AudioManager.cs" id="2_aof22"]
+[ext_resource type="Script" uid="uid://j1ta0joh2dnu" path="res://AudioManager/Scripts/AudioKeyValuePair.cs" id="3_3sp7v"]
+[ext_resource type="AudioStream" uid="uid://btydenqcw2tvd" path="res://Audio/BGM/Dots' Lullaby.mp3" id="4_pcryo"]
+
+[sub_resource type="Resource" id="Resource_mvoev"]
+script = ExtResource("3_3sp7v")
+Key = "Dots' Lullaby"
+Value = ExtResource("4_pcryo")
+metadata/_custom_type_script = "uid://j1ta0joh2dnu"
+
+[node name="Node2D" type="Node2D" unique_id=669221583]
+script = ExtResource("1_t5b8l")
+
+[node name="AudioManager" type="Node" parent="." unique_id=1722272794]
+script = ExtResource("2_aof22")
+BGMTracks = Array[ExtResource("3_3sp7v")]([SubResource("Resource_mvoev")])
+DefaultBGMVolumeDb = 0.0
+metadata/_custom_type_script = "uid://dca82nlmsyhat"
