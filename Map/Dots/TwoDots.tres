@@ -1,0 +1,60 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://etgppdlhf47k"]
+
+[ext_resource type="Texture2D" uid="uid://t5l457tcqgv2" path="res://Map/Texture/Dots/QQ图片20260209193041.png" id="1_ucbss"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xcevj"]
+atlas = ExtResource("1_ucbss")
+region = Rect2(0, 0, 182, 183)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3cm1y"]
+atlas = ExtResource("1_ucbss")
+region = Rect2(182, 0, 182, 183)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_emyt7"]
+atlas = ExtResource("1_ucbss")
+region = Rect2(364, 0, 182, 183)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ts1an"]
+atlas = ExtResource("1_ucbss")
+region = Rect2(546, 0, 182, 183)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7mycr"]
+atlas = ExtResource("1_ucbss")
+region = Rect2(728, 0, 182, 183)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nsxeg"]
+atlas = ExtResource("1_ucbss")
+region = Rect2(910, 0, 182, 183)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tuhxk"]
+atlas = ExtResource("1_ucbss")
+region = Rect2(1092, 0, 182, 183)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xcevj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3cm1y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_emyt7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ts1an")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7mycr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nsxeg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tuhxk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
