@@ -3,6 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://cydjs7kmnnae4" path="res://Player/Player.tscn" id="2_16oai"]
 [ext_resource type="Texture2D" uid="uid://oya8wpn6jmc8" path="res://icon.svg" id="2_q3v8s"]
 [ext_resource type="PackedScene" uid="uid://fjo6ili1h6sd" path="res://Map/Walls/DestroyableWall.tscn" id="3_16oai"]
+[ext_resource type="PackedScene" uid="uid://ckscvaw6pp0xv" path="res://Map/ColorBlock/ColorBlock.tscn" id="4_awt8f"]
+[ext_resource type="PackedScene" uid="uid://rpcds6u3hpcq" path="res://Map/BouncyBlock/BouncyBlock.tscn" id="5_8tac6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_16oai"]
 size = Vector2(1198, 506)
@@ -30,3 +32,17 @@ position = Vector2(767, -82)
 
 [node name="DestroyableWall2" parent="." unique_id=672650060 instance=ExtResource("3_16oai")]
 position = Vector2(1091, -30)
+
+[node name="ColorBlock" parent="." unique_id=1866901003 instance=ExtResource("4_awt8f")]
+position = Vector2(-713, 160)
+Color = 2
+
+[node name="ColorBlock2" parent="." unique_id=286997763 instance=ExtResource("4_awt8f")]
+position = Vector2(-965, 162)
+Color = 1
+
+[node name="ColorBlock3" parent="." unique_id=1228912054 instance=ExtResource("4_awt8f")]
+position = Vector2(-441, 154)
+
+[node name="BouncyBlock" parent="." unique_id=1255840896 instance=ExtResource("5_8tac6")]
+position = Vector2(178, -263)

@@ -886,7 +886,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D" unique_id=990283555 node_paths=PackedStringArray("StateTree", "DotPreviewSprite")]
+[node name="Player" type="CharacterBody2D" unique_id=990283555 node_paths=PackedStringArray("StateTree", "DotPreviewSprite") groups=["Player"]]
 disable_mode = 2
 script = ExtResource("1_j23h2")
 StateTree = NodePath("StateTree")
