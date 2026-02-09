@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Linq;
 
 public partial class Player_UniveralState : State
 {
@@ -14,15 +15,31 @@ public partial class Player_UniveralState : State
     {
         LineDetectArea.AreaEntered -= OnLineDetected;
     }
-    protected override void PhysicsUpdate(double delta)
+    private void HandleSpriteFlip()
     {
-        Player.MoveAndSlide();
-
         int direction = GetDirection();
         if (direction != 0)
         {
             Sprite.FlipH = direction < 0;
         }
+    }
+    private void CheckColorBlockCollision()
+    {
+        for (int i = 0; i < Player.GetSlideCollisionCount(); i++)
+        {
+            var collision = Player.GetSlideCollision(i);
+            if (collision.GetCollider() is ColorBlock colorBlock)
+            {
+                DotlineManager.Instance.CurrentColor = colorBlock.GetColor();
+            }
+        }
+    }
+    protected override void PhysicsUpdate(double delta)
+    {
+        Player.MoveAndSlide();
+
+        HandleSpriteFlip();
+        CheckColorBlockCollision();
     }
     private void OnLineDetected(Area2D area)
     {

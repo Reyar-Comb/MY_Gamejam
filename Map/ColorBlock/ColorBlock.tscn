@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://ckscvaw6pp0xv"]
+
+[ext_resource type="Script" uid="uid://el7qb2hmjqyf" path="res://Map/ColorBlock/ColorBlock.cs" id="1_3spil"]
+[ext_resource type="Texture2D" uid="uid://cbdv14lp8n1si" path="res://Map/ColorBlock/PurpleColorBlock.png" id="2_16bkg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2vrfm"]
+size = Vector2(224, 80)
+
+[node name="ColorBlock" type="StaticBody2D" unique_id=1866901003]
+script = ExtResource("1_3spil")
+
+[node name="BlockSprite" type="Sprite2D" parent="." unique_id=281986093]
+texture = ExtResource("2_16bkg")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="." unique_id=1414249486]
+shape = SubResource("RectangleShape2D_2vrfm")

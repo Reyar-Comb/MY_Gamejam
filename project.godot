@@ -35,6 +35,10 @@ window/stretch/aspect="expand"
 
 project/assembly_name="新建游戏项目"
 
+[global_group]
+
+Player=""
+
 [input]
 
 Jump={

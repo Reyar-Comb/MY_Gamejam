@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://rpcds6u3hpcq"]
+
+[ext_resource type="Texture2D" uid="uid://b7w2ky473y5b5" path="res://Map/BouncyBlock/BouncyBlock.png" id="1_1tgxp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cg6w0"]
+size = Vector2(222, 78)
+
+[node name="BouncyBlock" type="StaticBody2D" unique_id=1255840896]
+collision_layer = 5
+collision_mask = 5
+
+[node name="BlockSprite" type="Sprite2D" parent="." unique_id=1462438711]
+texture = ExtResource("1_1tgxp")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="." unique_id=1726278762]
+shape = SubResource("RectangleShape2D_cg6w0")
