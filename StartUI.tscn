@@ -1,144 +1,49 @@
 [gd_scene format=4 uid="uid://dim7fl3q2jnpm"]
 
-[ext_resource type="PackedScene" uid="uid://dlcqvitb6fc55" path="res://Map/BackGround/back_ground.tscn" id="1_0cpfv"]
 [ext_resource type="TileSet" uid="uid://ceyegh7kerjl" path="res://Map/Walls/Wall.tres" id="1_7t477"]
-[ext_resource type="PackedScene" uid="uid://cydjs7kmnnae4" path="res://Player/Player.tscn" id="2_1w7y4"]
-[ext_resource type="Texture2D" uid="uid://3mreu7nfmfnt" path="res://UI/Texture/QQ图片20260207155100.png" id="4_u56t6"]
-[ext_resource type="Texture2D" uid="uid://dijr4iaqln6k" path="res://UI/Texture/QQ图片20260207163547.png" id="4_vxd0w"]
-[ext_resource type="Texture2D" uid="uid://h08w18h7i71o" path="res://UI/Texture/QQ图片20260207163258.png" id="5_23dos"]
-[ext_resource type="Texture2D" uid="uid://oqrklobyohse" path="res://UI/Texture/QQ图片20260207163550.png" id="7_janqo"]
-[ext_resource type="Texture2D" uid="uid://chxub2h5p3qfn" path="res://UI/Texture/QQ图片20260207163553.png" id="8_sbfn0"]
-[ext_resource type="Texture2D" uid="uid://h6mmhrkesngn" path="res://UI/Texture/QQ图片20260207163556.png" id="9_4vt7t"]
-
-[sub_resource type="Animation" id="Animation_6p1if"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("4_vxd0w")]
-}
-
-[sub_resource type="Animation" id="Animation_vxd0w"]
-resource_name = "float"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.53333336),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [ExtResource("4_u56t6"), ExtResource("5_23dos")]
-}
-
-[sub_resource type="Animation" id="Animation_sbfn0"]
-resource_name = "float2"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.53333336),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [ExtResource("7_janqo"), ExtResource("4_vxd0w")]
-}
-
-[sub_resource type="Animation" id="Animation_v2osg"]
-resource_name = "float3"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.53333336),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [ExtResource("8_sbfn0"), ExtResource("9_4vt7t")]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_janqo"]
-_data = {
-&"RESET": SubResource("Animation_6p1if"),
-&"float": SubResource("Animation_vxd0w"),
-&"float2": SubResource("Animation_sbfn0"),
-&"float3": SubResource("Animation_v2osg")
-}
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_sbfn0"]
-radius = 229.49753
+[ext_resource type="Texture2D" uid="uid://uimjt0qqv652" path="res://UI/Texture/○一○.png" id="2_1w7y4"]
+[ext_resource type="Texture2D" uid="uid://cejui24wq0gdw" path="res://UI/Texture/无标题.png" id="2_6p1if"]
+[ext_resource type="Texture2D" uid="uid://bpndxp4giaxhk" path="res://UI/Texture/CONTINUE.png" id="3_23dos"]
+[ext_resource type="Texture2D" uid="uid://dxv3otucjybae" path="res://UI/Texture/QUIT.png" id="4_6p1if"]
+[ext_resource type="Texture2D" uid="uid://cjvnjepi2kqs3" path="res://UI/Texture/START.png" id="5_vxd0w"]
 
 [node name="Node2D" type="Node2D" unique_id=877731185]
 
-[node name="BackGround" parent="." unique_id=1319495717 instance=ExtResource("1_0cpfv")]
-position = Vector2(-293, 11)
+[node name="background" type="Node2D" parent="." unique_id=284089687]
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=507456836]
-tile_map_data = PackedByteArray("AAD8/wEACAABAAAAAAD9/wEACAABAAAAAAD8/wIACAABAAEAAAD9/wIACAABAAEAAAD+/wEACAABAAAAAAD//wEACAABAAAAAAD+/wIACAABAAEAAAD//wIACAABAAEAAAAAAAEACAABAAAAAAAAAAIACAABAAEAAAABAAIACAABAAEAAAABAAEACAABAAAAAAACAAEACAABAAAAAAACAAIACAABAAEAAAADAAIACAABAAEAAAADAAEACAABAAAAAAD7/wIACAABAAEAAAD7/wEACAABAAEAAAD7/wAACAACAAEAAAD7////CAACAAEAAAD7//7/CAACAAEAAAD7//3/CAABAAEAAAD8//3/CAABAAIAAAD9//3/CAABAAIAAAD+//3/CAACAAIAAAABAP3/CAAAAAIAAAACAP3/CAABAAIAAAADAP3/CAABAAIAAAADAPz/CAABAAAAAAAEAPz/CAABAAAAAAAEAP3/CAABAAEAAAAEAP7/CAABAAEAAAAEAP//CAAAAAEAAAAEAAAACAAAAAEAAAAEAAEACAABAAEAAAAEAAIACAABAAEAAAACAPz/CAABAAAAAAABAPz/CAAAAAAAAAD+//z/CAACAAAAAAD9//z/CAABAAAAAAD8//z/CAABAAAAAAD7//z/CAABAAAAAAD6//z/CAAAAAAAAAD6//3/CAAAAAEAAAD6//7/CAAAAAEAAAD6////CAAAAAEAAAD6/wAACAAAAAEAAAD6/wEACAAAAAEAAAD6/wIACAAAAAEAAAD7/wMACAABAAIAAAD6/wMACAAAAAIAAAD8/wMACAABAAIAAAD9/wMACAABAAIAAAD+/wMACAABAAIAAAD//wMACAABAAIAAAAAAAMACAABAAIAAAACAAMACAABAAIAAAABAAMACAABAAIAAAADAAMACAABAAIAAAAEAAMACAABAAIAAAAFAAMACAACAAIAAAAFAAIACAACAAEAAAAFAAEACAACAAEAAAAFAAAACAACAAEAAAAFAP//CAACAAEAAAAFAP7/CAACAAEAAAAFAP3/CAACAAEAAAAFAPz/CAACAAAAAAD+//v/CgAAAAEAAAD+//r/CgAAAAEAAAD+//n/CgAAAAEAAAD+//j/CgAAAAEAAAD+//f/CgAAAAEAAAD+//b/CgAAAAEAAAD+//X/CgAAAAEAAAD+//T/CgAAAAEAAAD+//P/CgAAAAEAAAD+//L/CgAAAAEAAAD+//H/CgAAAAEAAAD+//D/CgAAAAEAAAD+/+//CgAAAAEAAAD+/+7/CgAAAAEAAAD+/+3/CgAAAAEAAAD+/+z/CgAAAAEAAAD9/+z/CgAAAAIAAAD9/+v/CAAAAAIAAAD9/+r/CAAAAAAAAAD+/+r/CAACAAAAAAD+/+v/CAACAAEAAAABAOr/CgAAAAAAAAABAOv/CgAAAAEAAAABAOz/CgAAAAEAAAABAO3/CgAAAAEAAAABAO7/CgAAAAEAAAABAO//CgAAAAEAAAABAPD/CgAAAAEAAAABAPH/CgAAAAEAAAABAPL/CgAAAAEAAAABAPP/CgAAAAEAAAABAPT/CgAAAAEAAAABAPX/CgAAAAEAAAABAPb/CgAAAAEAAAABAPf/CgAAAAEAAAABAPj/CgAAAAEAAAABAPn/CgAAAAEAAAABAPr/CgAAAAEAAAABAPv/CgAAAAEAAAA=")
+[node name="无标题2" type="Sprite2D" parent="background" unique_id=1368062435]
+position = Vector2(173, -231.5)
+scale = Vector2(7.875, 2.4041667)
+texture = ExtResource("2_6p1if")
+
+[node name="○一○" type="Sprite2D" parent="background" unique_id=672668934]
+position = Vector2(-5.4461308, -233.37794)
+scale = Vector2(0.27514562, 0.27540883)
+texture = ExtResource("2_1w7y4")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="background" unique_id=507456836]
+tile_map_data = PackedByteArray("AAD7//3/CAABAAEAAAD7//7/CAABAAEAAAD7////CAABAAEAAAD7/wAACAABAAEAAAD7/wEACAABAAEAAAD7/wIACAABAAEAAAD7/wMACAABAAEAAAD8//3/CAABAAEAAAD8//7/CAABAAEAAAD8////CAABAAEAAAD8/wAACAABAAEAAAD8/wEACAABAAEAAAD8/wIACAABAAEAAAD8/wMACAABAAEAAAD9//3/CAABAAEAAAD9//7/CAABAAEAAAD9////CAABAAEAAAD9/wAACAABAAEAAAD9/wEACAABAAEAAAD9/wIACAABAAEAAAD9/wMACAABAAEAAAD+//7/CAACAAEAAAD+////CAACAAEAAAD+/wAACAABAAEAAAD+/wEACAABAAEAAAD+/wIACAABAAEAAAD+/wMACAABAAEAAAD//wAACAABAAAAAAD//wEACAABAAEAAAD//wIACAABAAEAAAD//wMACAABAAEAAAAAAAAACAABAAAAAAAAAAEACAABAAEAAAAAAAIACAABAAEAAAAAAAMACAABAAEAAAABAP7/CAAAAAEAAAABAP//CAAAAAEAAAABAAAACAABAAEAAAABAAEACAABAAEAAAABAAIACAABAAEAAAABAAMACAABAAEAAAACAP3/CAABAAEAAAACAP7/CAABAAEAAAACAP//CAABAAEAAAACAAAACAABAAEAAAACAAEACAABAAEAAAACAAIACAABAAEAAAACAAMACAABAAEAAAADAP3/CAABAAEAAAADAP7/CAABAAEAAAADAP//CAABAAEAAAADAAAACAABAAEAAAADAAEACAABAAEAAAADAAIACAABAAEAAAADAAMACAABAAEAAAAEAP3/CAABAAEAAAAEAP7/CAABAAEAAAAEAP//CAABAAEAAAAEAAAACAABAAEAAAAEAAEACAABAAEAAAAEAAIACAABAAEAAAAEAAMACAABAAEAAAD+//3/CAABAAAAAAD///3/CQABAAAAAAAAAP3/CQABAAAAAAABAP3/CAABAAAAAAA=")
 tile_set = ExtResource("1_7t477")
 
+[node name="无标题" type="Sprite2D" parent="background" unique_id=1113892231]
+position = Vector2(64, 368)
+scale = Vector2(7.875, 1.4416667)
+texture = ExtResource("2_6p1if")
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1373929681]
+position = Vector2(53, 8)
 
-[node name="Player" parent="." unique_id=990283555 instance=ExtResource("2_1w7y4")]
-position = Vector2(-6, -2294)
+[node name="Continue" type="Sprite2D" parent="." unique_id=1157764214]
+position = Vector2(21, 365)
+scale = Vector2(0.3588412, 0.3345657)
+texture = ExtResource("3_23dos")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=229446197]
-position = Vector2(730, -290)
-scale = Vector2(0.40096158, 0.42103657)
-texture = ExtResource("4_vxd0w")
+[node name="Quit" type="Sprite2D" parent="." unique_id=1834992464]
+position = Vector2(613.67163, 382.6279)
+scale = Vector2(0.29304808, 0.29742298)
+texture = ExtResource("4_6p1if")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D" unique_id=499830580]
-libraries/ = SubResource("AnimationLibrary_janqo")
-autoplay = &"float"
-
-[node name="Area2D" type="Area2D" parent="Sprite2D" unique_id=744644367]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D" unique_id=1157703150]
-position = Vector2(0, -38.00145)
-shape = SubResource("CircleShape2D_sbfn0")
-
-[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=2092688806]
-position = Vector2(-409, -292)
-scale = Vector2(0.40096158, 0.42103657)
-texture = ExtResource("4_vxd0w")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D2" unique_id=81011479]
-libraries/ = SubResource("AnimationLibrary_janqo")
-autoplay = &"float2"
-
-[node name="Area2D" type="Area2D" parent="Sprite2D2" unique_id=110295654]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D2/Area2D" unique_id=439991036]
-position = Vector2(0, -38.00145)
-shape = SubResource("CircleShape2D_sbfn0")
-
-[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=272452785]
-position = Vector2(399, -288)
-scale = Vector2(0.40096158, 0.42103657)
-texture = ExtResource("4_vxd0w")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D3" unique_id=1074995723]
-libraries/ = SubResource("AnimationLibrary_janqo")
-autoplay = &"float3"
-
-[node name="Area2D" type="Area2D" parent="Sprite2D3" unique_id=468401542]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D3/Area2D" unique_id=1383519759]
-position = Vector2(0, -38.00145)
-shape = SubResource("CircleShape2D_sbfn0")
+[node name="Start" type="Sprite2D" parent="." unique_id=1845611572]
+position = Vector2(-584.00006, 378.00003)
+scale = Vector2(0.25144634, 0.21658985)
+texture = ExtResource("5_vxd0w")

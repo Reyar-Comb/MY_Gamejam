@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="新建游戏项目"
-run/main_scene="uid://43xoyip4u51s"
+run/main_scene="uid://bwlm4gyx3pkec"
 config/features=PackedStringArray("4.6", "C#", "Mobile")
 config/icon="res://icon.svg"
 
