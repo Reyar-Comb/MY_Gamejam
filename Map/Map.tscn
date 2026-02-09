@@ -7,105 +7,14 @@
 [ext_resource type="PackedScene" uid="uid://fjo6ili1h6sd" path="res://Map/Walls/DestroyableWall.tscn" id="4_wgwpm"]
 [ext_resource type="PackedScene" uid="uid://3bp36r3k3k18" path="res://Map/CheckPoint/check_point.tscn" id="5_qtvud"]
 [ext_resource type="SpriteFrames" uid="uid://etgppdlhf47k" path="res://Map/Dots/TwoDots.tres" id="6_6od3y"]
+[ext_resource type="Script" uid="uid://c85q1c6n5d081" path="res://Map/Dots/CollectibleDots.cs" id="6_vxmom"]
 [ext_resource type="SpriteFrames" uid="uid://c1wj4iphudqlr" path="res://Map/Dots/OneDot.tres" id="7_vxmom"]
 
-[sub_resource type="Animation" id="Animation_nlecm"]
-resource_name = "OneDotFloat"
-length = 0.6
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:sprite_frames")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("7_vxmom")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.56666666),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0, 6]
-}
+[sub_resource type="CircleShape2D" id="CircleShape2D_6od3y"]
+radius = 120.0
 
-[sub_resource type="Animation" id="Animation_vk5l4"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:sprite_frames")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("6_6od3y")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [6]
-}
-
-[sub_resource type="Animation" id="Animation_cccvd"]
-resource_name = "TwoDotsFloat"
-length = 0.6
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:sprite_frames")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("6_6od3y")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.56666666),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0, 6]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_jq5q4"]
-_data = {
-&"OneDotFloat": SubResource("Animation_nlecm"),
-&"RESET": SubResource("Animation_vk5l4"),
-&"TwoDotsFloat": SubResource("Animation_cccvd")
-}
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ehio4"]
-size = Vector2(100.688934, 213.76456)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7a0j3"]
-size = Vector2(266.19223, 213.76456)
+[sub_resource type="CircleShape2D" id="CircleShape2D_vxmom"]
+radius = 120.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_qtvud"]
 
@@ -307,39 +216,37 @@ tile_set = ExtResource("3_qtvud")
 
 [node name="Dots" type="Node2D" parent="." unique_id=797099071]
 
-[node name="FstTwoDots" type="AnimatedSprite2D" parent="Dots" unique_id=1699300862]
+[node name="FirstTwoDots" type="Area2D" parent="Dots" unique_id=528897617]
 position = Vector2(1242, -7)
 scale = Vector2(1.3159344, 1.3210382)
-sprite_frames = ExtResource("6_6od3y")
-frame = 6
+script = ExtResource("6_vxmom")
+DotValue = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Dots/FstTwoDots" unique_id=1652871153]
-libraries/ = SubResource("AnimationLibrary_jq5q4")
-autoplay = &"TwoDotsFloat"
-
-[node name="Area2D" type="Area2D" parent="Dots/FstTwoDots" unique_id=528897617]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Dots/FstTwoDots/Area2D" unique_id=481277530]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dots/FirstTwoDots" unique_id=481277530]
 position = Vector2(3.6096191, -5.2988625)
 scale = Vector2(0.9999999, 1)
-shape = SubResource("RectangleShape2D_ehio4")
+shape = SubResource("CircleShape2D_6od3y")
 
-[node name="ThirdDot" type="AnimatedSprite2D" parent="Dots" unique_id=240074339]
+[node name="Sprite" type="AnimatedSprite2D" parent="Dots/FirstTwoDots" unique_id=1699300862]
+scale = Vector2(0.99999994, 1)
+sprite_frames = ExtResource("6_6od3y")
+autoplay = "default"
+frame_progress = 0.88357544
+
+[node name="ThirdDot" type="Area2D" parent="Dots" unique_id=1433466564]
 position = Vector2(33277, -5505)
 scale = Vector2(0.4663049, 0.56884927)
-sprite_frames = ExtResource("6_6od3y")
-frame = 6
+script = ExtResource("6_vxmom")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Dots/ThirdDot" unique_id=188988420]
-libraries/ = SubResource("AnimationLibrary_jq5q4")
-autoplay = &"OneDotFloat"
-
-[node name="Area2D" type="Area2D" parent="Dots/ThirdDot" unique_id=1433466564]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Dots/ThirdDot/Area2D" unique_id=675915345]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dots/ThirdDot" unique_id=675915345]
 position = Vector2(2.144543, -1.7578201)
 scale = Vector2(1.0000002, 1)
-shape = SubResource("RectangleShape2D_7a0j3")
+shape = SubResource("CircleShape2D_vxmom")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Dots/ThirdDot" unique_id=240074339]
+sprite_frames = ExtResource("7_vxmom")
+autoplay = "default"
+frame_progress = 0.96277636
 
 [node name="Player" parent="." unique_id=990283555 instance=ExtResource("2_wgwpm")]
 position = Vector2(32220, -11257)
