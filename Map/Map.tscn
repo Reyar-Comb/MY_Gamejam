@@ -109,7 +109,7 @@ size = Vector2(266.19223, 213.76456)
 
 [sub_resource type="LabelSettings" id="LabelSettings_qtvud"]
 
-[node name="Node2D" type="Node2D" unique_id=2075572154]
+[node name="Node2D2" type="Node2D" unique_id=2075572154]
 
 [node name="Backgrounds" type="Node2D" parent="." unique_id=1162349484]
 
@@ -217,81 +217,87 @@ position = Vector2(25665.002, -3569)
 scale = Vector2(3.81, 3.46)
 
 [node name="CheckPoints" type="Node2D" parent="." unique_id=217176100]
+unique_name_in_owner = true
 
-[node name="CheckPoint" parent="CheckPoints" unique_id=1065180441 instance=ExtResource("5_qtvud")]
+[node name="CheckPoint" parent="CheckPoints" unique_id=1065180441 groups=["CheckPoints"] instance=ExtResource("5_qtvud")]
 position = Vector2(2651, 305)
 
-[node name="CheckPoint2" parent="CheckPoints" unique_id=1216100140 instance=ExtResource("5_qtvud")]
+[node name="CheckPoint2" parent="CheckPoints" unique_id=1216100140 groups=["CheckPoints"] instance=ExtResource("5_qtvud")]
 position = Vector2(5623, 297)
 CheckPointID = 1
 
-[node name="CheckPoint3" parent="CheckPoints" unique_id=1986361256 instance=ExtResource("5_qtvud")]
+[node name="CheckPoint3" parent="CheckPoints" unique_id=1986361256 groups=["CheckPoints"] instance=ExtResource("5_qtvud")]
 position = Vector2(7625, -513)
 CheckPointID = 2
 
-[node name="CheckPoint4" parent="CheckPoints" unique_id=984761909 instance=ExtResource("5_qtvud")]
+[node name="CheckPoint4" parent="CheckPoints" unique_id=984761909 groups=["CheckPoints"] instance=ExtResource("5_qtvud")]
 position = Vector2(9495, 99)
 CheckPointID = 3
 
-[node name="CheckPoint5" parent="CheckPoints" unique_id=1287921563 instance=ExtResource("5_qtvud")]
+[node name="CheckPoint5" parent="CheckPoints" unique_id=1287921563 groups=["CheckPoints"] instance=ExtResource("5_qtvud")]
 position = Vector2(11794, 104)
 CheckPointID = 4
 
-[node name="CheckPoint6" parent="CheckPoints" unique_id=192350548 instance=ExtResource("5_qtvud")]
+[node name="CheckPoint6" parent="CheckPoints" unique_id=192350548 groups=["CheckPoints"] instance=ExtResource("5_qtvud")]
 position = Vector2(14799, 104)
 CheckPointID = 5
 
-[node name="CheckPoint7" parent="CheckPoints" unique_id=2049203178 instance=ExtResource("5_qtvud")]
+[node name="CheckPoint7" parent="CheckPoints" unique_id=2049203178 groups=["CheckPoints"] instance=ExtResource("5_qtvud")]
 position = Vector2(18307, 84)
 CheckPointID = 6
 
-[node name="CheckPoint8" parent="CheckPoints" unique_id=916573410 instance=ExtResource("5_qtvud")]
+[node name="CheckPoint8" parent="CheckPoints" unique_id=916573410 groups=["CheckPoints"] instance=ExtResource("5_qtvud")]
 position = Vector2(21405, -311)
 CheckPointID = 7
 
-[node name="CheckPoint9" parent="CheckPoints" unique_id=1528484464 instance=ExtResource("5_qtvud")]
+[node name="CheckPoint9" parent="CheckPoints" unique_id=1528484464 groups=["CheckPoints"] instance=ExtResource("5_qtvud")]
 position = Vector2(24114, -302)
 CheckPointID = 8
 
-[node name="CheckPoint10" parent="CheckPoints" unique_id=2053383000 instance=ExtResource("5_qtvud")]
+[node name="CheckPoint10" parent="CheckPoints" unique_id=2053383000 groups=["CheckPoints"] instance=ExtResource("5_qtvud")]
 position = Vector2(25063, -2558)
 CheckPointID = 9
 
-[node name="CheckPoint11" parent="CheckPoints" unique_id=1078523470 instance=ExtResource("5_qtvud")]
+[node name="CheckPoint11" parent="CheckPoints" unique_id=1078523470 groups=["CheckPoints"] instance=ExtResource("5_qtvud")]
 position = Vector2(24511.002, -4595)
 CheckPointID = 10
 
-[node name="CheckPoint13" parent="CheckPoints" unique_id=845751256 instance=ExtResource("5_qtvud")]
+[node name="CheckPoint13" parent="CheckPoints" unique_id=845751256 groups=["CheckPoints"] instance=ExtResource("5_qtvud")]
 position = Vector2(24058, -6825)
 CheckPointID = 13
 
-[node name="CheckPoint14" parent="CheckPoints" unique_id=1423475457 instance=ExtResource("5_qtvud")]
+[node name="CheckPoint14" parent="CheckPoints" unique_id=1423475457 groups=["CheckPoints"] instance=ExtResource("5_qtvud")]
 position = Vector2(29992, -8462)
 CheckPointID = 14
 
-[node name="CheckPoint16" parent="CheckPoints" unique_id=807953576 instance=ExtResource("5_qtvud")]
+[node name="CheckPoint16" parent="CheckPoints" unique_id=807953576 groups=["CheckPoints"] instance=ExtResource("5_qtvud")]
 position = Vector2(31882, -11316)
 CheckPointID = 15
 
-[node name="CheckPoint17" parent="CheckPoints" unique_id=1012122067 instance=ExtResource("5_qtvud")]
+[node name="CheckPoint17" parent="CheckPoints" unique_id=1012122067 groups=["CheckPoints"] instance=ExtResource("5_qtvud")]
 position = Vector2(35744, -12356)
 CheckPointID = 16
 
-[node name="CheckPoint18" parent="CheckPoints" unique_id=1945316474 instance=ExtResource("5_qtvud")]
+[node name="CheckPoint18" parent="CheckPoints" unique_id=1945316474 groups=["CheckPoints"] instance=ExtResource("5_qtvud")]
 position = Vector2(38176, -12350)
 CheckPointID = 17
 
-[node name="CheckPoint19" parent="CheckPoints" unique_id=165945402 instance=ExtResource("5_qtvud")]
+[node name="CheckPoint19" parent="CheckPoints" unique_id=165945402 groups=["CheckPoints"] instance=ExtResource("5_qtvud")]
 position = Vector2(41804, -11744)
 CheckPointID = 18
 
-[node name="CheckPoint12" parent="CheckPoints" unique_id=1738756521 instance=ExtResource("5_qtvud")]
+[node name="CheckPoint12" parent="CheckPoints" unique_id=1738756521 groups=["CheckPoints"] instance=ExtResource("5_qtvud")]
 position = Vector2(30421, -5594)
 CheckPointID = 12
 
-[node name="CheckPoint15" parent="CheckPoints" unique_id=1246704238 instance=ExtResource("5_qtvud")]
+[node name="CheckPoint15" parent="CheckPoints" unique_id=1246704238 groups=["CheckPoints"] instance=ExtResource("5_qtvud")]
 position = Vector2(27366.002, -5817)
 CheckPointID = 11
+
+[node name="CheckPoint-1" parent="CheckPoints" unique_id=904576092 groups=["CheckPoints"] instance=ExtResource("5_qtvud")]
+visible = false
+position = Vector2(-996, 121)
+CheckPointID = -1
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="." unique_id=1971462050]
 position = Vector2(330.085, 102.37)

@@ -1,11 +1,14 @@
 [gd_scene format=4 uid="uid://dim7fl3q2jnpm"]
 
-[ext_resource type="TileSet" uid="uid://ceyegh7kerjl" path="res://Map/Walls/Wall.tres" id="1_7t477"]
-[ext_resource type="Texture2D" uid="uid://uimjt0qqv652" path="res://UI/Texture/○一○.png" id="2_1w7y4"]
-[ext_resource type="Texture2D" uid="uid://cejui24wq0gdw" path="res://UI/Texture/无标题.png" id="2_6p1if"]
-[ext_resource type="Texture2D" uid="uid://bpndxp4giaxhk" path="res://UI/Texture/CONTINUE.png" id="3_23dos"]
-[ext_resource type="Texture2D" uid="uid://dxv3otucjybae" path="res://UI/Texture/QUIT.png" id="4_6p1if"]
-[ext_resource type="Texture2D" uid="uid://cjvnjepi2kqs3" path="res://UI/Texture/START.png" id="5_vxd0w"]
+[ext_resource type="Texture2D" uid="uid://cejui24wq0gdw" path="res://UI/Texture/无标题.png" id="1_s0fn3"]
+[ext_resource type="Texture2D" uid="uid://uimjt0qqv652" path="res://UI/Texture/○一○.png" id="2_g2t0f"]
+[ext_resource type="TileSet" uid="uid://ceyegh7kerjl" path="res://Map/Walls/Wall.tres" id="3_ste23"]
+[ext_resource type="Texture2D" uid="uid://bpndxp4giaxhk" path="res://UI/Texture/CONTINUE.png" id="4_fn70i"]
+[ext_resource type="Texture2D" uid="uid://dxv3otucjybae" path="res://UI/Texture/QUIT.png" id="5_iyudi"]
+[ext_resource type="Texture2D" uid="uid://cjvnjepi2kqs3" path="res://UI/Texture/START.png" id="6_pd4wv"]
+[ext_resource type="Script" uid="uid://d0d5hm80ccfhb" path="res://StartMenu/StartButton.cs" id="7_hs6oy"]
+[ext_resource type="Script" uid="uid://dn64w54k5pap0" path="res://StartMenu/ContinueButton.cs" id="8_oqpdy"]
+[ext_resource type="Script" uid="uid://c3x2yv2slnwm1" path="res://StartMenu/QuitButton.cs" id="9_p687o"]
 
 [node name="Node2D" type="Node2D" unique_id=877731185]
 
@@ -14,21 +17,21 @@
 [node name="无标题2" type="Sprite2D" parent="background" unique_id=1368062435]
 position = Vector2(173, -231.5)
 scale = Vector2(7.875, 2.4041667)
-texture = ExtResource("2_6p1if")
+texture = ExtResource("1_s0fn3")
 
 [node name="○一○" type="Sprite2D" parent="background" unique_id=672668934]
 position = Vector2(-5.4461308, -233.37794)
 scale = Vector2(0.27514562, 0.27540883)
-texture = ExtResource("2_1w7y4")
+texture = ExtResource("2_g2t0f")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="background" unique_id=507456836]
 tile_map_data = PackedByteArray("AAD7//3/CAABAAEAAAD7//7/CAABAAEAAAD7////CAABAAEAAAD7/wAACAABAAEAAAD7/wEACAABAAEAAAD7/wIACAABAAEAAAD7/wMACAABAAEAAAD8//3/CAABAAEAAAD8//7/CAABAAEAAAD8////CAABAAEAAAD8/wAACAABAAEAAAD8/wEACAABAAEAAAD8/wIACAABAAEAAAD8/wMACAABAAEAAAD9//3/CAABAAEAAAD9//7/CAABAAEAAAD9////CAABAAEAAAD9/wAACAABAAEAAAD9/wEACAABAAEAAAD9/wIACAABAAEAAAD9/wMACAABAAEAAAD+//7/CAACAAEAAAD+////CAACAAEAAAD+/wAACAABAAEAAAD+/wEACAABAAEAAAD+/wIACAABAAEAAAD+/wMACAABAAEAAAD//wAACAABAAAAAAD//wEACAABAAEAAAD//wIACAABAAEAAAD//wMACAABAAEAAAAAAAAACAABAAAAAAAAAAEACAABAAEAAAAAAAIACAABAAEAAAAAAAMACAABAAEAAAABAP7/CAAAAAEAAAABAP//CAAAAAEAAAABAAAACAABAAEAAAABAAEACAABAAEAAAABAAIACAABAAEAAAABAAMACAABAAEAAAACAP3/CAABAAEAAAACAP7/CAABAAEAAAACAP//CAABAAEAAAACAAAACAABAAEAAAACAAEACAABAAEAAAACAAIACAABAAEAAAACAAMACAABAAEAAAADAP3/CAABAAEAAAADAP7/CAABAAEAAAADAP//CAABAAEAAAADAAAACAABAAEAAAADAAEACAABAAEAAAADAAIACAABAAEAAAADAAMACAABAAEAAAAEAP3/CAABAAEAAAAEAP7/CAABAAEAAAAEAP//CAABAAEAAAAEAAAACAABAAEAAAAEAAEACAABAAEAAAAEAAIACAABAAEAAAAEAAMACAABAAEAAAD+//3/CAABAAAAAAD///3/CQABAAAAAAAAAP3/CQABAAAAAAABAP3/CAABAAAAAAA=")
-tile_set = ExtResource("1_7t477")
+tile_set = ExtResource("3_ste23")
 
 [node name="无标题" type="Sprite2D" parent="background" unique_id=1113892231]
-position = Vector2(64, 368)
+position = Vector2(62, 368.00003)
 scale = Vector2(7.875, 1.4416667)
-texture = ExtResource("2_6p1if")
+texture = ExtResource("1_s0fn3")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1373929681]
 position = Vector2(53, 8)
@@ -36,14 +39,35 @@ position = Vector2(53, 8)
 [node name="Continue" type="Sprite2D" parent="." unique_id=1157764214]
 position = Vector2(21, 365)
 scale = Vector2(0.3588412, 0.3345657)
-texture = ExtResource("3_23dos")
+texture = ExtResource("4_fn70i")
 
 [node name="Quit" type="Sprite2D" parent="." unique_id=1834992464]
-position = Vector2(613.67163, 382.6279)
+position = Vector2(682.962, 382.628)
 scale = Vector2(0.29304808, 0.29742298)
-texture = ExtResource("4_6p1if")
+texture = ExtResource("5_iyudi")
 
 [node name="Start" type="Sprite2D" parent="." unique_id=1845611572]
 position = Vector2(-584.00006, 378.00003)
 scale = Vector2(0.25144634, 0.21658985)
-texture = ExtResource("5_vxd0w")
+texture = ExtResource("6_pd4wv")
+
+[node name="StartButton" type="Button" parent="." unique_id=603423722]
+offset_left = -789.0
+offset_top = 237.0
+offset_right = -370.0
+offset_bottom = 481.0
+script = ExtResource("7_hs6oy")
+
+[node name="ContinueButton" type="Button" parent="." unique_id=1906267670]
+offset_left = -246.0
+offset_top = 227.0
+offset_right = 309.0
+offset_bottom = 489.0
+script = ExtResource("8_oqpdy")
+
+[node name="QuitButton" type="Button" parent="." unique_id=1743659377]
+offset_left = 500.0
+offset_top = 230.0
+offset_right = 858.0
+offset_bottom = 485.0
+script = ExtResource("9_p687o")
