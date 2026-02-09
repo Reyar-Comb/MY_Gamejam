@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Linq;
 
 public partial class DotlineManager : Node2D
 {
@@ -74,6 +75,8 @@ public partial class DotlineManager : Node2D
 			GD.PrintErr("Multiple instances of DotlineManager detected!");
 			QueueFree();
 		}
+		GameManager.Instance.Connect("CheckPointChanged", new Callable(this, "OnCheckPointChanged"));
+		GD.Print("Connected");
 	}
 
 	public Vector2 GetDirection()
@@ -408,7 +411,7 @@ public partial class DotlineManager : Node2D
 	
 	public async Task ClearDots()
 	{
-		var tasks = new System.Collections.Generic.List<Task>();
+		var tasks = new List<Task>();
 		foreach (var dot in BlueDotQueue)
 		{
 			if (dot != BlueDotQueue.Peek())
@@ -430,8 +433,11 @@ public partial class DotlineManager : Node2D
 				tasks.Add(dot.CurrentLine.Clear());
 			}
 		}
-		
-		await Task.WhenAll(tasks);
+		await Task.WhenAll(tasks.Select(t => t.ContinueWith(task =>
+		{
+			if (task.Exception != null)
+				GD.PrintErr($"任务异常: {task.Exception.InnerException?.Message}");
+		})));
 		for (int i = BlueDotQueue.Count - 1; i >= 0; i--)
 		{
 			BlueDotQueue.Dequeue().Clear();
@@ -449,6 +455,28 @@ public partial class DotlineManager : Node2D
 		RedDotQueue.Clear();
 		PurpleDotQueue.Clear();
 		HistoryDots.Clear();
+
+		ForceDeleteObjects();
+	}
+	public void ForceDeleteObjects()
+	{
+		var lines = GetTree().GetNodesInGroup("Lines");
+		foreach (var line in lines)
+		{
+			if (line is Line l)
+			{
+				l.QueueFree();
+			}
+		
+		}
+		var dots = GetTree().GetNodesInGroup("Dots");
+		foreach (var dot in dots)
+		{
+			if (dot is Dot d)
+			{
+				d.QueueFree();
+			}
+		}
 	}
 	
 	public async void SpawnDot(Vector2 velocity)
@@ -491,6 +519,17 @@ public partial class DotlineManager : Node2D
 		CurrentColor = newColor;
 	}
 
+	public async void OnCheckPointChanged(int checkPointID)
+	{
+		GD.Print("Checkpoint changed, clearing dots...");
+		while(_clearLock.CurrentCount == 0)
+		{
+			await Task.Delay(2);
+		}
+		GD.Print("Checkpoint changed, clearing dots...");
+		await ClearDots();
+	}
+
 	// functions for test
 
 	public void testChangeColor()
@@ -514,7 +553,7 @@ public partial class DotlineManager : Node2D
 			{
 				testChangeColor();
 			}
-			if (keyEvent.Keycode == Key.C)
+			if (keyEvent.Keycode == Key.B)
 			{
 				if (_clearLock.CurrentCount == 0)
 				{
@@ -522,6 +561,7 @@ public partial class DotlineManager : Node2D
 					return;
 				} 
 				await ClearDots();
+				await GameManager.Instance.ReturnToLastCheckpoint();
 			}
 			if (keyEvent.Keycode == Key.R)
 			{
@@ -543,7 +583,7 @@ public partial class DotlineManager : Node2D
 				}
 				await ClearColorDot(ClearColor.Value);
 			}
-			GD.Print("Key pressed: " + keyEvent.Keycode);
+			//GD.Print("Key pressed: " + keyEvent.Keycode);
 
 		}
 

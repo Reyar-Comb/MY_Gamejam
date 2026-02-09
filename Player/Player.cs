@@ -28,6 +28,7 @@ public partial class Player : CharacterBody2D
 	public override void _Ready()
 	{
 		DotlineManager.Instance.Player = this;
+		GameManager.Instance.Player = this;
 		damping = DotlineManager.Instance.DotDamping;
 	}
 

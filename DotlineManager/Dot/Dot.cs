@@ -50,6 +50,7 @@ public partial class Dot : RigidBody2D
 	}
 	public override void _Ready()
 	{
+		AddToGroup("Dots");
 		LinearDamp = DotlineManager.Instance.DotDamping;
 		StaticVelocity = DotlineManager.Instance.DotStaticVelocity;
 		BodyEntered += (body) =>

@@ -133,4 +133,9 @@ public partial class Line : Line2D
 		if (State == LineState.Idle && IsInstanceValid(StartDot) && IsInstanceValid(EndDot))
 			SetLinePosition();
 	}
+
+	public override void _Ready()
+	{
+		AddToGroup("Lines");
+	}
 }

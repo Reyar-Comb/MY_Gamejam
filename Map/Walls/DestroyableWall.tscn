@@ -19,8 +19,9 @@ size = Vector2(10, 237.7143)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h4p3f"]
 size = Vector2(237.71426, 9.428572)
 
-[node name="DestroyableWall" type="StaticBody2D" unique_id=1475950274]
+[node name="DestroyableWall" type="StaticBody2D" unique_id=1475950274 node_paths=PackedStringArray("CollisionShape")]
 script = ExtResource("1_dvg8r")
+CollisionShape = NodePath("CollisionShape2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1175340927]
 material = SubResource("ShaderMaterial_2faf2")

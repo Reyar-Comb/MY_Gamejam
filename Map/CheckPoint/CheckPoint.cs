@@ -5,13 +5,17 @@ public partial class CheckPoint : AnimatedSprite2D
 {
 	[Export] public int CheckPointID = 0;
 	[Export] public Area2D CheckPointArea;
+	[Export] public AnimationPlayer AnimationPlayer;
 
-	private bool _isEntered = false;
+
 
 	public override void _Ready()
 	{
+		AddToGroup("CheckPoints");
 		CheckPointArea.BodyEntered += OnBodyEntered;
-		CheckPointArea.BodyExited += OnBodyExited;
+		
+		GameManager.Instance.Connect("CheckPointChanged", new Callable(this, "OnCheckPointReached"));
+		AnimationPlayer.Play("CheckPoint_OFF");
 	}
 
 	public void OnBodyEntered(Node2D body)
@@ -19,25 +23,26 @@ public partial class CheckPoint : AnimatedSprite2D
 		if (body is Player player)
 		{
 			GD.Print($"Checkpoint {CheckPointID} reached by Player.");
-			_isEntered = true;
+			if (GameManager.Instance.CurrentCheckPointID != CheckPointID)
+			{
+				GameManager.Instance.SetCheckPoint(CheckPointID);
+			}
 		}
 	}
 
-	public void OnBodyExited(Node2D body)
+	public void OnCheckPointReached(int checkPointID)
 	{
-		if (body is Player player)
+		if (checkPointID == CheckPointID)
 		{
-			GD.Print($"Player exited Checkpoint {CheckPointID}.");
-			_isEntered = false;
+			AnimationPlayer.Play("CheckPoint_ON");
+		}
+		else
+		{
+			AnimationPlayer.Play("CheckPoint_OFF");
 		}
 	}
 
-	public override void _Input(InputEvent @event)
-	{
-		if (_isEntered && @event is InputEventKey keyEvent && keyEvent.Pressed && keyEvent.Keycode == Key.F)
-		{
-			GD.Print($"Checkpoint {CheckPointID} activated by Player input.");
-			GameManager.Instance.SetCheckPoint(CheckPointID);
-		}
-	}
+
+
+
 }

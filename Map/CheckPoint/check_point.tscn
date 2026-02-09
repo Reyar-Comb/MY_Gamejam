@@ -100,11 +100,12 @@ _data = {
 radius = 64.66669
 height = 244.0
 
-[node name="CheckPoint" type="AnimatedSprite2D" unique_id=1065180441 node_paths=PackedStringArray("CheckPointArea")]
+[node name="CheckPoint" type="AnimatedSprite2D" unique_id=1065180441 node_paths=PackedStringArray("CheckPointArea", "AnimationPlayer")]
 scale = Vector2(1.5, 1.5)
 sprite_frames = ExtResource("1_bxqpn")
 script = ExtResource("2_7wb0e")
 CheckPointArea = NodePath("Area2D")
+AnimationPlayer = NodePath("AnimationPlayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=109112235]
 libraries/ = SubResource("AnimationLibrary_xw1jo")
