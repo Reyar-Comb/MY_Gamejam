@@ -9,14 +9,19 @@
 [ext_resource type="SpriteFrames" uid="uid://etgppdlhf47k" path="res://Map/Dots/TwoDots.tres" id="6_6od3y"]
 [ext_resource type="Script" uid="uid://c85q1c6n5d081" path="res://Map/Dots/CollectibleDots.cs" id="6_vxmom"]
 [ext_resource type="SpriteFrames" uid="uid://c1wj4iphudqlr" path="res://Map/Dots/OneDot.tres" id="7_vxmom"]
+[ext_resource type="Texture2D" uid="uid://yssqcmdrjstx" path="res://Map/Hint/QQ图片20260209231657.png" id="10_nlecm"]
+[ext_resource type="Texture2D" uid="uid://dfvaq3ivxpd60" path="res://Map/Hint/QQ图片20260209231629.png" id="11_7a0j3"]
+[ext_resource type="Texture2D" uid="uid://qpt15b0cgmpq" path="res://Map/Hint/QQ图片20260209231646.png" id="12_0g0qh"]
+[ext_resource type="Texture2D" uid="uid://wootn3igoh8d" path="res://Map/Hint/QQ图片20260209231650.png" id="13_t64y5"]
+[ext_resource type="Texture2D" uid="uid://d3yst86wqgidd" path="res://Map/Hint/QQ图片20260209231639.png" id="14_b3jsu"]
+[ext_resource type="Texture2D" uid="uid://dlsxigu7f0evy" path="res://Map/Hint/QQ图片20260209231635.png" id="15_2q318"]
+[ext_resource type="Texture2D" uid="uid://c0eiwf7tw16hc" path="res://Map/Hint/QQ图片20260209231654.png" id="16_0g0qh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6od3y"]
 radius = 120.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vxmom"]
 radius = 120.0
-
-[sub_resource type="LabelSettings" id="LabelSettings_qtvud"]
 
 [node name="Node2D2" type="Node2D" unique_id=2075572154]
 
@@ -250,15 +255,41 @@ autoplay = "default"
 frame_progress = 0.96277636
 
 [node name="Player" parent="." unique_id=990283555 instance=ExtResource("2_wgwpm")]
-position = Vector2(32220, -11257)
+position = Vector2(-991, 181)
 
-[node name="Label" type="Label" parent="." unique_id=357455513]
-offset_left = -1355.0001
-offset_top = -390.00003
-offset_right = -1301.0178
-offset_bottom = -356.3717
-scale = Vector2(14.43, 14.43)
-text = "O一O"
-label_settings = SubResource("LabelSettings_qtvud")
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="Hints" type="Node2D" parent="." unique_id=382295307]
+position = Vector2(8339, -1005)
+scale = Vector2(0.94855964, 0.9791667)
+
+[node name="Qq图片20260209231657" type="Sprite2D" parent="Hints" unique_id=700610054]
+position = Vector2(-9818.57, 514.7234)
+scale = Vector2(0.6010961, 0.4859063)
+texture = ExtResource("10_nlecm")
+
+[node name="Qq图片20260209231629" type="Sprite2D" parent="Hints" unique_id=331509777]
+position = Vector2(-5910.013, 822.63824)
+scale = Vector2(1.0373172, 1.0660694)
+texture = ExtResource("11_7a0j3")
+
+[node name="Qq图片20260209231646" type="Sprite2D" parent="Hints" unique_id=599194348]
+position = Vector2(-4422.4946, 879.3191)
+scale = Vector2(1.0542297, 0.93924636)
+texture = ExtResource("12_0g0qh")
+
+[node name="Qq图片20260209231650" type="Sprite2D" parent="Hints" unique_id=250221227]
+position = Vector2(-4408.7896, 1861.7871)
+scale = Vector2(1.05423, 1.0512041)
+texture = ExtResource("13_t64y5")
+
+[node name="Qq图片20260209231639" type="Sprite2D" parent="Hints" unique_id=1444434165]
+position = Vector2(-2907.566, 828.25525)
+scale = Vector2(1.0459125, 1.0212766)
+texture = ExtResource("14_b3jsu")
+
+[node name="Qq图片20260209231635" type="Sprite2D" parent="Hints" unique_id=609647016]
+texture = ExtResource("15_2q318")
+
+[node name="Qq图片20260209231654" type="Sprite2D" parent="." unique_id=2005857426]
+position = Vector2(10222.5, -414)
+scale = Vector2(0.7867063, 0.7291667)
+texture = ExtResource("16_0g0qh")

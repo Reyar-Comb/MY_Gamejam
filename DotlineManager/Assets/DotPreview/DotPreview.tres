@@ -1,0 +1,42 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://pyubtmns8ar3"]
+
+[ext_resource type="Texture2D" uid="uid://nqaavgq6hsy1" path="res://DotlineManager/Assets/DotPreview/2026-02-09_23.35.34.png" id="1_2jtjm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p12aw"]
+atlas = ExtResource("1_2jtjm")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1jbh"]
+atlas = ExtResource("1_2jtjm")
+region = Rect2(0, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cbpn5"]
+atlas = ExtResource("1_2jtjm")
+region = Rect2(256, 0, 256, 256)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p12aw")
+}],
+"loop": true,
+"name": &"Blue",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u1jbh")
+}],
+"loop": true,
+"name": &"Purple",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cbpn5")
+}],
+"loop": true,
+"name": &"Red",
+"speed": 5.0
+}]
