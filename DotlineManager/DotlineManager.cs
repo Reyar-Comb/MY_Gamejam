@@ -70,10 +70,10 @@ public partial class DotlineManager : Node2D
 	public Dot FirstBlueDot => BlueDotQueue.Count > 0 ? BlueDotQueue.Peek() : null;
 	public Dot FirstRedDot => RedDotQueue.Count > 0 ? RedDotQueue.Peek() : null;
 	public Dot FirstPurpleDot => PurpleDotQueue.Count > 0 ? PurpleDotQueue.Peek() : null;
-    public override void _Process(double delta)
-    {
-        GD.Print(HistoryDots.Count);
-    }
+	public override void _Process(double delta)
+	{
+		GD.Print(HistoryDots.Count);
+	}
 
 	public override void _Ready()
 	{
