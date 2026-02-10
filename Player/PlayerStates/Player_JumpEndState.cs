@@ -31,6 +31,7 @@ public partial class Player_JumpEndState : State
     }
     private void OnAnimationFinished(StringName _)
     {
+        AudioManager.Instance.PlaySFX("land");
         AskTransit("Idle");
     }
 }

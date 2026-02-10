@@ -23,6 +23,7 @@ public partial class Player : CharacterBody2D
 		{
 			field = value;
 			EmitSignal(nameof(ColorChanged), value);
+			
 		} } = "White";
 
 	public override void _Ready()
@@ -100,6 +101,7 @@ public partial class Player : CharacterBody2D
 
 						Vector2 velocity = dragVector * (DotlineManager.Instance.MaxDotSpeed / MaxDragDistance);
 						DotlineManager.Instance.SpawnDot(-velocity);
+						AudioManager.Instance.PlaySFX("shoot");
 					}
 					_isCancelled = false;
 				}

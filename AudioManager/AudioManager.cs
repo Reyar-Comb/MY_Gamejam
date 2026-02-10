@@ -2,8 +2,8 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-[GlobalClass]
-public partial class AudioManager : Node
+
+public partial class AudioManager : Node2D
 {
 	public static AudioManager Instance;
 
@@ -26,6 +26,9 @@ public partial class AudioManager : Node
 		{
 			GD.PrintErr("AudioManager instance is null!");
 		}
+		LoadTracks();
+
+		PlayBGM("Dots' Lullaby");
 	}
 
 	public void test()
@@ -41,7 +44,14 @@ public partial class AudioManager : Node
 		foreach (var pair in BGMTracks)
 		{
 			GD.Print("Loaded BGM Track: " + pair.Key);
+		}
 
+		for (int i = 0; i < MaxSFXStreams; i++)
+		{
+			AudioStreamPlayer sfxPlayer = new AudioStreamPlayer();
+			sfxPlayer.Bus = "SFX";
+			AddChild(sfxPlayer);
+			SFXPlayers.Add(sfxPlayer);
 		}
 	}
 	
@@ -62,6 +72,78 @@ public partial class AudioManager : Node
 		if (!found)
 		{
 			GD.PrintErr("BGM Track not found: " + key);
+		}
+	}
+
+	public void PlaySFX(string key)
+	{
+		bool found = false;
+		foreach (var pair in SFXTracks)
+		{
+			if (pair.Key == key)
+			{
+				AudioStreamPlayer sfxPlayer = null;
+				// Find an available SFX player
+				foreach (var player in SFXPlayers)
+				{
+					if (!player.Playing)
+					{
+						sfxPlayer = player;
+						break;
+					}
+				}
+				if (sfxPlayer != null)
+				{
+					sfxPlayer.Stream = pair.Value;
+					sfxPlayer.Play();
+					GD.Print("Playing SFX Track: " + pair.Key);
+					found = true;
+					return;
+				}
+			}
+		}
+		if (!found)
+		{
+			GD.PrintErr("SFX Track not found or no available SFX player: " + key);
+		}
+	}
+
+	public void PlayOnceSFX(string key)
+	{
+		foreach (var pair in SFXTracks)
+		{
+			if (pair.Key == key)
+			{
+				foreach (var player in SFXPlayers)
+				{
+					if (player.Stream == pair.Value && player.Playing)
+					{
+						// Already playing
+						return;
+					}
+				}
+				PlaySFX(key);
+				return;
+			}
+		}
+	}
+
+	public void StopOnceSFX(string key)
+	{
+		foreach (var pair in SFXTracks)
+		{
+			if (pair.Key == key)
+			{
+				foreach (var player in SFXPlayers)
+				{
+					if (player.Stream == pair.Value && player.Playing)
+					{
+						player.Stop();
+						GD.Print("Stopped SFX Track: " + pair.Key);
+						return;
+					}
+				}
+			}
 		}
 	}
 	public void SetSFXVolumePercent(float percent)

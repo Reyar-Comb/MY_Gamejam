@@ -23,10 +23,10 @@ public partial class ColorBlock : StaticBody2D
 	} = BlockColor.Blue;
 	private Player Player => field ??= GetTree().GetFirstNodeInGroup("Player") as Player;
 	private Sprite2D BlockSprite => field ??= GetNode<Sprite2D>("BlockSprite");
-    public override void _Ready()
-    {
-        Color = Color;
-    }
+	public override void _Ready()
+	{
+		Color = Color;
+	}
 	public DotlineColor GetColor()
 	{
 		return Color switch

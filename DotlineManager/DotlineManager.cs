@@ -21,6 +21,11 @@ public partial class DotlineManager : Node2D
 		get => field;
 		set
 		{
+			if (value != field) 
+			{
+				GD.Print("Changing current color to: " + value);
+				AudioManager.Instance.PlaySFX("colorchange");
+			} 
 			field = value;
 			Player.PlayerColor = value.ToString();
 		}
@@ -70,10 +75,6 @@ public partial class DotlineManager : Node2D
 	public Dot FirstBlueDot => BlueDotQueue.Count > 0 ? BlueDotQueue.Peek() : null;
 	public Dot FirstRedDot => RedDotQueue.Count > 0 ? RedDotQueue.Peek() : null;
 	public Dot FirstPurpleDot => PurpleDotQueue.Count > 0 ? PurpleDotQueue.Peek() : null;
-    public override void _Process(double delta)
-    {
-        GD.Print(HistoryDots.Count);
-    }
 
 	public override void _Ready()
 	{
@@ -338,11 +339,13 @@ public partial class DotlineManager : Node2D
 				await ToSignal(startDot.DotAnimPlayer, "animation_finished");
 				line.Spawn();
 				endDot.DotAnimPlayer.Play(colorName + "DotTrans");
+				AudioManager.Instance.PlayOnceSFX("static");
 				await ToSignal(endDot.DotAnimPlayer, "animation_finished");
 				break;
 			case "2l":
 				line.Spawn();
 				endDot.DotAnimPlayer.Play(colorName + "DotTrans");
+				AudioManager.Instance.PlayOnceSFX("static");
 				await ToSignal(endDot.DotAnimPlayer, "animation_finished");
 				break;
 			case "3u":
@@ -592,6 +595,7 @@ public partial class DotlineManager : Node2D
 					GD.Print("Currently clearing dots, cannot clear another color now.");
 					return;
 				}
+				AudioManager.Instance.PlaySFX("cancel");
 				await ClearDots();
 				await GameManager.Instance.ReturnToLastCheckpoint();
 			}
@@ -613,6 +617,7 @@ public partial class DotlineManager : Node2D
 					GD.Print("No history dots to clear.");
 					return;
 				}
+				AudioManager.Instance.PlaySFX("cancel");
 				await ClearColorDot(ClearColor.Value);
 			}
 			//GD.Print("Key pressed: " + keyEvent.Keycode);

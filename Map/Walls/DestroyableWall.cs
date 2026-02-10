@@ -35,7 +35,7 @@ public partial class DestroyableWall : StaticBody2D
 			}),
 			1f, 0f, 0.2f
 		);
-		
+		AudioManager.Instance.PlaySFX("redline");
 		tween.TweenCallback(Callable.From(SetDestroyed));
 	}
 
