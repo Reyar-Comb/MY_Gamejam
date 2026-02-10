@@ -13,6 +13,7 @@ public partial class CollectibleDots : Area2D
 		if (body is Player player)
 		{
 			DotlineManager.Instance.MaxHistoryDots += DotValue;
+			QueueFree();
 		}
 	}
 }
