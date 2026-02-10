@@ -21,11 +21,11 @@ public partial class DotlineManager : Node2D
 		get => field;
 		set
 		{
-			if (value != field) 
+			if (value != field)
 			{
 				GD.Print("Changing current color to: " + value);
 				AudioManager.Instance.PlaySFX("colorchange");
-			} 
+			}
 			field = value;
 			Player.PlayerColor = value.ToString();
 		}
@@ -33,7 +33,8 @@ public partial class DotlineManager : Node2D
 	public Player Player;
 	[Export] public float DotDamping = 1.0f;
 	[Export] public float DotStaticVelocity = 40f;
-	[Export] public int MaxHistoryDots
+	[Export]
+	public int MaxHistoryDots
 	{
 		get => field;
 		set
@@ -109,7 +110,7 @@ public partial class DotlineManager : Node2D
 		if (HistoryDots.Count <= 0) return null;
 		DotlineColor color = HistoryDots.Dequeue();
 		EmitSignal(SignalName.DotsLabelRefresh, HistoryDots.Count, MaxHistoryDots);
-		
+
 		return color;
 	}
 	private void ClearHistoryDots()
@@ -580,6 +581,17 @@ public partial class DotlineManager : Node2D
 
 		GD.Print("Current Color: " + CurrentColor);
 	}
+	public async Task RewindProgress(string sfxName)
+	{
+		if (_clearLock.CurrentCount == 0)
+		{
+			GD.Print("Currently clearing dots, cannot clear another color now.");
+			return;
+		}
+		AudioManager.Instance.PlaySFX(sfxName);
+		await ClearDots();
+		await GameManager.Instance.ReturnToLastCheckpoint();
+	}
 	public override async void _Input(InputEvent @event)
 	{
 		if (@event is InputEventKey keyEvent && keyEvent.Pressed)
@@ -590,14 +602,7 @@ public partial class DotlineManager : Node2D
 			}
 			if (keyEvent.Keycode == Key.B)
 			{
-				if (_clearLock.CurrentCount == 0)
-				{
-					GD.Print("Currently clearing dots, cannot clear another color now.");
-					return;
-				}
-				AudioManager.Instance.PlaySFX("cancel");
-				await ClearDots();
-				await GameManager.Instance.ReturnToLastCheckpoint();
+				await RewindProgress("cancel");
 			}
 			if (keyEvent.Keycode == Key.R)
 			{

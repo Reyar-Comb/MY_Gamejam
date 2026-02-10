@@ -23,7 +23,7 @@ public partial class Player_UniveralState : State
             Sprite.FlipH = direction < 0;
         }
     }
-    private void CheckColorBlockCollision()
+    private void HandleColorBlockCollision()
     {
         for (int i = 0; i < Player.GetSlideCollisionCount(); i++)
         {
@@ -31,6 +31,20 @@ public partial class Player_UniveralState : State
             if (collision.GetCollider() is ColorBlock colorBlock)
             {
                 DotlineManager.Instance.CurrentColor = colorBlock.GetColor();
+                return;
+            }
+        }
+    }
+    private async void HandleSpikeCollision()
+    {
+        for (int i = 0; i < Player.GetSlideCollisionCount(); i++)
+        {
+            var collision = Player.GetSlideCollision(i);
+            GD.Print($"Collision with {collision.GetCollider()}");
+            if (collision.GetCollider() is SpikeLayer spikeLayer)
+            {
+                await DotlineManager.Instance.RewindProgress("cancel");
+                return;
             }
         }
     }
@@ -39,7 +53,8 @@ public partial class Player_UniveralState : State
         Player.MoveAndSlide();
 
         HandleSpriteFlip();
-        CheckColorBlockCollision();
+        HandleColorBlockCollision();
+        HandleSpikeCollision();
     }
     private void OnLineDetected(Area2D area)
     {

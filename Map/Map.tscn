@@ -7,6 +7,7 @@
 [ext_resource type="TileSet" uid="uid://dgyb6ergrqqak" path="res://Map/Ci/Ci.tres" id="4_nyy2o"]
 [ext_resource type="PackedScene" uid="uid://fjo6ili1h6sd" path="res://Map/Walls/DestroyableWall.tscn" id="4_wgwpm"]
 [ext_resource type="PackedScene" uid="uid://3bp36r3k3k18" path="res://Map/CheckPoint/check_point.tscn" id="5_qtvud"]
+[ext_resource type="Script" uid="uid://b5u1cmlgje5c2" path="res://Map/SpikeLayer.cs" id="5_s8uph"]
 [ext_resource type="SpriteFrames" uid="uid://etgppdlhf47k" path="res://Map/Dots/TwoDots.tres" id="6_6od3y"]
 [ext_resource type="Texture2D" uid="uid://bp2tij2ajwwiw" path="res://Map/Platform/Platform.png" id="6_b3jsu"]
 [ext_resource type="Script" uid="uid://c85q1c6n5d081" path="res://Map/Dots/CollectibleDots.cs" id="6_vxmom"]
@@ -257,6 +258,7 @@ position = Vector2(330.085, 102.37)
 scale = Vector2(0.17, 0.17)
 tile_map_data = PackedByteArray("AAAdAAIAAQAAAAAAAAAeAAIAAQAAAAAAAAAfAAIAAQAAAAAAAACkAMb/AQAAAAAAADClAMb/AQAAAAAAADCiAM7/AQAAAAAAAACjAM7/AQAAAAAAAACkAM7/AQAAAAAAAAClAM7/AQAAAAAAAACmAM7/AQAAAAAAAACRAOr/AQAAAAAAAACSAOr/AQAAAAAAAABvAAIAAQAAAAAAAABwAAIAAQAAAAAAAADeAMj/AQAAAAAAAFDeAMn/AQAAAAAAAFDeAMr/AQAAAAAAAFDeAMv/AQAAAAAAAADfAMv/AQAAAAAAAADgAMv/AQAAAAAAAADhAMj/AQAAAAAAAGDhAMn/AQAAAAAAAGDhAMr/AQAAAAAAAGDhAMv/AQAAAAAAAAD9AL3/AQAAAAAAAAD+AL3/AQAAAAAAAAD/AL3/AQAAAAAAAAAAAb3/AQAAAAAAAAD8AL3/AQAAAAAAAAABAb3/AQAAAAAAAAA=")
 tile_set = ExtResource("4_nyy2o")
+script = ExtResource("5_s8uph")
 
 [node name="MapLayer" type="TileMapLayer" parent="." unique_id=1957778636]
 position = Vector2(-689, 103)
@@ -676,12 +678,6 @@ scale = Vector2(7.44, 1)
 position = Vector2(34534.004, -11774)
 scale = Vector2(7.44, 1)
 
-<<<<<<< HEAD
-[node name="Player" parent="." unique_id=990283555 instance=ExtResource("2_wgwpm")]
-position = Vector2(50038, -16774)
-
-=======
->>>>>>> d8af78a97cff287e90a528f9af522f29f522601b
 [node name="Hints" type="Node2D" parent="." unique_id=382295307]
 position = Vector2(8339, -1005)
 scale = Vector2(0.94855964, 0.9791667)

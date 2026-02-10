@@ -146,7 +146,7 @@ public partial class GameManager : Node
 		{
 			if (keyEvent.Pressed && keyEvent.Keycode == Key.Escape)
 			{
-				GetTree().ChangeSceneToFile("res://StartMenu/StartMenu.tscn");
+				GetTree().ChangeSceneToFile("res://StartMenu/StartUI.tscn");
 			}
 		}
 	}
