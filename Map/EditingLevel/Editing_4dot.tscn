@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://smdxf7tcaggk"]
+[gd_scene format=4 uid="uid://btslelihgydcs"]
 
 [ext_resource type="PackedScene" uid="uid://fjo6ili1h6sd" path="res://Map/Walls/DestroyableWall.tscn" id="1_0g1qk"]
 [ext_resource type="PackedScene" uid="uid://3bp36r3k3k18" path="res://Map/CheckPoint/check_point.tscn" id="2_lj6v1"]

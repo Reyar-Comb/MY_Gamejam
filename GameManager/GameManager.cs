@@ -14,9 +14,12 @@ public partial class GameManager : Node
 	public int CurrentMaxPoints => DotlineManager.Instance.MaxHistoryDots;
 	public Player Player;
 	public List<CheckPoint> CheckPoints = new();
+	
+	public List<int> CollectedDotsIDs = new();
 
 	public string SaveFilePath = "user://savedata.dat";
 	[Signal] public delegate void CheckPointChangedEventHandler(int checkPointID);
+	[Signal] public delegate void LoadCollectedDotEventHandler(Godot.Collections.Array<int> collectedDotsIDs);
 
 	
 
@@ -42,6 +45,7 @@ public partial class GameManager : Node
 	{
 		CurrentCheckPointID = -1;
 		DotlineManager.Instance.MaxHistoryDots = 0;
+		CollectedDotsIDs.Clear();
 		await LoadGame();
 		RespawnPlayer(CurrentCheckPointID);
 		SaveFile(CurrentCheckPointID);
@@ -62,6 +66,7 @@ public partial class GameManager : Node
 
 	public void RespawnPlayer(int checkPointID)
 	{
+		Player.PlayerColor = "White";
 		GD.Print($"GameManager: Respawning player at checkpoint {checkPointID}");
 		foreach (var checkPoint in CheckPoints)
 		{
@@ -78,8 +83,22 @@ public partial class GameManager : Node
 	{
 		CurrentCheckPointID = checkPointID;
 		GD.Print($"GameManager: Checkpoint set to {CurrentCheckPointID}");
+		Player.PlayerColor = "White";
 		SaveFile(checkPointID);
 		EmitSignal("CheckPointChanged", checkPointID);
+	}
+
+	public void CollectDot(int dotID)
+	{
+		if (!CollectedDotsIDs.Contains(dotID))
+		{
+			CollectedDotsIDs.Add(dotID);
+			GD.Print($"GameManager: Collected dot ID {dotID}");
+		}
+		else
+		{
+			GD.Print($"GameManager: Dot ID {dotID} already collected");
+		}
 	}
 
 	public void SaveFile(int checkPointID)
@@ -87,7 +106,8 @@ public partial class GameManager : Node
 		SaveData saveData = new SaveData
 		{
 			CheckPointID = checkPointID,
-			MaxPoints = CurrentMaxPoints
+			MaxPoints = CurrentMaxPoints,
+			CollectedDotsID = CollectedDotsIDs
 		};
 
 		var file = Godot.FileAccess.Open(SaveFilePath, Godot.FileAccess.ModeFlags.Write);
@@ -121,6 +141,8 @@ public partial class GameManager : Node
 			{
 				CurrentCheckPointID = saveData.CheckPointID;
 				DotlineManager.Instance.MaxHistoryDots = saveData.MaxPoints;
+				CollectedDotsIDs = saveData.CollectedDotsID;
+				EmitSignal("LoadCollectedDot", new Godot.Collections.Array<int>(CollectedDotsIDs));
 				GD.Print($"GameManager: Loaded checkpoint ID {CurrentCheckPointID} from save file.");
 			}
 			else
