@@ -412,6 +412,7 @@ public partial class DotlineManager : Node2D
 			if (DotQueue == null || DotQueue.Count == 0)
 				return;
 			Dot dotToClear = DotQueue.Dequeue();
+			dotToClear.hasEmittedUnline = true;
 			GD.Print("Clearing dot: " + dotToClear.Name);
 			var tasks = new List<Task>();
 			foreach (var d in DotQueue.ToArray())
@@ -419,6 +420,8 @@ public partial class DotlineManager : Node2D
 				if (d == dotToClear) continue;
 				var line = d.CurrentLine;
 				if (line == null || !IsInstanceValid(line)) continue;
+
+				d.hasEmittedUnline = true;
 
 				dotToClear.CurrentLines.Remove(line);
 				tasks.Add(AnimateAsync(dotToClear, d, line, "3u"));
