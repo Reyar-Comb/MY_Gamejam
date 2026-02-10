@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dwopu1hbpghf6"]
+
+[ext_resource type="Texture2D" uid="uid://cel7fojki3lve" path="res://UI/Texture/ui.png" id="1_0g8ue"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1287121870]
+
+[node name="Control" type="Control" parent="." unique_id=639475760]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Ui" type="Sprite2D" parent="Control" unique_id=1908529803]
+position = Vector2(60, 53)
+texture = ExtResource("1_0g8ue")
+
+[node name="Label" type="Label" parent="Control/Ui" unique_id=1067564516]
+offset_left = -45.0
+offset_top = -154.0
+offset_right = 126.0
+offset_bottom = -57.0
+horizontal_alignment = 1
+vertical_alignment = 1
