@@ -35,6 +35,7 @@ public partial class CheckPoint : AnimatedSprite2D
 		if (checkPointID == CheckPointID)
 		{
 			AnimationPlayer.Play("CheckPoint_ON");
+			AudioManager.Instance.PlaySFX("checkpoint");
 		}
 		else
 		{

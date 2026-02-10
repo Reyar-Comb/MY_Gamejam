@@ -9,5 +9,6 @@ public partial class Player_BlueAffectedState : State
 	{
 		Player.Velocity = Player.LastTouchedLine.GetNormal() * LaunchSpeed;
 		AskTransit("JumpLoop");
+		AudioManager.Instance.PlaySFX("blueline");
 	}
 }

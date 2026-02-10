@@ -57,8 +57,7 @@ public partial class Dot : RigidBody2D
 		{
 			if (body is Dot dot && dot != this)
 			{
-				// TODO: Handle dot collision logic here
-				// EmitSignal(SignalName.DotCollide, dot, this);
+				AudioManager.Instance.PlaySFX("collide");
 			}
 			
 		};
@@ -85,7 +84,6 @@ public partial class Dot : RigidBody2D
 
 		if (State == DotState.Static && LinearVelocity.Length() < VelocityGate && !hasEmittedLineUp)
 		{
-			
 			DotlineManager.Instance.LineUpDot(this);
 		}
 

@@ -6,6 +6,7 @@ public partial class Player_IdleState : State
     private Player Player => field ??= Owner as Player;
     private AnimationPlayer AnimPlayer => field ??= GetNode<AnimationPlayer>("%AnimationPlayer");
 
+    private bool _isMoving = false;
     public void OnColorChanged(string newColor)
     {
         if (string.IsNullOrEmpty(AnimPlayer.CurrentAnimation))
@@ -40,5 +41,21 @@ public partial class Player_IdleState : State
         {
             AskTransit("JumpLoop");
         }
+
+        //GD.Print("Player velocity length: " + Player.Velocity.Length());
+        if (_isMoving == false && Player.Velocity.Length() > 100f && Player.IsOnFloor())
+        {
+            
+            _isMoving = true;
+            AudioManager.Instance.PlayOnceSFX("walk");
+        }
+        else if (_isMoving == true && Player.Velocity.Length() <= 100f)
+        {
+            GD.Print("Stopping walk SFX");
+            _isMoving = false;
+            AudioManager.Instance.StopOnceSFX("walk");
+        }
     }
+
+
 }

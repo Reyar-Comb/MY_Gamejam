@@ -1,0 +1,122 @@
+[gd_scene format=3 uid="uid://bh5qg2wsh5hw5"]
+
+[ext_resource type="Script" uid="uid://3v30ggkurrfu" path="res://AudioManager/AudioManager.cs" id="1_bimrg"]
+[ext_resource type="Script" uid="uid://j1ta0joh2dnu" path="res://AudioManager/Scripts/AudioKeyValuePair.cs" id="2_2hj2f"]
+[ext_resource type="AudioStream" uid="uid://btydenqcw2tvd" path="res://Audio/BGM/Dots' Lullaby.mp3" id="3_gcgda"]
+[ext_resource type="AudioStream" uid="uid://dpq1om17u47t3" path="res://Audio/SFX/jump.mp3" id="4_tum4e"]
+[ext_resource type="AudioStream" uid="uid://bntqy0246pjj6" path="res://Audio/SFX/UI按钮.wav" id="5_4o7rc"]
+[ext_resource type="AudioStream" uid="uid://bpidug5ylvmgg" path="res://Audio/SFX/walk.mp3" id="6_mfw2e"]
+[ext_resource type="AudioStream" uid="uid://dstu2iyijv6yg" path="res://Audio/SFX/发射点.wav" id="7_viqa5"]
+[ext_resource type="AudioStream" uid="uid://7s4fmo3jcc2p" path="res://Audio/SFX/取消点.wav" id="8_je6na"]
+[ext_resource type="AudioStream" uid="uid://dpkx7cj74ghiq" path="res://Audio/SFX/存档点激活.wav" id="9_2trk5"]
+[ext_resource type="AudioStream" uid="uid://2bayvpkqsvsu" path="res://Audio/SFX/捡到道具.wav" id="10_hv5in"]
+[ext_resource type="AudioStream" uid="uid://bvbuckptaayhq" path="res://Audio/SFX/点定型.wav" id="11_i1ri5"]
+[ext_resource type="AudioStream" uid="uid://bbooty3ojotxi" path="res://Audio/SFX/点碰撞.wav" id="12_tsm2s"]
+[ext_resource type="AudioStream" uid="uid://dff7r1lg8maa5" path="res://Audio/SFX/紫线吸附.wav" id="13_7s1mq"]
+[ext_resource type="AudioStream" uid="uid://857okh078nul" path="res://Audio/SFX/红线破坏.wav" id="14_uvgas"]
+[ext_resource type="AudioStream" uid="uid://bcwp17ei8k8w6" path="res://Audio/SFX/蓝线弹跳.wav" id="15_lw3lm"]
+[ext_resource type="AudioStream" uid="uid://cv1c7s52ku2qy" path="res://Audio/SFX/角色变色.wav" id="16_1t88w"]
+[ext_resource type="AudioStream" uid="uid://ckgqoodboxktn" path="res://Audio/SFX/角色死亡.wav" id="17_anpmm"]
+[ext_resource type="AudioStream" uid="uid://csrc77eeaj1ci" path="res://Audio/SFX/角色落地.wav" id="18_v7335"]
+
+[sub_resource type="Resource" id="Resource_0orja"]
+script = ExtResource("2_2hj2f")
+Key = "Dots' Lullaby"
+Value = ExtResource("3_gcgda")
+metadata/_custom_type_script = "uid://j1ta0joh2dnu"
+
+[sub_resource type="Resource" id="Resource_7h3ag"]
+script = ExtResource("2_2hj2f")
+Key = "jump"
+Value = ExtResource("4_tum4e")
+metadata/_custom_type_script = "uid://j1ta0joh2dnu"
+
+[sub_resource type="Resource" id="Resource_sj40i"]
+script = ExtResource("2_2hj2f")
+Key = "ui"
+Value = ExtResource("5_4o7rc")
+metadata/_custom_type_script = "uid://j1ta0joh2dnu"
+
+[sub_resource type="Resource" id="Resource_mivhl"]
+script = ExtResource("2_2hj2f")
+Key = "walk"
+Value = ExtResource("6_mfw2e")
+metadata/_custom_type_script = "uid://j1ta0joh2dnu"
+
+[sub_resource type="Resource" id="Resource_ssqje"]
+script = ExtResource("2_2hj2f")
+Key = "shoot"
+Value = ExtResource("7_viqa5")
+metadata/_custom_type_script = "uid://j1ta0joh2dnu"
+
+[sub_resource type="Resource" id="Resource_2c4lo"]
+script = ExtResource("2_2hj2f")
+Key = "cancel"
+Value = ExtResource("8_je6na")
+metadata/_custom_type_script = "uid://j1ta0joh2dnu"
+
+[sub_resource type="Resource" id="Resource_jxmia"]
+script = ExtResource("2_2hj2f")
+Key = "checkpoint"
+Value = ExtResource("9_2trk5")
+metadata/_custom_type_script = "uid://j1ta0joh2dnu"
+
+[sub_resource type="Resource" id="Resource_a574o"]
+script = ExtResource("2_2hj2f")
+Key = "tools"
+Value = ExtResource("10_hv5in")
+metadata/_custom_type_script = "uid://j1ta0joh2dnu"
+
+[sub_resource type="Resource" id="Resource_m4m8l"]
+script = ExtResource("2_2hj2f")
+Key = "static"
+Value = ExtResource("11_i1ri5")
+metadata/_custom_type_script = "uid://j1ta0joh2dnu"
+
+[sub_resource type="Resource" id="Resource_ubbax"]
+script = ExtResource("2_2hj2f")
+Key = "collide"
+Value = ExtResource("12_tsm2s")
+metadata/_custom_type_script = "uid://j1ta0joh2dnu"
+
+[sub_resource type="Resource" id="Resource_mcufr"]
+script = ExtResource("2_2hj2f")
+Key = "purpleline"
+Value = ExtResource("13_7s1mq")
+metadata/_custom_type_script = "uid://j1ta0joh2dnu"
+
+[sub_resource type="Resource" id="Resource_wlxy2"]
+script = ExtResource("2_2hj2f")
+Key = "redline"
+Value = ExtResource("14_uvgas")
+metadata/_custom_type_script = "uid://j1ta0joh2dnu"
+
+[sub_resource type="Resource" id="Resource_dbm1k"]
+script = ExtResource("2_2hj2f")
+Key = "blueline"
+Value = ExtResource("15_lw3lm")
+metadata/_custom_type_script = "uid://j1ta0joh2dnu"
+
+[sub_resource type="Resource" id="Resource_lr3x8"]
+script = ExtResource("2_2hj2f")
+Key = "colorchange"
+Value = ExtResource("16_1t88w")
+metadata/_custom_type_script = "uid://j1ta0joh2dnu"
+
+[sub_resource type="Resource" id="Resource_ot7ai"]
+script = ExtResource("2_2hj2f")
+Key = "die"
+Value = ExtResource("17_anpmm")
+metadata/_custom_type_script = "uid://j1ta0joh2dnu"
+
+[sub_resource type="Resource" id="Resource_unjjg"]
+script = ExtResource("2_2hj2f")
+Key = "land"
+Value = ExtResource("18_v7335")
+metadata/_custom_type_script = "uid://j1ta0joh2dnu"
+
+[node name="AudioManager" type="Node2D" unique_id=1013116701]
+script = ExtResource("1_bimrg")
+BGMTracks = Array[ExtResource("2_2hj2f")]([SubResource("Resource_0orja")])
+SFXTracks = Array[ExtResource("2_2hj2f")]([SubResource("Resource_7h3ag"), SubResource("Resource_sj40i"), SubResource("Resource_mivhl"), SubResource("Resource_ssqje"), SubResource("Resource_2c4lo"), SubResource("Resource_jxmia"), SubResource("Resource_a574o"), SubResource("Resource_m4m8l"), SubResource("Resource_ubbax"), SubResource("Resource_mcufr"), SubResource("Resource_wlxy2"), SubResource("Resource_dbm1k"), SubResource("Resource_lr3x8"), SubResource("Resource_ot7ai"), SubResource("Resource_unjjg")])
+DefaultBGMVolumeDb = -20.0

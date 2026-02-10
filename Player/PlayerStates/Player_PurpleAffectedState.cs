@@ -37,6 +37,7 @@ public partial class Player_PurpleAffectedState : State
         {
             Radius = 40f
         };
+        AudioManager.Instance.PlaySFX("purpleline");
     }
 
     protected override void Exit()

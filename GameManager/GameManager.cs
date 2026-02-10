@@ -11,7 +11,7 @@ public partial class GameManager : Node
 	public static GameManager Instance;
 
 	public int CurrentCheckPointID = 0;
-	public int CurrentMaxPoints = 0;
+	public int CurrentMaxPoints => DotlineManager.Instance.MaxHistoryDots;
 	public Player Player;
 	public List<CheckPoint> CheckPoints = new();
 
@@ -41,7 +41,7 @@ public partial class GameManager : Node
 	public async void StartNewGame()
 	{
 		CurrentCheckPointID = -1;
-		CurrentMaxPoints = 0;
+		DotlineManager.Instance.MaxHistoryDots = 0;
 		await LoadGame();
 		RespawnPlayer(CurrentCheckPointID);
 		SaveFile(CurrentCheckPointID);
@@ -120,7 +120,7 @@ public partial class GameManager : Node
 			if (saveData != null)
 			{
 				CurrentCheckPointID = saveData.CheckPointID;
-				CurrentMaxPoints = saveData.MaxPoints;
+				DotlineManager.Instance.MaxHistoryDots = saveData.MaxPoints;
 				GD.Print($"GameManager: Loaded checkpoint ID {CurrentCheckPointID} from save file.");
 			}
 			else
@@ -136,6 +136,7 @@ public partial class GameManager : Node
 
 	public async Task ReturnToLastCheckpoint()
 	{
+		EmitSignal("CheckPointChanged", CurrentCheckPointID);
 		RespawnPlayer(CurrentCheckPointID);
 	}
 

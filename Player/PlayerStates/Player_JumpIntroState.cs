@@ -23,6 +23,7 @@ public partial class Player_JumpIntroState : State
     {
         AnimPlayer.Play($"{Player.PlayerColor}JumpIntro");
         AnimPlayer.AnimationFinished += OnAnimationFinished;
+        AudioManager.Instance.PlaySFX("jump");
         Player.Connect(nameof(Player.ColorChanged), new Callable(this, nameof(OnColorChanged)));
     }
     protected override void Exit()
