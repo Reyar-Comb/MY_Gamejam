@@ -23,6 +23,7 @@ public partial class Player_JumpEndState : State
         AnimPlayer.Play($"{Player.PlayerColor}JumpEnd");
         AnimPlayer.AnimationFinished += OnAnimationFinished;
         Player.Connect(nameof(Player.ColorChanged), new Callable(this, nameof(OnColorChanged)));
+        AudioManager.Instance.PlaySFX("land");
     }
     protected override void Exit()
     {
@@ -31,7 +32,6 @@ public partial class Player_JumpEndState : State
     }
     private void OnAnimationFinished(StringName _)
     {
-        AudioManager.Instance.PlaySFX("land");
         AskTransit("Idle");
     }
 }

@@ -370,9 +370,6 @@ scale = Vector2(7.44, 1)
 position = Vector2(34534.004, -11774)
 scale = Vector2(7.44, 1)
 
-[node name="Player" parent="." unique_id=990283555 instance=ExtResource("2_wgwpm")]
-position = Vector2(-1001, 177)
-
 [node name="Hints" type="Node2D" parent="." unique_id=382295307]
 position = Vector2(8339, -1005)
 scale = Vector2(0.94855964, 0.9791667)
@@ -532,3 +529,6 @@ Color = 2
 
 [node name="ColorBlock12" parent="ColorBlocks" unique_id=953659253 instance=ExtResource("18_b3jsu")]
 position = Vector2(18356, -620)
+
+[node name="Player" parent="." unique_id=990283555 instance=ExtResource("2_wgwpm")]
+position = Vector2(-1001, 177)
