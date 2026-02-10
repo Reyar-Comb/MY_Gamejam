@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://d3yst86wqgidd" path="res://Map/Hint/QQ图片20260209231639.png" id="14_b3jsu"]
 [ext_resource type="Texture2D" uid="uid://dlsxigu7f0evy" path="res://Map/Hint/QQ图片20260209231635.png" id="15_2q318"]
 [ext_resource type="Texture2D" uid="uid://c0eiwf7tw16hc" path="res://Map/Hint/QQ图片20260209231654.png" id="16_0g0qh"]
+[ext_resource type="PackedScene" uid="uid://dwopu1hbpghf6" path="res://UI/UIinGame.tscn" id="17_t64y5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6od3y"]
 radius = 120.0
@@ -315,3 +316,5 @@ texture = ExtResource("15_2q318")
 position = Vector2(1985.6426, 603.57446)
 scale = Vector2(0.82936937, 0.7446809)
 texture = ExtResource("16_0g0qh")
+
+[node name="InGameUI" parent="." unique_id=1287121870 instance=ExtResource("17_t64y5")]

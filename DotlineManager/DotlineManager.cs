@@ -10,12 +10,12 @@ using System.Linq;
 public partial class DotlineManager : Node2D
 {
 	public static DotlineManager Instance;
-	
+
 	private SemaphoreSlim _clearLock = new SemaphoreSlim(1, 1);
 
 	[Export] public PackedScene DotScene;
 	[Export] public PackedScene LineScene;
-
+	[Signal] public delegate void DotsLabelRefreshEventHandler(int currentDots, int maxDots);
 	public DotlineColor CurrentColor
 	{
 		get => field;
@@ -25,16 +25,23 @@ public partial class DotlineManager : Node2D
 			Player.PlayerColor = value.ToString();
 		}
 	}
-
 	public Player Player;
 	[Export] public float DotDamping = 1.0f;
 	[Export] public float DotStaticVelocity = 40f;
-	[Export] public int MaxHistoryDots = 5;
+	[Export] public int MaxHistoryDots
+	{
+		get => field;
+		set
+		{
+			field = value;
+			EmitSignal(SignalName.DotsLabelRefresh, HistoryDots.Count, value);
+		}
+	} = 5;
 	[Export] public float RedDotRange = 500f;
 	[Export] public float BlueDotRange = 500f;
 	[Export] public float PurpleDotRange = 500f;
 
-	public float MaxDotSpeed 
+	public float MaxDotSpeed
 	{
 		get
 		{
@@ -56,13 +63,18 @@ public partial class DotlineManager : Node2D
 	public Queue<Dot> BlueDotQueue { get; private set; } = new Queue<Dot>();
 	public Queue<Dot> RedDotQueue { get; private set; } = new Queue<Dot>();
 	public Queue<Dot> PurpleDotQueue { get; private set; } = new Queue<Dot>();
-	public Queue<DotlineColor> HistoryDots = new Queue<DotlineColor>(); 
+	public Queue<DotlineColor> HistoryDots = new Queue<DotlineColor>();
 	public List<Line> BlueLines = new List<Line>();
 	public List<Line> RedLines = new List<Line>();
 	public List<Line> PurpleLines = new List<Line>();
 	public Dot FirstBlueDot => BlueDotQueue.Count > 0 ? BlueDotQueue.Peek() : null;
 	public Dot FirstRedDot => RedDotQueue.Count > 0 ? RedDotQueue.Peek() : null;
 	public Dot FirstPurpleDot => PurpleDotQueue.Count > 0 ? PurpleDotQueue.Peek() : null;
+    public override void _Process(double delta)
+    {
+        GD.Print(HistoryDots.Count);
+    }
+
 	public override void _Ready()
 	{
 
@@ -77,13 +89,33 @@ public partial class DotlineManager : Node2D
 		}
 		GameManager.Instance.Connect("CheckPointChanged", new Callable(this, "OnCheckPointChanged"));
 		GD.Print("Connected");
+		MaxHistoryDots = MaxHistoryDots;
 	}
 
 	public Vector2 GetDirection()
 	{
 		return (GetGlobalMousePosition() - Player.GlobalPosition).Normalized();
 	}
-
+	private DotlineColor IncrementHistoryDots(DotlineColor color)
+	{
+		HistoryDots.Enqueue(color);
+		if (HistoryDots.Count <= MaxHistoryDots)
+			EmitSignal(SignalName.DotsLabelRefresh, HistoryDots.Count, MaxHistoryDots);
+		return color;
+	}
+	private DotlineColor? DecrementHistoryDots()
+	{
+		if (HistoryDots.Count <= 0) return null;
+		DotlineColor color = HistoryDots.Dequeue();
+		EmitSignal(SignalName.DotsLabelRefresh, HistoryDots.Count, MaxHistoryDots);
+		
+		return color;
+	}
+	private void ClearHistoryDots()
+	{
+		HistoryDots.Clear();
+		EmitSignal(SignalName.DotsLabelRefresh, HistoryDots.Count, MaxHistoryDots);
+	}
 	public Queue<Dot> GetDotQueue(DotlineColor color)
 	{
 		return color switch
@@ -408,7 +440,7 @@ public partial class DotlineManager : Node2D
 			_clearLock.Release();
 		}
 	}
-	
+
 	public async Task ClearDots()
 	{
 		var tasks = new List<Task>();
@@ -426,7 +458,7 @@ public partial class DotlineManager : Node2D
 				tasks.Add(dot.CurrentLine.Clear());
 			}
 		}
-		foreach (var dot in PurpleDotQueue)		
+		foreach (var dot in PurpleDotQueue)
 		{
 			if (dot != PurpleDotQueue.Peek())
 			{
@@ -454,7 +486,7 @@ public partial class DotlineManager : Node2D
 		BlueDotQueue.Clear();
 		RedDotQueue.Clear();
 		PurpleDotQueue.Clear();
-		HistoryDots.Clear();
+		ClearHistoryDots();
 
 		ForceDeleteObjects();
 	}
@@ -467,7 +499,7 @@ public partial class DotlineManager : Node2D
 			{
 				l.QueueFree();
 			}
-		
+
 		}
 		var dots = GetTree().GetNodesInGroup("Dots");
 		foreach (var dot in dots)
@@ -478,10 +510,10 @@ public partial class DotlineManager : Node2D
 			}
 		}
 	}
-	
+
 	public async void SpawnDot(Vector2 velocity)
 	{
-		
+
 		if (CurrentColor == DotlineColor.White)
 			return;
 		Dot dot = DotScene.Instantiate<Dot>();
@@ -499,18 +531,18 @@ public partial class DotlineManager : Node2D
 			_ => null
 		};
 		DotQueue.Enqueue(dot);
-		HistoryDots.Enqueue(CurrentColor);
+		IncrementHistoryDots(CurrentColor);
 		GD.Print(HistoryDots.Count);
 
 		if (HistoryDots.Count > MaxHistoryDots)
 		{
-			DotlineColor? ClearColor = HistoryDots.Dequeue();
+			DotlineColor? ClearColor = DecrementHistoryDots();
 			if (ClearColor != null)
 			{
 				await ClearColorDot(ClearColor.Value);
 			}
 		}
-		
+
 
 	}
 
@@ -522,7 +554,7 @@ public partial class DotlineManager : Node2D
 	public async void OnCheckPointChanged(int checkPointID)
 	{
 		GD.Print("Checkpoint changed, clearing dots...");
-		while(_clearLock.CurrentCount == 0)
+		while (_clearLock.CurrentCount == 0)
 		{
 			await Task.Delay(2);
 		}
@@ -559,7 +591,7 @@ public partial class DotlineManager : Node2D
 				{
 					GD.Print("Currently clearing dots, cannot clear another color now.");
 					return;
-				} 
+				}
 				await ClearDots();
 				await GameManager.Instance.ReturnToLastCheckpoint();
 			}
@@ -569,13 +601,13 @@ public partial class DotlineManager : Node2D
 				{
 					GD.Print("Currently clearing dots, cannot clear another color now.");
 					return;
-				} 
+				}
 				if (Player.StateTree._currentState.Name == "PurpleAffected")
 				{
 					GD.Print("Cannot clear dots while in PurpleAffected state.");
 					return;
 				}
-				DotlineColor? ClearColor = HistoryDots.Count > 0 ? HistoryDots.Dequeue() : null;
+				DotlineColor? ClearColor = HistoryDots.Count > 0 ? DecrementHistoryDots() : null;
 				if (ClearColor == null)
 				{
 					GD.Print("No history dots to clear.");

@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://ro3cvfv1fq31"]
+
+[ext_resource type="FontFile" uid="uid://dfgprm0s0rr6r" path="res://UI/Font/OCRAEXT.TTF" id="1_c7adm"]
+
+[resource]
+font = ExtResource("1_c7adm")
+font_size = 75
+font_color = Color(0, 0, 0, 1)

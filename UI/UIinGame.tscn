@@ -1,23 +1,50 @@
 [gd_scene format=3 uid="uid://dwopu1hbpghf6"]
 
+[ext_resource type="Script" uid="uid://dqh8gciktbxnk" path="res://UI/UIinGame.cs" id="1_0ei0c"]
 [ext_resource type="Texture2D" uid="uid://cel7fojki3lve" path="res://UI/Texture/ui.png" id="1_0g8ue"]
+[ext_resource type="LabelSettings" uid="uid://ro3cvfv1fq31" path="res://UI/DotsLabelSettings.tres" id="2_7x05y"]
 
-[node name="CanvasLayer" type="CanvasLayer" unique_id=1287121870]
+[node name="InGameUI" type="CanvasLayer" unique_id=1287121870 groups=["InGameUI"]]
+script = ExtResource("1_0ei0c")
 
 [node name="Control" type="Control" parent="." unique_id=639475760]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Ui" type="Sprite2D" parent="Control" unique_id=1908529803]
-position = Vector2(60, 53)
+[node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=1328797812]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer" unique_id=652584455]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 texture = ExtResource("1_0g8ue")
+stretch_mode = 2
 
-[node name="Label" type="Label" parent="Control/Ui" unique_id=1067564516]
-offset_left = -45.0
-offset_top = -154.0
-offset_right = 126.0
-offset_bottom = -57.0
-horizontal_alignment = 1
+[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/TextureRect" unique_id=145051856]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_right = 69
+
+[node name="DotsLabel" type="Label" parent="Control/MarginContainer/TextureRect/MarginContainer" unique_id=659173382]
+unique_name_in_owner = true
+layout_mode = 2
+text = "1/2"
+label_settings = ExtResource("2_7x05y")
+horizontal_alignment = 2
 vertical_alignment = 1
