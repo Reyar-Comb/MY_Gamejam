@@ -154,7 +154,7 @@ scale = Vector2(9.695, 1.86)
 position = Vector2(25665.002, -3569)
 scale = Vector2(3.81, 3.46)
 
-[node name="CheckPoints" type="Node2D" parent="." unique_id=217176100]
+[node name="CheckPoints" type="Node2D" parent="." unique_id=217176100 groups=["CheckPointContainer"]]
 unique_name_in_owner = true
 
 [node name="CheckPoint" parent="CheckPoints" unique_id=1065180441 groups=["CheckPoints"] instance=ExtResource("5_qtvud")]

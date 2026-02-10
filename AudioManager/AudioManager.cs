@@ -36,7 +36,16 @@ public partial class AudioManager : Node2D
 		GD.Print("AudioManager is working!");
 		SetBGMVolumePercent(1f);
 	}
-
+	private AudioStreamPlayer AddSFXPlayerToPool()
+	{
+		AudioStreamPlayer sfxPlayer = new AudioStreamPlayer()
+		{
+			Bus = "SFX"
+		};
+		AddChild(sfxPlayer);
+		SFXPlayers.Add(sfxPlayer);
+		return sfxPlayer;
+	}
 	public void LoadTracks()
 	{
 		AddChild(BGMPlayer = new AudioStreamPlayer());
@@ -48,13 +57,10 @@ public partial class AudioManager : Node2D
 
 		for (int i = 0; i < MaxSFXStreams; i++)
 		{
-			AudioStreamPlayer sfxPlayer = new AudioStreamPlayer();
-			sfxPlayer.Bus = "SFX";
-			AddChild(sfxPlayer);
-			SFXPlayers.Add(sfxPlayer);
+			AddSFXPlayerToPool();
 		}
 	}
-	
+
 	public void PlayBGM(string key)
 	{
 		bool found = false;
@@ -74,38 +80,41 @@ public partial class AudioManager : Node2D
 			GD.PrintErr("BGM Track not found: " + key);
 		}
 	}
-
-	public void PlaySFX(string key)
+	private AudioStreamPlayer GetAvailableSFXPlayer(string streamNameToPlay)
 	{
-		bool found = false;
+		foreach (var player in SFXPlayers)
+		{
+			if (!player.Playing)
+			{
+				return player;
+			}
+		}
+		GD.PushWarning("SFX Track not found or no available SFX player for: " + streamNameToPlay);
+		return AddSFXPlayerToPool();
+	}
+	private AudioStream GetStreamByKey(string key)
+	{
 		foreach (var pair in SFXTracks)
 		{
 			if (pair.Key == key)
 			{
-				AudioStreamPlayer sfxPlayer = null;
-				// Find an available SFX player
-				foreach (var player in SFXPlayers)
-				{
-					if (!player.Playing)
-					{
-						sfxPlayer = player;
-						break;
-					}
-				}
-				if (sfxPlayer != null)
-				{
-					sfxPlayer.Stream = pair.Value;
-					sfxPlayer.Play();
-					GD.Print("Playing SFX Track: " + pair.Key);
-					found = true;
-					return;
-				}
+				return pair.Value;
 			}
 		}
-		if (!found)
-		{
-			GD.PrintErr("SFX Track not found or no available SFX player: " + key);
-		}
+		GD.PushError("SFX Track not found: " + key);
+		return null;
+	}
+	public void PlaySFX(string key)
+	{
+		AudioStream streamToPlay = GetStreamByKey(key);
+		if (streamToPlay == null) return;
+
+		AudioStreamPlayer sfxPlayer = GetAvailableSFXPlayer(key);
+		if (sfxPlayer == null) return;
+
+		sfxPlayer.Stream = streamToPlay;
+		sfxPlayer.Play();
+		GD.Print("Playing SFX Track: " + key);
 	}
 
 	public void PlayOnceSFX(string key)

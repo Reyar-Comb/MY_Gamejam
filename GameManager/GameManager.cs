@@ -14,15 +14,33 @@ public partial class GameManager : Node
 	public int CurrentMaxPoints => DotlineManager.Instance.MaxHistoryDots;
 	public Player Player;
 	public List<CheckPoint> CheckPoints = new();
-	
+
 	public List<int> CollectedDotsIDs = new();
 
 	public string SaveFilePath = "user://savedata.dat";
 	[Signal] public delegate void CheckPointChangedEventHandler(int checkPointID);
 	[Signal] public delegate void LoadCollectedDotEventHandler(Godot.Collections.Array<int> collectedDotsIDs);
 
-	
 
+	private async Task WaitUntilCurrentSceneReady()
+	{
+        var oldScene = GetTree().CurrentScene;
+
+        while (GetTree().CurrentScene == oldScene || GetTree().CurrentScene == null)
+        {
+            await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+        }
+
+        var newScene = GetTree().CurrentScene;
+
+        if (!newScene.IsNodeReady())
+        {
+            GD.Print("GameManager: Waiting for new scene to be ready...");
+            await ToSignal(newScene, Node.SignalName.Ready);
+        }
+        
+        GD.Print("GameManager: Current scene is ready!");
+	}
 	public override void _Ready()
 	{
 		Instance = this;
@@ -60,7 +78,7 @@ public partial class GameManager : Node
 
 	public async Task LoadGame()
 	{
-		await Task.Delay(5);
+		await WaitUntilCurrentSceneReady();
 		GetAllCheckPoints();
 	}
 
