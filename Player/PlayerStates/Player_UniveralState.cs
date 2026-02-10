@@ -40,7 +40,6 @@ public partial class Player_UniveralState : State
         for (int i = 0; i < Player.GetSlideCollisionCount(); i++)
         {
             var collision = Player.GetSlideCollision(i);
-            GD.Print($"Collision with {collision.GetCollider()}");
             if (collision.GetCollider() is SpikeLayer spikeLayer)
             {
                 await DotlineManager.Instance.RewindProgress("cancel");
