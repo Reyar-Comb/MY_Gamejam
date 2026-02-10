@@ -26,7 +26,7 @@
 texture = ExtResource("6_b3jsu")
 texture_region_size = Vector2i(240, 240)
 0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-120, -120, 120, -120, 120, -70, -120, -70)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-120, -110, -120, -120, 120, -120, 120, -110)
 0:0/0/physics_layer_0/polygon_0/one_way = true
 
 [sub_resource type="TileSet" id="TileSet_bl6si"]
@@ -278,6 +278,7 @@ tile_set = SubResource("TileSet_bl6si")
 position = Vector2(1242, -7)
 scale = Vector2(1.3159344, 1.3210382)
 script = ExtResource("6_vxmom")
+CollectibleDotsID = 114514
 DotValue = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dots/FirstTwoDots" unique_id=481277530]
@@ -295,6 +296,7 @@ frame_progress = 0.88357544
 position = Vector2(33277, -5505)
 scale = Vector2(0.4663049, 0.56884927)
 script = ExtResource("6_vxmom")
+CollectibleDotsID = 1919810
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dots/ThirdDot" unique_id=675915345]
 position = Vector2(2.144543, -1.7578201)
@@ -310,6 +312,7 @@ frame_progress = 0.96277636
 position = Vector2(43686, -12041)
 scale = Vector2(0.4663049, 0.56884927)
 script = ExtResource("6_vxmom")
+CollectibleDotsID = 721
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dots/FourthDot" unique_id=586836630]
 position = Vector2(2.144543, -1.7578201)
@@ -327,6 +330,7 @@ frame_progress = 0.96277636
 position = Vector2(48679.996, -16772)
 scale = Vector2(0.4663049, 0.56884927)
 script = ExtResource("6_vxmom")
+UseSuffixAsID = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dots/ADDDots/FourthDot2" unique_id=1734966021]
 position = Vector2(2.144543, -1.7578201)
@@ -342,6 +346,7 @@ frame_progress = 0.96277636
 position = Vector2(48822, -16775)
 scale = Vector2(0.4663049, 0.56884927)
 script = ExtResource("6_vxmom")
+UseSuffixAsID = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dots/ADDDots/FourthDot3" unique_id=1026688653]
 position = Vector2(2.144543, -1.7578201)
@@ -357,6 +362,7 @@ frame_progress = 0.96277636
 position = Vector2(48976, -16775)
 scale = Vector2(0.4663049, 0.56884927)
 script = ExtResource("6_vxmom")
+UseSuffixAsID = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dots/ADDDots/FourthDot4" unique_id=732859270]
 position = Vector2(2.144543, -1.7578201)
@@ -372,6 +378,7 @@ frame_progress = 0.96277636
 position = Vector2(48675, -16927)
 scale = Vector2(0.4663049, 0.56884927)
 script = ExtResource("6_vxmom")
+UseSuffixAsID = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dots/ADDDots/FourthDot5" unique_id=456307283]
 position = Vector2(2.144543, -1.7578201)
@@ -387,6 +394,7 @@ frame_progress = 0.96277636
 position = Vector2(48820.996, -16921)
 scale = Vector2(0.4663049, 0.56884927)
 script = ExtResource("6_vxmom")
+UseSuffixAsID = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dots/ADDDots/FourthDot6" unique_id=1196514051]
 position = Vector2(2.144543, -1.7578201)
@@ -402,6 +410,7 @@ frame_progress = 0.96277636
 position = Vector2(48963, -16924)
 scale = Vector2(0.4663049, 0.56884927)
 script = ExtResource("6_vxmom")
+UseSuffixAsID = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dots/ADDDots/FourthDot7" unique_id=2009676667]
 position = Vector2(2.144543, -1.7578201)
@@ -417,6 +426,7 @@ frame_progress = 0.96277636
 position = Vector2(48667, -17081)
 scale = Vector2(0.4663049, 0.56884927)
 script = ExtResource("6_vxmom")
+UseSuffixAsID = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dots/ADDDots/FourthDot8" unique_id=139382316]
 position = Vector2(2.144543, -1.7578201)
@@ -432,6 +442,7 @@ frame_progress = 0.96277636
 position = Vector2(48816, -17076)
 scale = Vector2(0.4663049, 0.56884927)
 script = ExtResource("6_vxmom")
+UseSuffixAsID = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dots/ADDDots/FourthDot9" unique_id=626686820]
 position = Vector2(2.144543, -1.7578201)
@@ -447,6 +458,7 @@ frame_progress = 0.96277636
 position = Vector2(48956, -17081)
 scale = Vector2(0.4663049, 0.56884927)
 script = ExtResource("6_vxmom")
+UseSuffixAsID = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dots/ADDDots/FourthDot10" unique_id=208874881]
 position = Vector2(2.144543, -1.7578201)
@@ -462,6 +474,7 @@ frame_progress = 0.96277636
 position = Vector2(49123.996, -16769)
 scale = Vector2(0.4663049, 0.56884927)
 script = ExtResource("6_vxmom")
+UseSuffixAsID = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dots/ADDDots/FourthDot11" unique_id=1021143683]
 position = Vector2(2.144543, -1.7578201)
@@ -477,6 +490,7 @@ frame_progress = 0.96277636
 position = Vector2(49266, -16772)
 scale = Vector2(0.4663049, 0.56884927)
 script = ExtResource("6_vxmom")
+UseSuffixAsID = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dots/ADDDots/FourthDot12" unique_id=1079295532]
 position = Vector2(2.144543, -1.7578201)
@@ -492,6 +506,7 @@ frame_progress = 0.96277636
 position = Vector2(49420, -16772)
 scale = Vector2(0.4663049, 0.56884927)
 script = ExtResource("6_vxmom")
+UseSuffixAsID = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dots/ADDDots/FourthDot13" unique_id=1743954354]
 position = Vector2(2.144543, -1.7578201)
@@ -507,6 +522,7 @@ frame_progress = 0.96277636
 position = Vector2(49119, -16924)
 scale = Vector2(0.4663049, 0.56884927)
 script = ExtResource("6_vxmom")
+UseSuffixAsID = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dots/ADDDots/FourthDot14" unique_id=1800624331]
 position = Vector2(2.144543, -1.7578201)
@@ -522,6 +538,7 @@ frame_progress = 0.96277636
 position = Vector2(49264.996, -16918)
 scale = Vector2(0.4663049, 0.56884927)
 script = ExtResource("6_vxmom")
+UseSuffixAsID = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dots/ADDDots/FourthDot15" unique_id=531986343]
 position = Vector2(2.144543, -1.7578201)
@@ -537,6 +554,7 @@ frame_progress = 0.96277636
 position = Vector2(49407, -16921)
 scale = Vector2(0.4663049, 0.56884927)
 script = ExtResource("6_vxmom")
+UseSuffixAsID = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dots/ADDDots/FourthDot16" unique_id=1989973966]
 position = Vector2(2.144543, -1.7578201)
@@ -552,6 +570,7 @@ frame_progress = 0.96277636
 position = Vector2(49111, -17078)
 scale = Vector2(0.4663049, 0.56884927)
 script = ExtResource("6_vxmom")
+UseSuffixAsID = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dots/ADDDots/FourthDot17" unique_id=189317222]
 position = Vector2(2.144543, -1.7578201)
@@ -567,6 +586,7 @@ frame_progress = 0.96277636
 position = Vector2(49260, -17073)
 scale = Vector2(0.4663049, 0.56884927)
 script = ExtResource("6_vxmom")
+UseSuffixAsID = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dots/ADDDots/FourthDot18" unique_id=1298991693]
 position = Vector2(2.144543, -1.7578201)
@@ -582,6 +602,7 @@ frame_progress = 0.96277636
 position = Vector2(49400, -17078)
 scale = Vector2(0.4663049, 0.56884927)
 script = ExtResource("6_vxmom")
+UseSuffixAsID = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dots/ADDDots/FourthDot19" unique_id=648139948]
 position = Vector2(2.144543, -1.7578201)

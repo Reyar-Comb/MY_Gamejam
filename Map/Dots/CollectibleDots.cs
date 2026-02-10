@@ -1,10 +1,22 @@
 using Godot;
 using System;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 public partial class CollectibleDots : Area2D
 {
-	[Export] public int CollectibleDotsID = 0;
+	[Export] public int CollectibleDotsID
+	{
+		get
+		{
+			return UseSuffixAsID
+			? int.Parse(Regex.Match(Name, @"\d+$").Value)
+			: field;
+		}
+		set => field = value;
+	} = 0;
 	[Export] public int DotValue = 1;
+	[Export] public bool UseSuffixAsID = false;
 	public override void _Ready()
 	{
 		BodyEntered += OnBodyEntered;
@@ -12,7 +24,7 @@ public partial class CollectibleDots : Area2D
 	}
 	private void OnBodyEntered(Node2D body)
 	{
-		if (body is Player player)
+		if (body is Player)
 		{
 			DotlineManager.Instance.MaxHistoryDots += DotValue;
 			AudioManager.Instance.PlaySFX("tools");
