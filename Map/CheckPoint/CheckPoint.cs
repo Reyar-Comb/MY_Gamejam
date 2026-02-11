@@ -20,6 +20,7 @@ public partial class CheckPoint : AnimatedSprite2D
 
 	public void OnBodyEntered(Node2D body)
 	{
+		if (GameManager.Instance.IsLoading) return;
 		if (body is Player player)
 		{
 			GD.Print($"Checkpoint {CheckPointID} reached by Player.");

@@ -80,7 +80,7 @@ public partial class DotlineManager : Node2D
 	public override void _Ready()
 	{
 
-		if (Instance == null)
+		if (Instance == null || !IsInstanceValid(Instance))
 		{
 			Instance = this;
 		}
@@ -92,6 +92,14 @@ public partial class DotlineManager : Node2D
 		GameManager.Instance.Connect("CheckPointChanged", new Callable(this, "OnCheckPointChanged"));
 		GD.Print("Connected");
 		MaxHistoryDots = MaxHistoryDots;
+	}
+
+	public override void _ExitTree()
+	{
+		if (Instance == this)
+		{
+			Instance = null;
+		}
 	}
 
 	public Vector2 GetDirection()

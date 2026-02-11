@@ -18,6 +18,7 @@ public partial class GameManager : Node
 	public List<int> CollectedDotsIDs = new();
 
 	public string SaveFilePath = "user://savedata.dat";
+	public bool IsLoading = false;
 	[Signal] public delegate void CheckPointChangedEventHandler(int checkPointID);
 	[Signal] public delegate void LoadCollectedDotEventHandler(Godot.Collections.Array<int> collectedDotsIDs);
 
@@ -61,19 +62,23 @@ public partial class GameManager : Node
 
 	public async void StartNewGame()
 	{
+		IsLoading = true;
 		CurrentCheckPointID = -1;
 		DotlineManager.Instance.MaxHistoryDots = 0;
 		CollectedDotsIDs.Clear();
 		await LoadGame();
 		RespawnPlayer(CurrentCheckPointID);
 		SaveFile(CurrentCheckPointID);
+		IsLoading = false;
 	}
 	public async void ContinueGame()
 	{
+		IsLoading = true;
 		await LoadGame();
 		await LoadSaveFile();
 		RespawnPlayer(CurrentCheckPointID);
 		SetCheckPoint(CurrentCheckPointID);
+		IsLoading = false;
 	}
 
 	public async Task LoadGame()
@@ -121,24 +126,30 @@ public partial class GameManager : Node
 
 	public void SaveFile(int checkPointID)
 	{
+		int maxPoints = 0;
+		if (DotlineManager.Instance != null && IsInstanceValid(DotlineManager.Instance))
+		{
+			maxPoints = DotlineManager.Instance.MaxHistoryDots;
+		}
+
 		SaveData saveData = new SaveData
 		{
 			CheckPointID = checkPointID,
-			MaxPoints = CurrentMaxPoints,
+			MaxPoints = maxPoints,
 			CollectedDotsID = CollectedDotsIDs
 		};
 
 		var file = Godot.FileAccess.Open(SaveFilePath, Godot.FileAccess.ModeFlags.Write);
 		if (file == null)
 		{
-			GD.PrintErr("GameManager: Failed to open save file for writing.");
+			GD.PrintErr($"GameManager: Failed to open save file for writing at {SaveFilePath}. Error: {Godot.FileAccess.GetOpenError()}");
 			return;
 		}
 
 		var json = JsonSerializer.Serialize(saveData);
 		file.StoreString(json);
 		file.Close();
-		GD.Print("GameManager: Game saved successfully.");
+		GD.Print($"GameManager: Game saved successfully. CheckPoint: {checkPointID}, MaxPoints: {maxPoints}");
 	}
 	public async Task LoadSaveFile()
 	{
@@ -151,7 +162,7 @@ public partial class GameManager : Node
 
 		var json = file.GetAsText();
 		file.Close();
-
+		GD.Print(json);
 		try
 		{
 			SaveData saveData = JsonSerializer.Deserialize<SaveData>(json);
@@ -159,7 +170,7 @@ public partial class GameManager : Node
 			{
 				CurrentCheckPointID = saveData.CheckPointID;
 				DotlineManager.Instance.MaxHistoryDots = saveData.MaxPoints;
-				CollectedDotsIDs = saveData.CollectedDotsID;
+				CollectedDotsIDs = saveData.CollectedDotsID ?? new List<int>();
 				EmitSignal("LoadCollectedDot", new Godot.Collections.Array<int>(CollectedDotsIDs));
 				GD.Print($"GameManager: Loaded checkpoint ID {CurrentCheckPointID} from save file.");
 			}
