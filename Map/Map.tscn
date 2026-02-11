@@ -873,6 +873,7 @@ scale = Vector2(0.82936937, 0.7446809)
 texture = ExtResource("16_0g0qh")
 
 [node name="InGameUI" parent="." unique_id=1287121870 instance=ExtResource("17_t64y5")]
+process_mode = 3
 
 [node name="ColorBlocks" type="Node2D" parent="." unique_id=1219909520]
 position = Vector2(3293, 547)
@@ -1035,3 +1036,6 @@ position = Vector2(18356, -620)
 
 [node name="Player" parent="." unique_id=990283555 instance=ExtResource("2_wgwpm")]
 position = Vector2(-995, 144)
+
+[editable path="InGameUI"]
+[editable path="InGameUI/PauseUI"]

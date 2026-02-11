@@ -1,11 +1,19 @@
 [gd_scene format=3 uid="uid://bbfhp1tdgrpk"]
 
+[ext_resource type="Script" uid="uid://bn3xheq4wdq34" path="res://UI/OptionWindow.cs" id="1_210s2"]
 [ext_resource type="Texture2D" uid="uid://b16kw5pr8hcai" path="res://UI/Texture/OPTIONWindow.png" id="1_aoc6e"]
 [ext_resource type="Texture2D" uid="uid://dllw0n4rl12xr" path="res://UI/Texture/MUSIC.png" id="2_hioik"]
 [ext_resource type="Texture2D" uid="uid://drrlwkr3xjsx3" path="res://UI/Texture/AUDIO.png" id="3_210s2"]
 [ext_resource type="Texture2D" uid="uid://fvqsjeumay2l" path="res://UI/Texture/DONE.png" id="4_f1bw5"]
+[ext_resource type="Texture2D" uid="uid://cg3vvoggmg3c0" path="res://UI/Texture/dotS.png" id="6_f1bw5"]
 
-[node name="Node2D" type="Node2D" unique_id=1250901315]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f1bw5"]
+
+[node name="Node2D" type="Node2D" unique_id=1250901315 node_paths=PackedStringArray("BGMSlider", "SFXSlider", "DoneButton")]
+script = ExtResource("1_210s2")
+BGMSlider = NodePath("HSlider")
+SFXSlider = NodePath("HSlider2")
+DoneButton = NodePath("Button")
 
 [node name="OptionWindow" type="Sprite2D" parent="." unique_id=2085890272]
 position = Vector2(957.99994, 531)
@@ -26,3 +34,34 @@ texture = ExtResource("3_210s2")
 position = Vector2(986, 838.00006)
 scale = Vector2(0.14328459, 0.13798374)
 texture = ExtResource("4_f1bw5")
+
+[node name="HSlider" type="HSlider" parent="." unique_id=669133075]
+offset_left = 883.0
+offset_top = 335.0
+offset_right = 1055.5
+offset_bottom = 363.0
+scale = Vector2(2, 2)
+theme_override_icons/grabber = ExtResource("6_f1bw5")
+theme_override_icons/grabber_highlight = ExtResource("6_f1bw5")
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="HSlider2" type="HSlider" parent="." unique_id=608995602]
+offset_left = 883.0
+offset_top = 464.56
+offset_right = 1055.5
+offset_bottom = 492.56
+scale = Vector2(2, 2)
+theme_override_icons/grabber = ExtResource("6_f1bw5")
+theme_override_icons/grabber_highlight = ExtResource("6_f1bw5")
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="Button" type="Button" parent="." unique_id=373585061]
+offset_left = 900.0
+offset_top = 771.0
+offset_right = 1067.0
+offset_bottom = 882.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_f1bw5")

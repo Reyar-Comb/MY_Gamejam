@@ -119,4 +119,5 @@ metadata/_custom_type_script = "uid://j1ta0joh2dnu"
 script = ExtResource("1_bimrg")
 BGMTracks = Array[ExtResource("2_2hj2f")]([SubResource("Resource_0orja")])
 SFXTracks = Array[ExtResource("2_2hj2f")]([SubResource("Resource_7h3ag"), SubResource("Resource_sj40i"), SubResource("Resource_mivhl"), SubResource("Resource_ssqje"), SubResource("Resource_2c4lo"), SubResource("Resource_jxmia"), SubResource("Resource_a574o"), SubResource("Resource_m4m8l"), SubResource("Resource_ubbax"), SubResource("Resource_mcufr"), SubResource("Resource_wlxy2"), SubResource("Resource_dbm1k"), SubResource("Resource_lr3x8"), SubResource("Resource_ot7ai"), SubResource("Resource_unjjg")])
-DefaultBGMVolumeDb = -20.0
+DefaultBGMVolumeDb = -8.0
+DefaultSFXVolumeDb = -6.0

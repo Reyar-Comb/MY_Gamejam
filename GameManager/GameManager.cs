@@ -17,6 +17,8 @@ public partial class GameManager : Node
 
 	public List<int> CollectedDotsIDs = new();
 
+	public Node2D PauseUI = null;
+
 	public string SaveFilePath = "user://savedata.dat";
 	public bool IsLoading = false;
 	[Signal] public delegate void CheckPointChangedEventHandler(int checkPointID);
@@ -25,26 +27,31 @@ public partial class GameManager : Node
 
 	private async Task WaitUntilCurrentSceneReady()
 	{
-        var oldScene = GetTree().CurrentScene;
+		var oldScene = GetTree().CurrentScene;
 
-        while (GetTree().CurrentScene == oldScene || GetTree().CurrentScene == null)
-        {
-            await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
-        }
+		while (GetTree().CurrentScene == oldScene || GetTree().CurrentScene == null)
+		{
+			await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+		}
 
-        var newScene = GetTree().CurrentScene;
+		var newScene = GetTree().CurrentScene;
 
-        if (!newScene.IsNodeReady())
-        {
-            GD.Print("GameManager: Waiting for new scene to be ready...");
-            await ToSignal(newScene, Node.SignalName.Ready);
-        }
-        
-        GD.Print("GameManager: Current scene is ready!");
+		if (!newScene.IsNodeReady())
+		{
+			GD.Print("GameManager: Waiting for new scene to be ready...");
+			await ToSignal(newScene, Node.SignalName.Ready);
+		}
+		
+		GD.Print("GameManager: Current scene is ready!");
 	}
 	public override void _Ready()
 	{
 		Instance = this;
+	}
+
+	public void TogglePauseGame()
+	{
+		GetTree().Paused = !GetTree().Paused;
 	}
 	public void GetAllCheckPoints()
 	{
@@ -197,7 +204,12 @@ public partial class GameManager : Node
 		{
 			if (keyEvent.Pressed && keyEvent.Keycode == Key.Escape)
 			{
-				GetTree().ChangeSceneToFile("res://StartMenu/StartUI.tscn");
+				//GetTree().ChangeSceneToFile("res://StartMenu/StartUI.tscn");
+				TogglePauseGame();
+				if (PauseUI != null)
+				{
+					PauseUI.Visible = !PauseUI.Visible;
+				}
 			}
 		}
 	}

@@ -9,10 +9,10 @@ public partial class UIinGame : CanvasLayer
 		UpdateDotsLabel(0, DotlineManager.Instance.MaxHistoryDots);
 		DotlineManager.Instance.DotsLabelRefresh += UpdateDotsLabel;
 	}
-    public override void _ExitTree()
-    {
+	public override void _ExitTree()
+	{
 		DotlineManager.Instance.DotsLabelRefresh -= UpdateDotsLabel;
-    }
+	}
 	private void UpdateDotsLabel(int currentDots, int maxDots)
 	{
 		DotsLabel.Text = $"{currentDots}/{maxDots}";

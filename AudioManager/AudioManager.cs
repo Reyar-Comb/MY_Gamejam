@@ -26,6 +26,8 @@ public partial class AudioManager : Node2D
 		{
 			GD.PrintErr("AudioManager instance is null!");
 		}
+		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("BGM"), DefaultBGMVolumeDb);
+		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("SFX"), DefaultSFXVolumeDb);
 		LoadTracks();
 
 		PlayBGM("Dots' Lullaby");
@@ -169,6 +171,19 @@ public partial class AudioManager : Node2D
 		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("BGM"), db);
 	}
 
+	public float GetSFXVolumePercent()
+	{
+		float db = AudioServer.GetBusVolumeDb(AudioServer.GetBusIndex("SFX"));
+		float percent = (Mathf.DbToLinear(db) - Mathf.DbToLinear(DefaultMinDb)) / (Mathf.DbToLinear(DefaultSFXVolumeDb) - Mathf.DbToLinear(DefaultMinDb));
+		return percent;
+	}
+
+	public float GetBGMVolumePercent()
+	{
+		float db = AudioServer.GetBusVolumeDb(AudioServer.GetBusIndex("BGM"));
+		float percent = (Mathf.DbToLinear(db) - Mathf.DbToLinear(DefaultMinDb)) / (Mathf.DbToLinear(DefaultBGMVolumeDb) - Mathf.DbToLinear(DefaultMinDb));
+		return percent;
+	}
 
 	private float PercentToDb(float percent, float minDb = -80f, float maxDb = 0f)
 	{

@@ -609,7 +609,7 @@ public partial class DotlineManager : Node2D
 		{
 			if (keyEvent.Keycode == Key.E)
 			{
-				testChangeColor();
+				//testChangeColor();
 			}
 			if (keyEvent.Keycode == Key.B)
 			{

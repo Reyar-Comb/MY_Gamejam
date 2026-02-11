@@ -3,4 +3,5 @@
 [ext_resource type="Script" uid="uid://dbyti7g5jgis6" path="res://GameManager/GameManager.cs" id="1_jmty1"]
 
 [node name="GameManager" type="Node" unique_id=104997318]
+process_mode = 3
 script = ExtResource("1_jmty1")

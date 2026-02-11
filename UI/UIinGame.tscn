@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://dqh8gciktbxnk" path="res://UI/UIinGame.cs" id="1_0ei0c"]
 [ext_resource type="Texture2D" uid="uid://cel7fojki3lve" path="res://UI/Texture/ui.png" id="1_0g8ue"]
 [ext_resource type="LabelSettings" uid="uid://ro3cvfv1fq31" path="res://UI/DotsLabelSettings.tres" id="2_7x05y"]
+[ext_resource type="PackedScene" uid="uid://dppe0jclpjgsb" path="res://UI/PauseUI.tscn" id="4_dvqtp"]
+[ext_resource type="PackedScene" uid="uid://bbfhp1tdgrpk" path="res://UI/OPTIONWindow.tscn" id="5_4trmt"]
 
 [node name="InGameUI" type="CanvasLayer" unique_id=1287121870 groups=["InGameUI"]]
 script = ExtResource("1_0ei0c")
@@ -48,3 +50,11 @@ text = "1/2"
 label_settings = ExtResource("2_7x05y")
 horizontal_alignment = 2
 vertical_alignment = 1
+
+[node name="PauseUI" parent="." unique_id=1516224268 node_paths=PackedStringArray("OptionsWindow") instance=ExtResource("4_dvqtp")]
+unique_name_in_owner = true
+visible = false
+OptionsWindow = NodePath("../Node2D2")
+
+[node name="Node2D2" parent="." unique_id=1250901315 instance=ExtResource("5_4trmt")]
+visible = false
