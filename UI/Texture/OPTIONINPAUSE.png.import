@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://h08w18h7i71o"
-path="res://.godot/imported/QQ图片20260207163258.png-30c2b9ced3694375fe2b904d459b9327.ctex"
+uid="uid://d2484lfakvl22"
+path="res://.godot/imported/OPTIONINPAUSE.png-44b0b16de1f0ef83a4490a4809500e67.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/Texture/QQ图片20260207163258.png"
-dest_files=["res://.godot/imported/QQ图片20260207163258.png-30c2b9ced3694375fe2b904d459b9327.ctex"]
+source_file="res://UI/Texture/OPTIONINPAUSE.png"
+dest_files=["res://.godot/imported/OPTIONINPAUSE.png-44b0b16de1f0ef83a4490a4809500e67.ctex"]
 
 [params]
 

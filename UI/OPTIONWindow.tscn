@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bbfhp1tdgrpk"]
+
+[ext_resource type="Texture2D" uid="uid://b16kw5pr8hcai" path="res://UI/Texture/OPTIONWindow.png" id="1_aoc6e"]
+[ext_resource type="Texture2D" uid="uid://dllw0n4rl12xr" path="res://UI/Texture/MUSIC.png" id="2_hioik"]
+[ext_resource type="Texture2D" uid="uid://drrlwkr3xjsx3" path="res://UI/Texture/AUDIO.png" id="3_210s2"]
+[ext_resource type="Texture2D" uid="uid://fvqsjeumay2l" path="res://UI/Texture/DONE.png" id="4_f1bw5"]
+
+[node name="Node2D" type="Node2D" unique_id=1250901315]
+
+[node name="OptionWindow" type="Sprite2D" parent="." unique_id=2085890272]
+position = Vector2(957.99994, 531)
+scale = Vector2(0.5206991, 0.52289003)
+texture = ExtResource("1_aoc6e")
+
+[node name="Music" type="Sprite2D" parent="." unique_id=782534975]
+position = Vector2(753, 382.00003)
+scale = Vector2(0.58016884, 0.5579848)
+texture = ExtResource("2_hioik")
+
+[node name="Audio" type="Sprite2D" parent="." unique_id=1734310185]
+position = Vector2(759.00006, 485.00003)
+scale = Vector2(0.60601264, 0.5831748)
+texture = ExtResource("3_210s2")
+
+[node name="Done" type="Sprite2D" parent="." unique_id=1106095225]
+position = Vector2(986, 838.00006)
+scale = Vector2(0.14328459, 0.13798374)
+texture = ExtResource("4_f1bw5")

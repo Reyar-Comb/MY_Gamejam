@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dppe0jclpjgsb"]
+
+[ext_resource type="Texture2D" uid="uid://dbi2rqdsbcykj" path="res://UI/Texture/CONTINUEINPAUSE.png" id="1_4xh2f"]
+[ext_resource type="Texture2D" uid="uid://d2484lfakvl22" path="res://UI/Texture/OPTIONINPAUSE.png" id="2_m4jcm"]
+[ext_resource type="Texture2D" uid="uid://dxv3otucjybae" path="res://UI/Texture/QUIT.png" id="3_nqmb2"]
+
+[node name="Node2D" type="Node2D" unique_id=1516224268]
+
+[node name="Continueinpause" type="Sprite2D" parent="." unique_id=52758692]
+position = Vector2(972, 309)
+scale = Vector2(0.20140053, 0.18239516)
+texture = ExtResource("1_4xh2f")
+
+[node name="Optioninpause" type="Sprite2D" parent="." unique_id=345295292]
+position = Vector2(972.99994, 588)
+scale = Vector2(0.21066068, 0.20151794)
+texture = ExtResource("2_m4jcm")
+
+[node name="Quit" type="Sprite2D" parent="." unique_id=112234123]
+position = Vector2(988, 893.00006)
+scale = Vector2(0.17105988, 0.17155957)
+texture = ExtResource("3_nqmb2")
