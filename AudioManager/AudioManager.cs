@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 
 public partial class AudioManager : Node2D
@@ -191,5 +192,81 @@ public partial class AudioManager : Node2D
 		float minLinear = Mathf.DbToLinear(minDb);
 		GD.Print("maxLinear: " + maxLinear + " minLinear: " + minLinear);
 		return Mathf.LinearToDb(minLinear + (maxLinear - minLinear) * percent);
+	}
+
+	public async Task FadeOutBGM(float duration)
+	{
+		float startPercent = GetBGMVolumePercent();
+		float elapsed = 0f;
+		while (elapsed < duration)
+		{
+			elapsed += 0.01f;
+			float newPercent = Mathf.Lerp(startPercent, 0f, elapsed / duration);
+			SetBGMVolumePercent(newPercent);
+			await ToSignal(GetTree().CreateTimer(0.01f), "timeout");
+		}
+		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("BGM"), DefaultMinDb);
+		BGMPlayer.Stop();
+	}
+
+	public async Task FadeInBGM(float duration, float lastPercent = 1f)
+	{
+		float startPercent = 0f;
+		float elapsed = 0f;
+		while (elapsed < duration)
+		{
+			elapsed += 0.01f;
+			float newPercent = Mathf.Lerp(startPercent, lastPercent, elapsed / duration);
+			SetBGMVolumePercent(newPercent);
+			await ToSignal(GetTree().CreateTimer(0.01f), "timeout");
+		}
+		SetBGMVolumePercent(lastPercent);
+	}
+
+	public void StopBGM()
+	{
+		BGMPlayer.Stop();
+	}
+
+	public async Task ChangeBGM(string key, float fadeDuration = 0f)
+	{
+		if (fadeDuration > 0f)
+		{
+			float nowPercent = GetBGMVolumePercent();
+			await FadeOutBGM(fadeDuration);
+			// Wait for fade out to complete before changing track
+			PlayBGM(key);
+			await FadeInBGM(fadeDuration, nowPercent);
+		}
+		else
+		{
+			PlayBGM(key);
+		}
+	}
+
+	public bool FindBGM(string key)
+	{
+		foreach (var pair in BGMTracks)
+		{
+			if (pair.Key == key)
+			{
+				GD.Print("Found BGM Track: " + pair.Key);
+				return true;
+			}
+		}
+		GD.PrintErr("BGM Track not found: " + key);
+		return false;
+	}
+
+	public string GetPlayingBGM()
+	{
+		foreach (var pair in BGMTracks)
+		{
+			if (BGMPlayer.Stream == pair.Value)
+			{
+				return pair.Key;
+			}
+		}
+		return null;
 	}
 }

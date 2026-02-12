@@ -41,6 +41,7 @@
 [ext_resource type="Texture2D" uid="uid://c0eiwf7tw16hc" path="res://Map/Hint/QQ图片20260209231654.png" id="16_0g0qh"]
 [ext_resource type="PackedScene" uid="uid://dwopu1hbpghf6" path="res://UI/UIinGame.tscn" id="17_t64y5"]
 [ext_resource type="PackedScene" uid="uid://ckscvaw6pp0xv" path="res://Map/ColorBlock/ColorBlock.tscn" id="18_b3jsu"]
+[ext_resource type="Script" uid="uid://5t7aanmuflfw" path="res://Map/StarryRoom.cs" id="22_xd2yo"]
 [ext_resource type="Texture2D" uid="uid://dpexjh7e0b7n3" path="res://Map/BackGround/arrow.png" id="23_hnxga"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2q318"]
@@ -60,6 +61,9 @@ radius = 120.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vxmom"]
 radius = 120.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hnxga"]
+size = Vector2(1610.2168, 894.1596)
 
 [node name="Node2D2" type="Node2D" unique_id=2075572154]
 
@@ -1212,8 +1216,21 @@ Color = 2
 [node name="ColorBlock12" parent="ColorBlocks" unique_id=953659253 instance=ExtResource("18_b3jsu")]
 position = Vector2(18356, -620)
 
+[node name="StarryArea" type="Area2D" parent="." unique_id=319175462]
+position = Vector2(18795, -3776)
+scale = Vector2(1.5473083, 1.8190272)
+disable_mode = 2
+collision_priority = 2.0
+priority = 10
+script = ExtResource("22_xd2yo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StarryArea" unique_id=993975396]
+position = Vector2(-66.08203, -72.978516)
+scale = Vector2(0.9999996, 0.99999964)
+shape = SubResource("RectangleShape2D_hnxga")
+
 [node name="Player" parent="." unique_id=990283555 instance=ExtResource("2_wgwpm")]
-position = Vector2(-995, 144)
+position = Vector2(22246, -4497)
 
 [editable path="InGameUI"]
 [editable path="InGameUI/PauseUI"]

@@ -3,3 +3,7 @@
 /android/
 
 .DS_Store
+
+# Copyright problems
+Audio/BGM/guitar/guitar.mp3
+Audio/BGM/guitar/guitar.mp3.import

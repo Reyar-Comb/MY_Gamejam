@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://3v30ggkurrfu" path="res://AudioManager/AudioManager.cs" id="1_bimrg"]
 [ext_resource type="Script" uid="uid://j1ta0joh2dnu" path="res://AudioManager/Scripts/AudioKeyValuePair.cs" id="2_2hj2f"]
 [ext_resource type="AudioStream" uid="uid://btydenqcw2tvd" path="res://Audio/BGM/Dots' Lullaby.mp3" id="3_gcgda"]
+[ext_resource type="AudioStream" uid="uid://cnov28fx2xnpw" path="res://Audio/BGM/guitar.mp3" id="4_2hj2f"]
 [ext_resource type="AudioStream" uid="uid://dpq1om17u47t3" path="res://Audio/SFX/jump.mp3" id="4_tum4e"]
 [ext_resource type="AudioStream" uid="uid://bntqy0246pjj6" path="res://Audio/SFX/UI按钮.wav" id="5_4o7rc"]
 [ext_resource type="AudioStream" uid="uid://bpidug5ylvmgg" path="res://Audio/SFX/walk.mp3" id="6_mfw2e"]
@@ -23,6 +24,12 @@
 script = ExtResource("2_2hj2f")
 Key = "Dots' Lullaby"
 Value = ExtResource("3_gcgda")
+metadata/_custom_type_script = "uid://j1ta0joh2dnu"
+
+[sub_resource type="Resource" id="Resource_gcgda"]
+script = ExtResource("2_2hj2f")
+Key = "guitar"
+Value = ExtResource("4_2hj2f")
 metadata/_custom_type_script = "uid://j1ta0joh2dnu"
 
 [sub_resource type="Resource" id="Resource_7h3ag"]
@@ -117,7 +124,7 @@ metadata/_custom_type_script = "uid://j1ta0joh2dnu"
 
 [node name="AudioManager" type="Node2D" unique_id=1013116701]
 script = ExtResource("1_bimrg")
-BGMTracks = Array[ExtResource("2_2hj2f")]([SubResource("Resource_0orja")])
+BGMTracks = Array[ExtResource("2_2hj2f")]([SubResource("Resource_0orja"), SubResource("Resource_gcgda")])
 SFXTracks = Array[ExtResource("2_2hj2f")]([SubResource("Resource_7h3ag"), SubResource("Resource_sj40i"), SubResource("Resource_mivhl"), SubResource("Resource_ssqje"), SubResource("Resource_2c4lo"), SubResource("Resource_jxmia"), SubResource("Resource_a574o"), SubResource("Resource_m4m8l"), SubResource("Resource_ubbax"), SubResource("Resource_mcufr"), SubResource("Resource_wlxy2"), SubResource("Resource_dbm1k"), SubResource("Resource_lr3x8"), SubResource("Resource_ot7ai"), SubResource("Resource_unjjg")])
 DefaultBGMVolumeDb = -8.0
 DefaultSFXVolumeDb = -6.0
