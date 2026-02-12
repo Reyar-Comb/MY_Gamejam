@@ -1106,8 +1106,8 @@ position = Vector2(24276, -1437)
 Color = 2
 
 [node name="ColorBlock15" parent="ColorBlocks" unique_id=226482223 instance=ExtResource("18_b3jsu")]
-position = Vector2(22775, -4891)
-scale = Vector2(4.025, 1)
+position = Vector2(22773.002, -4892)
+scale = Vector2(4.125, 1.025)
 Color = 2
 
 [node name="ColorBlock16" parent="ColorBlocks" unique_id=46824445 instance=ExtResource("18_b3jsu")]
