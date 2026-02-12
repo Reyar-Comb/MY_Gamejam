@@ -42,7 +42,7 @@ public partial class DotlineManager : Node2D
 			field = value;
 			EmitSignal(SignalName.DotsLabelRefresh, HistoryDots.Count, value);
 		}
-	} = 5;
+	} = 0;
 	[Export] public float RedDotRange = 500f;
 	[Export] public float BlueDotRange = 500f;
 	[Export] public float PurpleDotRange = 500f;

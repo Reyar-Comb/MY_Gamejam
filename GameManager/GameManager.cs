@@ -10,7 +10,7 @@ public partial class GameManager : Node
 {
 	public static GameManager Instance;
 
-	public int CurrentCheckPointID = 0;
+	public int CurrentCheckPointID = -1;
 	public int CurrentMaxPoints => DotlineManager.Instance.MaxHistoryDots;
 	public Player Player;
 	public List<CheckPoint> CheckPoints = new();

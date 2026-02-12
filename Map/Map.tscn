@@ -496,7 +496,7 @@ position = Vector2(5236, 312)
 CheckPointID = 1
 
 [node name="CheckPoint3" parent="CheckPoints" unique_id=1986361256 groups=["CheckPoints"] instance=ExtResource("5_qtvud")]
-position = Vector2(7625, -513)
+position = Vector2(7625, -512)
 CheckPointID = 2
 
 [node name="CheckPoint4" parent="CheckPoints" unique_id=984761909 groups=["CheckPoints"] instance=ExtResource("5_qtvud")]
@@ -577,6 +577,7 @@ CheckPointID = 12
 
 [node name="CheckPoint15" parent="CheckPoints" unique_id=1246704238 groups=["CheckPoints"] instance=ExtResource("5_qtvud")]
 position = Vector2(27562.002, -5814)
+frame_progress = 1.0
 CheckPointID = 11
 
 [node name="SpikeLayer" type="TileMapLayer" parent="." unique_id=1971462050]
