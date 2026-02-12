@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="新建游戏项目"
+config/name="○一○Dot-Dot"
 run/main_scene="uid://dim7fl3q2jnpm"
 config/features=PackedStringArray("4.6", "C#", "Mobile")
-config/icon="res://icon.svg"
+config/icon="uid://smnjqedxgwxk"
 
 [audio]
 
